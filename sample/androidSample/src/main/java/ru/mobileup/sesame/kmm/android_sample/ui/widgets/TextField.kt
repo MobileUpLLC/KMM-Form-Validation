@@ -54,7 +54,7 @@ fun TextField(
             singleLine = inputControl.singleLine,
             label = { Text(text = label) },
             onValueChange = inputControl::onTextChanged,
-            isError = error != null,
+            isError = error.get() != null,
             visualTransformation = inputControl.visualTransformation.asCompose(),
             modifier = modifier
                 .fillMaxWidth()
@@ -64,6 +64,6 @@ fun TextField(
                 }
         )
 
-        ErrorText(error?.localized() ?: "")
+        ErrorText(error.get()?.localized() ?: "")
     }
 }

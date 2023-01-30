@@ -22,6 +22,7 @@ import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.sesame.kmm.android_sample.utils.asCompose
 import ru.mobileup.sesame.kmm.form.control.InputControl
+import ru.mobileup.sesame.kmm.state.nullableValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -63,7 +64,7 @@ fun PasswordTextField(
             label = {
                 Text(text = label)
             },
-            isError = error != null,
+            isError = error.get() != null,
             onValueChange = inputControl::onTextChanged,
             visualTransformation = if (passwordVisibility) {
                 inputControl.visualTransformation.asCompose()
@@ -89,6 +90,6 @@ fun PasswordTextField(
                 }
         )
 
-        ErrorText(inputControl.error.value?.localized() ?: "")
+        ErrorText(inputControl.error.nullableValue()?.localized() ?: "")
     }
 }
