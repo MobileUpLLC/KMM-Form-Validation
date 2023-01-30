@@ -23,6 +23,16 @@ class InputControl(
     val visualTransformation: VisualTransformation = VisualTransformation.None
 ) : ValidatableControl<String> {
 
+    constructor(coroutineScope: CoroutineScope): this(
+        coroutineScope = coroutineScope,
+        initialText = "",
+        singleLine = true,
+        maxLength = Int.MAX_VALUE,
+        keyboardOptions = KeyboardOptions(),
+        textTransformation = null,
+        visualTransformation = VisualTransformation.None
+    )
+
     private val _text = MutableStateFlow(correctText(initialText))
 
     /**

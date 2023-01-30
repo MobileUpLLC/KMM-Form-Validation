@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -12,16 +13,19 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "sharedSample"
         }
     }
 
     sourceSets {
         val commonMain by getting {
-            dependencies {
+            dependencies{
+                implementation(project(":shared"))
                 implementation(libs.coroutines.core)
                 implementation(libs.moko.resources)
                 implementation(libs.moko.graphics)
+                implementation(libs.decompose)
+
             }
         }
         val commonTest by getting {
@@ -52,11 +56,19 @@ kotlin {
     }
 }
 
+multiplatformResources {
+    multiplatformResourcesPackage = "ru.mobileup.sesame.kmm.sample"
+    multiplatformResourcesClassName = "Res"
+}
+
+
 android {
-    namespace = "ru.mobileup.sesame.kmm.form"
+    namespace = "ru.mobileup.sesame.kmm.sharedsample"
     compileSdk = 33
     defaultConfig {
         minSdk = 26
         targetSdk = 33
     }
+    sourceSets.getByName("main").res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
+
 }

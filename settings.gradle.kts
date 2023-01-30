@@ -1,6 +1,4 @@
 rootProject.name = "SesameKMMForm"
-include(":shared")
-include(":android-sample")
 
 pluginManagement {
     repositories {
@@ -40,6 +38,7 @@ pluginManagement {
                 library("moko-resources-generator", "dev.icerock.moko", "resources-generator").versionRef("moko_resources")
                 library("moko-resources", "dev.icerock.moko", "resources").versionRef("moko_resources")
                 library("moko-resources-compose", "dev.icerock.moko", "resources-compose").versionRef("moko_resources")
+                library("moko-graphics", "dev.icerock.moko", "graphics").version("0.9.0")
 
                 version("decompose", "1.0.0-beta-04")
                 library("decompose", "com.arkivanov.decompose", "decompose").versionRef("decompose")
@@ -51,3 +50,6 @@ pluginManagement {
         }
     }
 }
+include(":shared")
+include(":sample:androidSample")
+include(":sample:sharedSample")
