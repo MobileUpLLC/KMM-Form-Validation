@@ -53,8 +53,8 @@ kotlin {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "me.aartikov.sesame" // required
-    multiplatformResourcesClassName = "Res" // optional, default MR
+    multiplatformResourcesPackage = "ru.mobileup.sesame"
+    multiplatformResourcesClassName = "Res"
 }
 
 android {
