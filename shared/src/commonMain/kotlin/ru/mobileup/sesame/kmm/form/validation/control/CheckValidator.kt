@@ -4,6 +4,9 @@ import dev.icerock.moko.resources.desc.StringDesc
 import ru.mobileup.sesame.kmm.form.control.CheckControl
 import ru.mobileup.sesame.kmm.form.validation.form.FormValidatorBuilder
 import ru.mobileup.sesame.kmm.form.validation.form.checked
+import ru.mobileup.sesame.kmm.state.Optional
+import ru.mobileup.sesame.kmm.state.asOptional
+import ru.mobileup.sesame.kmm.state.updateValue
 
 /**
  * Validator for [CheckControl].
@@ -34,9 +37,9 @@ class CheckValidator constructor(
 
     private fun displayValidationResult(validationResult: ValidationResult) =
         when (validationResult) {
-            ValidationResult.Valid, ValidationResult.Skipped -> control.error.value = null
+            ValidationResult.Valid, ValidationResult.Skipped -> control.error.updateValue(null)
             is ValidationResult.Invalid -> {
-                control.error.value = validationResult.errorMessage
+                control.error.updateValue(validationResult.errorMessage)
                 showError?.invoke(validationResult.errorMessage)
             }
         }

@@ -4,9 +4,11 @@ import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import ru.mobileup.sesame.kmm.form.util.computed
+import ru.mobileup.sesame.kmm.state.CMutableStateFlow
+import ru.mobileup.sesame.kmm.state.Optional
+import ru.mobileup.sesame.kmm.state.asCStateFlow
 
 /**
  * Logical representation of a control with checkable state (CheckBox, Switch, etc). It allows to manage checked state from ViewModel.
@@ -19,28 +21,29 @@ class CheckControl(
     /**
      * Is control checked.
      */
-    val checked: MutableStateFlow<Boolean> = MutableStateFlow(initialChecked)
+    val checked: CMutableStateFlow<Boolean> = CMutableStateFlow(initialChecked)
 
     /**
      * Is control visible.
      */
-    val visible: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val visible: CMutableStateFlow<Boolean> = CMutableStateFlow(true)
 
     /**
      * Is control enabled.
      */
-    val enabled: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val enabled: CMutableStateFlow<Boolean> = CMutableStateFlow(true)
 
     /**
      * Displayed error.
      */
-    override val error: MutableStateFlow<StringDesc?> = MutableStateFlow(null)
+    override val error: CMutableStateFlow<Optional<StringDesc>> = CMutableStateFlow(Optional())
 
     override val value = checked
 
     override val skipInValidation =
-        computed(coroutineScope, visible, enabled) { visible, enabled -> !visible || !enabled }
+        computed(coroutineScope, visible, enabled) { visible, enabled -> !visible || !enabled }.asCStateFlow()
 
+    //TODO: fix for ios
     private val mutableScrollToItEventFlow = MutableSharedFlow<Unit>(
         extraBufferCapacity = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST

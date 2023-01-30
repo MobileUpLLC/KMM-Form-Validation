@@ -4,11 +4,13 @@ import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import ru.mobileup.sesame.kmm.form.options.KeyboardOptions
 import ru.mobileup.sesame.kmm.form.util.computed
+import ru.mobileup.sesame.kmm.state.CMutableStateFlow
+import ru.mobileup.sesame.kmm.state.CStateFlow
+import ru.mobileup.sesame.kmm.state.Optional
+import ru.mobileup.sesame.kmm.state.asCStateFlow
 
 /**
  * Logical representation of an input field. It allows to configure an input field and manage its state from ViewModel.
@@ -23,7 +25,7 @@ class InputControl(
     val visualTransformation: VisualTransformation = VisualTransformation.None
 ) : ValidatableControl<String> {
 
-    constructor(coroutineScope: CoroutineScope): this(
+    constructor(coroutineScope: CoroutineScope) : this(
         coroutineScope = coroutineScope,
         initialText = "",
         singleLine = true,
@@ -33,38 +35,42 @@ class InputControl(
         visualTransformation = VisualTransformation.None
     )
 
-    private val _text = MutableStateFlow(correctText(initialText))
+    private val _text = CMutableStateFlow(correctText(initialText))
 
     /**
      * Current text.
      */
-    val text: StateFlow<String>
+    val text: CStateFlow<String>
         get() = _text
 
     /**
      * Is control visible.
      */
-    val visible: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val visible: CMutableStateFlow<Boolean> = CMutableStateFlow(true)
 
     /**
      * Is control enabled.
      */
-    val enabled: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val enabled: CMutableStateFlow<Boolean> = CMutableStateFlow(true)
 
     /**
      * Is control has focus.
      */
-    val hasFocus: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val hasFocus: CMutableStateFlow<Boolean> = CMutableStateFlow(false)
 
     /**
      * Displayed error.
      */
-    override val error: MutableStateFlow<StringDesc?> = MutableStateFlow(null)
+    override val error: CMutableStateFlow<Optional<StringDesc>> = CMutableStateFlow(Optional())
 
-    override val value: StateFlow<String> = _text
+    override val value: CStateFlow<String> = _text
 
     override val skipInValidation =
-        computed(coroutineScope, visible, enabled) { visible, enabled -> !visible || !enabled }
+        computed(
+            coroutineScope,
+            visible,
+            enabled
+        ) { visible, enabled -> !visible || !enabled }.asCStateFlow()
 
     private val mutableScrollToItEventFlow = MutableSharedFlow<Unit>(
         extraBufferCapacity = 1,
