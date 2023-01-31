@@ -14,25 +14,21 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "sharedSample"
+            export(project(":shared"))
         }
     }
 
     sourceSets {
         val commonMain by getting {
-            dependencies{
-                implementation(project(":shared"))
+            dependencies {
+                api(project(":shared"))
                 implementation(libs.coroutines.core)
                 implementation(libs.moko.resources)
                 implementation(libs.moko.graphics)
                 implementation(libs.decompose)
-
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
+        val commonTest by getting
         val androidMain by getting
         val androidTest by getting
         val iosX64Main by getting
@@ -72,3 +68,6 @@ android {
     sourceSets.getByName("main").res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
 
 }
+//dependencies {
+//    api(project(":shared"))
+//}

@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 android {
@@ -63,6 +62,5 @@ dependencies {
     implementation(libs.decompose)
     implementation(libs.decompose.compose)
     implementation(libs.konfetti)
-    implementation(project(":shared"))
     implementation(project(":sample:sharedSample"))
 }
