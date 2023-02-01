@@ -19,6 +19,7 @@ import ru.mobileup.sesame.kmm.sharedsample.utils.CheckControl
 import ru.mobileup.sesame.kmm.sharedsample.utils.InputControl
 import ru.mobileup.sesame.kmm.sharedsample.utils.componentCoroutineScope
 import ru.mobileup.sesame.kmm.sharedsample.utils.computed
+import ru.mobileup.sesame.kmm.state.asCStateFlow
 
 enum class SubmitButtonState(val color: ColorResource) {
     Valid(Res.colors.green),
@@ -147,7 +148,7 @@ class RealFormComponent(
 
     override val submitButtonState = computed(coroutineScope, dynamicResult) { result ->
         if (result.isValid) SubmitButtonState.Valid else SubmitButtonState.Invalid
-    }
+    }.asCStateFlow()
 
     override fun onSubmitClicked() {
         val result = formValidator.validate()
