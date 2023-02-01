@@ -15,6 +15,8 @@ kotlin {
         it.binaries.framework {
             baseName = "sharedSample"
             export(project(":shared"))
+            export(libs.moko.graphics)
+            export(libs.moko.resources)
         }
     }
 
@@ -23,8 +25,8 @@ kotlin {
             dependencies {
                 api(project(":shared"))
                 implementation(libs.coroutines.core)
-                implementation(libs.moko.resources)
-                implementation(libs.moko.graphics)
+                api(libs.moko.resources)
+                api(libs.moko.graphics)
                 implementation(libs.decompose)
             }
         }
@@ -68,6 +70,3 @@ android {
     sourceSets.getByName("main").res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
 
 }
-//dependencies {
-//    api(project(":shared"))
-//}

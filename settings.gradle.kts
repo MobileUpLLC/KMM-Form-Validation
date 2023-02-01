@@ -60,17 +60,9 @@ pluginManagement {
                 library("compose-tooling", "androidx.compose.ui", "ui-tooling").versionRef("compose")
 
                 version("moko-resources", "0.20.1")
-                library(
-                    "moko-resources-generator",
-                    "dev.icerock.moko",
-                    "resources-generator"
-                ).versionRef("moko_resources")
+                library("moko-resources-generator", "dev.icerock.moko", "resources-generator").versionRef("moko_resources")
                 library("moko-resources", "dev.icerock.moko", "resources").versionRef("moko_resources")
-                library(
-                    "moko-resources-compose",
-                    "dev.icerock.moko",
-                    "resources-compose"
-                ).versionRef("moko_resources")
+                library("moko-resources-compose", "dev.icerock.moko", "resources-compose").versionRef("moko_resources")
                 library("moko-graphics", "dev.icerock.moko", "graphics").version("0.9.0")
 
                 version("decompose", "1.0.0-beta-04")
