@@ -5,18 +5,29 @@ import ru.mobileup.sesame.kmm.form.control.TransformedText
 import ru.mobileup.sesame.kmm.form.control.VisualTransformation
 
 object RussianPhoneNumberVisualTransformation : VisualTransformation {
-    private const val FIRST_HARDCODE_SLOT = "+7 ("
-    private const val SECOND_HARDCODE_SLOT = ") "
+    private const val FIRST_HARDCODE_SLOT = "+7"
+    private const val SECOND_HARDCODE_SLOT = " ("
+    private const val THIRD_HARDCODE_SLOT = ") "
     private const val DECORATE_HARDCODE_SLOT = "-"
 
     override fun filter(text: String): TransformedText {
-        val trimmed = if (text.length >= 10) text.substring(0..9) else text
+        var hasPrefix = false
         var output = ""
-        if (text.isNotEmpty()) output += FIRST_HARDCODE_SLOT
+        if (text.isNotEmpty()) {
+            if (text.startsWith(FIRST_HARDCODE_SLOT)) {
+                hasPrefix = true
+            }
+            output += FIRST_HARDCODE_SLOT
+            output += SECOND_HARDCODE_SLOT
+        }
+
+        var trimmed = if (hasPrefix) text.drop(2) else text
+        trimmed = if (trimmed.length >= 10) trimmed.substring(0 until 10) else trimmed
+
         for (i in trimmed.indices) {
             output += trimmed[i]
             when (i) {
-                2 -> output += SECOND_HARDCODE_SLOT
+                2 -> output += THIRD_HARDCODE_SLOT
                 5 -> output += DECORATE_HARDCODE_SLOT
                 7 -> output += DECORATE_HARDCODE_SLOT
             }
@@ -42,5 +53,13 @@ object RussianPhoneNumberVisualTransformation : VisualTransformation {
         }
 
         return TransformedText(output, numberOffsetTranslator)
+    }
+
+    override fun restore(text: String): String {
+        return text
+            .replaceFirst(FIRST_HARDCODE_SLOT, "")
+            .replaceFirst(SECOND_HARDCODE_SLOT, "")
+            .replaceFirst(THIRD_HARDCODE_SLOT, "")
+            .replace(DECORATE_HARDCODE_SLOT, "")
     }
 }

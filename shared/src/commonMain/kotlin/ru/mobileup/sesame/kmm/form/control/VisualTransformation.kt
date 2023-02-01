@@ -1,6 +1,6 @@
 package ru.mobileup.sesame.kmm.form.control
 
-fun interface VisualTransformation {
+interface VisualTransformation {
     /**
      * Change the visual output of given text.
      *
@@ -17,10 +17,18 @@ fun interface VisualTransformation {
         /**
          * A special visual transformation object indicating that no transformation is applied.
          */
-        val None: VisualTransformation = VisualTransformation { text ->
-            TransformedText(text, OffsetMapping.Identity)
+        val None: VisualTransformation = object : VisualTransformation {
+            override fun filter(text: String): TransformedText {
+                return TransformedText(text, OffsetMapping.Identity)
+            }
+
+            override fun restore(text: String): String {
+                return text
+            }
         }
     }
+
+    fun restore(text: String): String
 }
 
 /**
@@ -35,5 +43,9 @@ data class PasswordVisualTransformation(val mask: Char = '\u2022') : VisualTrans
 
     override fun filter(text: String): TransformedText {
         return TransformedText(mask.toString().repeat(text.length), OffsetMapping.Identity)
+    }
+
+    override fun restore(text: String): String {
+        return text
     }
 }
