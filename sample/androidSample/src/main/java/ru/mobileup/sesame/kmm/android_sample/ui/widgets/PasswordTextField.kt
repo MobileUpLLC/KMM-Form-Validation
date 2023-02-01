@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.sesame.kmm.android_sample.utils.asCompose
@@ -67,9 +67,9 @@ fun PasswordTextField(
             isError = error.get() != null,
             onValueChange = inputControl::onTextChanged,
             visualTransformation = if (passwordVisibility) {
-                inputControl.visualTransformation.asCompose()
+                VisualTransformation.None
             } else {
-                PasswordVisualTransformation()
+                inputControl.visualTransformation.asCompose()
             },
             trailingIcon = {
                 val image = if (passwordVisibility) {

@@ -7,6 +7,7 @@ import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
+import ru.mobileup.sesame.kmm.form.control.PasswordVisualTransformation
 import ru.mobileup.sesame.kmm.form.options.ImeAction
 import ru.mobileup.sesame.kmm.form.options.KeyboardCapitalization
 import ru.mobileup.sesame.kmm.form.options.KeyboardOptions
@@ -69,7 +70,8 @@ class RealFormComponent(
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Next
-        )
+        ),
+        visualTransformation = PasswordVisualTransformation()
     )
 
     override val confirmPasswordInput = InputControl(
