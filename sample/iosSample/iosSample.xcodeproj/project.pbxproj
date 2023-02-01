@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */; };
-		EC7C1FEC2987B251001DCE8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FEB2987B251001DCE8B /* ContentView.swift */; };
+		EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */; };
 		EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FED2987B252001DCE8B /* Assets.xcassets */; };
 		EC7C1FF12987B252001DCE8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */; };
 		EC7C1FFB2987B252001DCE8B /* iosSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FFA2987B252001DCE8B /* iosSampleTests.swift */; };
 		EC7C20052987B252001DCE8B /* iosSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20042987B252001DCE8B /* iosSampleUITests.swift */; };
 		EC7C20072987B252001DCE8B /* iosSampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20062987B252001DCE8B /* iosSampleUITestsLaunchTests.swift */; };
+		EC7C20172987F483001DCE8B /* ObservableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20162987F483001DCE8B /* ObservableState.swift */; };
+		EC7C201929891C1D001DCE8B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201829891C1D001DCE8B /* ViewExtensions.swift */; };
+		EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */; };
+		EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */; };
+		EC7C2020298A6B76001DCE8B /* SecureTextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */; };
+		EC7C2023298A710B001DCE8B /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C2022298A710B001DCE8B /* ToggleView.swift */; };
+		EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,7 @@
 /* Begin PBXFileReference section */
 		EC7C1FE62987B251001DCE8B /* iosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleApp.swift; sourceTree = "<group>"; };
-		EC7C1FEB2987B251001DCE8B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithControl.swift; sourceTree = "<group>"; };
 		EC7C1FED2987B252001DCE8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC7C1FF62987B252001DCE8B /* iosSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +51,13 @@
 		EC7C20002987B252001DCE8B /* iosSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7C20042987B252001DCE8B /* iosSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleUITests.swift; sourceTree = "<group>"; };
 		EC7C20062987B252001DCE8B /* iosSampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EC7C20162987F483001DCE8B /* ObservableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableState.swift; sourceTree = "<group>"; };
+		EC7C201829891C1D001DCE8B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualFormatter.swift; sourceTree = "<group>"; };
+		EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualExtentions.swift; sourceTree = "<group>"; };
+		EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldWithControl.swift; sourceTree = "<group>"; };
+		EC7C2022298A710B001DCE8B /* ToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
+		EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +108,10 @@
 		EC7C1FE82987B251001DCE8B /* iosSample */ = {
 			isa = PBXGroup;
 			children = (
+				EC7C2021298A70E7001DCE8B /* View */,
+				EC7C201C298A6AB4001DCE8B /* Input */,
+				EC7C20152987F458001DCE8B /* State */,
 				EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */,
-				EC7C1FEB2987B251001DCE8B /* ContentView.swift */,
 				EC7C1FED2987B252001DCE8B /* Assets.xcassets */,
 				EC7C1FEF2987B252001DCE8B /* Preview Content */,
 			);
@@ -125,6 +141,35 @@
 				EC7C20062987B252001DCE8B /* iosSampleUITestsLaunchTests.swift */,
 			);
 			path = iosSampleUITests;
+			sourceTree = "<group>";
+		};
+		EC7C20152987F458001DCE8B /* State */ = {
+			isa = PBXGroup;
+			children = (
+				EC7C20162987F483001DCE8B /* ObservableState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		EC7C201C298A6AB4001DCE8B /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */,
+				EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		EC7C2021298A70E7001DCE8B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EC7C201829891C1D001DCE8B /* ViewExtensions.swift */,
+				EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */,
+				EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */,
+				EC7C2022298A710B001DCE8B /* ToggleView.swift */,
+				EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +314,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "cd \"$SRCROOT/../..\"\n./gradlew :sample:sharedSample:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -278,7 +323,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC7C1FEC2987B251001DCE8B /* ContentView.swift in Sources */,
+				EC7C2023298A710B001DCE8B /* ToggleView.swift in Sources */,
+				EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */,
+				EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */,
+				EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */,
+				EC7C20172987F483001DCE8B /* ObservableState.swift in Sources */,
+				EC7C2020298A6B76001DCE8B /* SecureTextFieldWithControl.swift in Sources */,
+				EC7C201929891C1D001DCE8B /* ViewExtensions.swift in Sources */,
+				EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */,
 				EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +491,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosSample/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sharedSample/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -454,7 +506,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					shared,
+					sharedSample,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.mobileup.sesame.kmm.form.iosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,7 +525,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosSample/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sharedSample/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -488,7 +540,7 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					shared,
+					sharedSample,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.mobileup.sesame.kmm.form.iosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
