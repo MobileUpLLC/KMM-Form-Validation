@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "ru.mobileup.sesame.kmm.android_sample"
-        minSdk = 26
+        minSdk = 23
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
