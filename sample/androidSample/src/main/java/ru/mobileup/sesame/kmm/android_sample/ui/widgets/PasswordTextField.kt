@@ -21,7 +21,6 @@ import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.sesame.kmm.android_sample.R
 import ru.mobileup.sesame.kmm.android_sample.utils.asCompose
 import ru.mobileup.sesame.kmm.form.control.InputControl
-import ru.mobileup.sesame.kmm.state.nullableValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -63,7 +62,7 @@ fun PasswordTextField(
             label = {
                 Text(text = label)
             },
-            isError = error.get() != null,
+            isError = error != null,
             onValueChange = inputControl::onTextChanged,
             visualTransformation = if (passwordVisibility) {
                 VisualTransformation.None
@@ -89,6 +88,6 @@ fun PasswordTextField(
                 }
         )
 
-        ErrorText(inputControl.error.nullableValue()?.localized() ?: "")
+        ErrorText(error?.localized() ?: "")
     }
 }

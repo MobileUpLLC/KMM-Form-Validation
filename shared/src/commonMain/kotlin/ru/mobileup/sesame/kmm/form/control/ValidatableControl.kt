@@ -1,9 +1,8 @@
 package ru.mobileup.sesame.kmm.form.control
 
 import dev.icerock.moko.resources.desc.StringDesc
-import ru.mobileup.sesame.kmm.state.CMutableStateFlow
-import ru.mobileup.sesame.kmm.state.CStateFlow
-import ru.mobileup.sesame.kmm.state.Optional
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Control that can be validated.
@@ -17,17 +16,17 @@ interface ValidatableControl<ValueT : Any> {
     /**
      * Control value.
      */
-    val value: CStateFlow<ValueT>
+    val value: StateFlow<ValueT>
 
     /**
      * Displayed error.
      */
-    val error: CMutableStateFlow<Optional<StringDesc>>
+    val error: MutableStateFlow<StringDesc?>
 
     /**
      * Is control should be skipped during validation.
      */
-    val skipInValidation: CStateFlow<Boolean>
+    val skipInValidation: StateFlow<Boolean>
 
     /**
      * Moves focus to a control.

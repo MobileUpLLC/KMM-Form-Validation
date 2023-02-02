@@ -13,18 +13,18 @@ struct SubmitButtonView: View {
     init(formComponent: FormComponent, label: String) {
         self.formComponent = formComponent
         self.label = label
-        self.buttonState = ObservableState(formComponent.submitButtonState)
+        self.buttonState = ObservableFlow(formComponent.submitButtonState)
     }
     
     let formComponent: FormComponent
     
     @ObservedObject
-    private var buttonState: ObservableState<SubmitButtonState>
+    private var buttonState: ObservableFlow<SubmitButtonState>
     
     let label: String
     
     var body: some View {
-        let color = buttonState.value.color.toUIColor()
+        let color = buttonState.value!.color.toUIColor()
         Button(action: {
             formComponent.onSubmitClicked()
         }, label: {

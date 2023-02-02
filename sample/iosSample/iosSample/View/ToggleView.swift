@@ -13,32 +13,31 @@ struct ToggleView: View {
     init(checkControl: CheckControl, label: String) {
         self.label = label
         termsControl = checkControl
-        termsState = ObservableState(checkControl.checked)
-        error = ObservableState(checkControl.error)
+        termsState = ObservableFlow(checkControl.checked)
+        error = ObservableFlow(checkControl.error)
     }
     
     var termsControl: CheckControl
     
     @ObservedObject
-    var termsState: ObservableState<KotlinBoolean>
+    var termsState: ObservableFlow<KotlinBoolean>
     
     @ObservedObject
-    private var error: ObservableState<Optional<StringDesc>>
+    private var error: ObservableFlow<StringDesc>
     
     let label: String
     
     var body: some View {
         VStack {
             Toggle(isOn: Binding(
-                get: { Bool(termsState.value) },
+                get: { Bool(termsState.value ?? false) },
                 set: termsControl.onCheckedChanged
             ),
                 label: {
                 Text(label)
                 }
             )
-            let errorMessage = error.value.get()
-            if let error = errorMessage {
+            if let error = error.value {
                 Text(error.localized())
                     .foregroundColor(.red)
             }

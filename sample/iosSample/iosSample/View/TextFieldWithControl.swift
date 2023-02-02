@@ -15,10 +15,10 @@ struct TextFieldWithControl: View {
         self.hint = hint
         self.inputControl = inputControl
         self.keyboardOptions = inputControl.keyboardOptions
-        self.text = ObservableState(inputControl.text)
-        self.error = ObservableState(inputControl.error)
-        self.hasFocus = MutableObservableState(inputControl.hasFocus)
-        self.enabled = MutableObservableState(inputControl.enabled)
+        self.text = ObservableFlow(inputControl.text)
+        self.error = ObservableFlow(inputControl.error)
+        self.hasFocus = MutableObservableFlow(inputControl.hasFocus)
+        self.enabled = MutableObservableFlow(inputControl.enabled)
     }
     
     private let hint: String
@@ -26,16 +26,16 @@ struct TextFieldWithControl: View {
     private let inputControl: InputControl
 
     @ObservedObject
-    private var text: ObservableState<NSString>
+    private var text: ObservableFlow<NSString>
     
     @ObservedObject
-    private var error: ObservableState<Optional<StringDesc>>
+    private var error: ObservableFlow<StringDesc>
     
     @ObservedObject
-    private var hasFocus: MutableObservableState<KotlinBoolean>
+    private var hasFocus: MutableObservableFlow<KotlinBoolean>
     
     @ObservedObject
-    private var enabled: MutableObservableState<KotlinBoolean>
+    private var enabled: MutableObservableFlow<KotlinBoolean>
 
     @State
     private var keyboardOptions: KeyboardOptions
@@ -46,7 +46,7 @@ struct TextFieldWithControl: View {
     var body: some View {
         VStack {
             TextField(hint, value: Binding {
-                String(text.value)
+                String(text.value ?? "")
             } set: { value in
                 inputControl.onTextChanged(text:value)
             }, formatter: VisualFormatter(inputControl.visualTransformation))
@@ -55,14 +55,13 @@ struct TextFieldWithControl: View {
                 .onChange(of: isFocused) { newValue in
                     hasFocus.setValue(value: KotlinBoolean(value: newValue))
                 }
-                .disabled(!Bool(enabled.value))
+                .disabled(!Bool(enabled.value ?? true))
                 .keyboardType(keyboardOptions.keyboardType.toUI())
                 .submitLabel(keyboardOptions.imeAction.toUI())
                 .textInputAutocapitalization(keyboardOptions.capitalization.toUI())
                 .autocorrectionDisabled(!keyboardOptions.autoCorrect)
             
-            let errorMessage = error.value.get()
-            if let error = errorMessage {
+            if let error = error.value {
                 Text(error.localized())
                     .foregroundColor(.red)
             }

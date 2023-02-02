@@ -19,7 +19,6 @@ import ru.mobileup.sesame.kmm.android_sample.R
 import ru.mobileup.sesame.kmm.android_sample.ui.widgets.*
 import ru.mobileup.sesame.kmm.sharedsample.ui.FormComponent
 
-
 @Composable
 fun FormUi(
     component: FormComponent,

@@ -4,10 +4,11 @@ import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import ru.mobileup.sesame.kmm.form.options.KeyboardOptions
 import ru.mobileup.sesame.kmm.form.util.computed
-import ru.mobileup.sesame.kmm.state.*
 
 /**
  * Logical representation of an input field. It allows to configure an input field and manage its state from ViewModel.
@@ -32,49 +33,49 @@ class InputControl(
         visualTransformation = VisualTransformation.None
     )
 
-    private val _text = CMutableStateFlow(correctText(initialText))
+    private val _text = MutableStateFlow(correctText(initialText))
 
     /**
      * Current text.
      */
-    val text: CStateFlow<String>
+    val text: StateFlow<String>
         get() = _text
 
     /**
      * Is control visible.
      */
-    val visible: CMutableStateFlow<Boolean> = CMutableStateFlow(true)
+    val visible: MutableStateFlow<Boolean> = MutableStateFlow(true)
 
     /**
      * Is control enabled.
      */
-    val enabled: CMutableStateFlow<Boolean> = CMutableStateFlow(true)
+    val enabled: MutableStateFlow<Boolean> = MutableStateFlow(true)
 
     /**
      * Is control has focus.
      */
-    val hasFocus: CMutableStateFlow<Boolean> = CMutableStateFlow(false)
+    val hasFocus: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     /**
      * Displayed error.
      */
-    override val error: CMutableStateFlow<Optional<StringDesc>> = CMutableStateFlow(Optional())
+    override val error: MutableStateFlow<StringDesc?> = MutableStateFlow(null)
 
-    override val value: CStateFlow<String> = _text
+    override val value: StateFlow<String> = _text
 
     override val skipInValidation =
         computed(
             coroutineScope,
             visible,
             enabled
-        ) { visible, enabled -> !visible || !enabled }.asCStateFlow()
+        ) { visible, enabled -> !visible || !enabled }
 
     private val mutableScrollToItEventFlow = MutableSharedFlow<Unit>(
         extraBufferCapacity = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
-    val scrollToItEvent get() = mutableScrollToItEventFlow.asSharedFlow().asCSharedFlow()
+    val scrollToItEvent get() = mutableScrollToItEventFlow.asSharedFlow()
 
     override fun requestFocus() {
         this.hasFocus.value = true

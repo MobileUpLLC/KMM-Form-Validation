@@ -13,7 +13,7 @@ struct iosSampleApp: App {
     
     init() {
         formComponent = Application.shared.getFormComponent()
-        successFlow = ObservableFlow(flow: formComponent.dropKonfettiEvent)
+        successFlow = ObservableFlow<KotlinUnit>(flow: formComponent.dropKonfettiEvent)
     }
     
     let formComponent: FormComponent

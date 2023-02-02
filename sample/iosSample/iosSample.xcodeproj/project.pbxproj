@@ -12,7 +12,6 @@
 		EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FED2987B252001DCE8B /* Assets.xcassets */; };
 		EC7C1FF12987B252001DCE8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */; };
 		EC7C20172987F483001DCE8B /* ObservableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20162987F483001DCE8B /* ObservableState.swift */; };
-		EC7C201929891C1D001DCE8B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201829891C1D001DCE8B /* ViewExtensions.swift */; };
 		EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */; };
 		EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */; };
 		EC7C2020298A6B76001DCE8B /* SecureTextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */; };
@@ -27,7 +26,6 @@
 		EC7C1FED2987B252001DCE8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC7C20162987F483001DCE8B /* ObservableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableState.swift; sourceTree = "<group>"; };
-		EC7C201829891C1D001DCE8B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualFormatter.swift; sourceTree = "<group>"; };
 		EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualExtentions.swift; sourceTree = "<group>"; };
 		EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldWithControl.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		EC7C2021298A70E7001DCE8B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EC7C201829891C1D001DCE8B /* ViewExtensions.swift */,
 				EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */,
 				EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */,
 				EC7C2022298A710B001DCE8B /* ToggleView.swift */,
@@ -209,7 +206,6 @@
 				EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */,
 				EC7C20172987F483001DCE8B /* ObservableState.swift in Sources */,
 				EC7C2020298A6B76001DCE8B /* SecureTextFieldWithControl.swift in Sources */,
-				EC7C201929891C1D001DCE8B /* ViewExtensions.swift in Sources */,
 				EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */,
 				EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */,
 			);

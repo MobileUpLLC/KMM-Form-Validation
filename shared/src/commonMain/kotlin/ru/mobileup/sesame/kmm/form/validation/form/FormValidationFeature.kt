@@ -9,10 +9,6 @@ import ru.mobileup.sesame.kmm.form.control.ValidatableControl
 import ru.mobileup.sesame.kmm.form.validation.control.ControlValidator
 import ru.mobileup.sesame.kmm.form.validation.control.InputValidator
 import ru.mobileup.sesame.kmm.form.validation.control.ValidationResult
-import ru.mobileup.sesame.kmm.state.Optional
-import ru.mobileup.sesame.kmm.state.nullableValue
-import ru.mobileup.sesame.kmm.state.updateValue
-
 /**
  * High level feature for [FormValidator].
  */
@@ -69,7 +65,7 @@ object RevalidateOnValueChanged : FormValidationFeature {
         control.value
             .drop(1)
             .onEach {
-                if (control.error.nullableValue() != null) {
+                if (control.error.value != null) {
                     validator.validate()
                 }
             }
@@ -95,7 +91,7 @@ object HideErrorOnValueChanged : FormValidationFeature {
         control.value
             .drop(1)
             .onEach {
-                control.error.updateValue(null)
+                control.error.value = null
             }
             .launchIn(coroutineScope)
     }

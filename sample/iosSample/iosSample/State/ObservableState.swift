@@ -8,20 +8,20 @@
 import Foundation
 import sharedSample
 
-public class ObservableState<T: AnyObject>: ObservableObject {
+public class ObservableFlow<T: AnyObject>: ObservableObject {
 
     private let observableState: FlowWrapper<T>
 
     @Published
-    var value: T
+    var value: T?
 
     private var cancelable: Cancelable? = nil
 
-    convenience init(_ state: CStateFlow<T>) {
-        self.init(value: state.value, flow: state)
+    convenience init(_ state: Kotlinx_coroutines_coreStateFlow) {
+        self.init(value: state.value as? T, flow: state)
     }
     
-    init(value: T, flow: Kotlinx_coroutines_coreFlow) {
+    init(value: T? = nil, flow: Kotlinx_coroutines_coreFlow) {
         self.observableState = FlowWrapper<T>(flow: flow)
         self.value = value
         
@@ -35,40 +35,22 @@ public class ObservableState<T: AnyObject>: ObservableObject {
     }
 }
 
-public class ObservableFlow<T: AnyObject>: ObservableObject {
+public class MutableObservableFlow<T: AnyObject>: ObservableObject {
 
-    private let observableFlow: FlowWrapper<T>
+    private let observableState: MutableFlowWrapper<T>
 
     @Published
     var value: T?
 
     private var cancelable: Cancelable? = nil
 
-    init(flow: Kotlinx_coroutines_coreFlow) {
-        self.observableFlow = FlowWrapper<T>(flow: flow)
-        
-        cancelable = observableFlow.bind(consumer: { value in
-            self.value = value
-        })
+    convenience init(_ state: Kotlinx_coroutines_coreMutableStateFlow) {
+        self.init(value: state.value as? T, state)
     }
-
-    deinit {
-        self.cancelable?.cancel()
-    }
-}
-
-public class MutableObservableState<T: AnyObject>: ObservableObject {
-
-    private let observableState: MutableStateWrapper<T>
-
-    @Published
-    var value: T
-
-    private var cancelable: Cancelable? = nil
-
-    init(_ state: CMutableStateFlow<T>) {
-        self.observableState = MutableStateWrapper<T>(stateFlow: state)
-        self.value = state.value
+    
+    init(value: T? = nil, _ mutableFlow: Kotlinx_coroutines_coreMutableSharedFlow) {
+        self.observableState = MutableFlowWrapper<T>(mutableFlow: mutableFlow)
+        self.value = value
 
          cancelable = observableState.bind(consumer: { value in
              self.value = value

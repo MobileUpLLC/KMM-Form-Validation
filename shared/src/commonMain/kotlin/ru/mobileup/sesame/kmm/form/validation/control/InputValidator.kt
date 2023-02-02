@@ -2,7 +2,6 @@ package ru.mobileup.sesame.kmm.form.validation.control
 
 import ru.mobileup.sesame.kmm.form.control.InputControl
 import ru.mobileup.sesame.kmm.form.validation.form.FormValidatorBuilder
-import ru.mobileup.sesame.kmm.state.updateValue
 
 /**
  * Validator for [InputControl].
@@ -44,7 +43,7 @@ class InputValidator constructor(
 
     private fun displayValidationResult(validationResult: ValidationResult) =
         when (validationResult) {
-            ValidationResult.Valid, ValidationResult.Skipped -> control.error.updateValue(null)
-            is ValidationResult.Invalid -> control.error.updateValue(validationResult.errorMessage)
+            ValidationResult.Valid, ValidationResult.Skipped -> control.error.value = null
+            is ValidationResult.Invalid -> control.error.value = validationResult.errorMessage
         }
 }

@@ -51,7 +51,7 @@ fun CheckboxField(
         }
 
         ErrorText(
-            error.get()?.localized() ?: "",
+            error?.localized() ?: "",
             paddingValues = PaddingValues(horizontal = 16.dp)
         )
     }
