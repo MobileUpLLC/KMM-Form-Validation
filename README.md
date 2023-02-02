@@ -2,4 +2,4 @@
 
 Library to control and validate form in KMM.
 
-This library based on Sesame[https://github.com/aartikov/Sesame]
+This library based on [Sesame](https://github.com/aartikov/Sesame).
