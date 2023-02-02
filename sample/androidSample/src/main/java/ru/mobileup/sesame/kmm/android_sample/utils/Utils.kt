@@ -52,7 +52,6 @@ fun KeyboardCapitalization.asCompose(): ComposeKeyboardCapitalization {
         KeyboardCapitalization.Characters -> ComposeKeyboardCapitalization.Characters
         KeyboardCapitalization.Words -> ComposeKeyboardCapitalization.Words
         KeyboardCapitalization.Sentences -> ComposeKeyboardCapitalization.Sentences
-        else -> throw NotImplementedError("Can't find compose equivalent of KeyboardCapitalization - $this")
     }
 }
 
@@ -66,7 +65,6 @@ fun KeyboardType.asCompose(): ComposeKeyBoardType {
         KeyboardType.NumberPassword -> ComposeKeyBoardType.NumberPassword
         KeyboardType.Password -> ComposeKeyBoardType.Password
         KeyboardType.Phone -> ComposeKeyBoardType.Phone
-        else -> throw NotImplementedError("Can't find compose equivalent of KeyboardType - $this")
     }
 }
 
@@ -80,7 +78,6 @@ fun ImeAction.asCompose(): ComposeImeAction {
         ImeAction.Next -> ComposeImeAction.Next
         ImeAction.Send -> ComposeImeAction.Send
         ImeAction.Previous -> ComposeImeAction.Previous
-        else -> throw NotImplementedError("Can't find compose equivalent of ImeAction - $this")
     }
 }
 
