@@ -9,17 +9,16 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
+import ru.mobileup.sesame.kmm.android_sample.R
 import ru.mobileup.sesame.kmm.android_sample.utils.asCompose
 import ru.mobileup.sesame.kmm.form.control.InputControl
 import ru.mobileup.sesame.kmm.state.nullableValue
@@ -73,13 +72,13 @@ fun PasswordTextField(
             },
             trailingIcon = {
                 val image = if (passwordVisibility) {
-                    Icons.Filled.Check
+                    painterResource(id = R.drawable.ic_visibility_on)
                 } else {
-                    Icons.Filled.CheckCircle
+                    painterResource(id = R.drawable.ic_visibility_off)
                 }
 
                 IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                    Icon(imageVector = image, null)
+                    Icon(image, null)
                 }
             },
             modifier = modifier
