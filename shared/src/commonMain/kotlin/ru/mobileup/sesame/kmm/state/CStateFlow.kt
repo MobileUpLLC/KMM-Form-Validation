@@ -2,7 +2,7 @@ package ru.mobileup.sesame.kmm.state
 
 import kotlinx.coroutines.flow.StateFlow
 
-expect open class CStateFlow<T : Any>(stateFlow: StateFlow<T>): StateFlow<T>
+open class CStateFlow<T : Any>(private val stateFlow: StateFlow<T>): StateFlow<T> by stateFlow
 
 fun <T : Any> StateFlow<T>.asCStateFlow(): CStateFlow<T> =
     CStateFlow(this)

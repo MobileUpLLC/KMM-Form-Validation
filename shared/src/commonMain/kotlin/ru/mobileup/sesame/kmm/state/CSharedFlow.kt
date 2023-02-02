@@ -2,7 +2,7 @@ package ru.mobileup.sesame.kmm.state
 
 import kotlinx.coroutines.flow.SharedFlow
 
-expect open class CSharedFlow<T : Any>(sharedFlow: SharedFlow<T>) : SharedFlow<T>
+open class CSharedFlow<T : Any>(private val sharedFlow: SharedFlow<T>) : SharedFlow<T> by sharedFlow
 
 fun <T : Any> SharedFlow<T>.asCSharedFlow(): CSharedFlow<T> =
     CSharedFlow(this)
