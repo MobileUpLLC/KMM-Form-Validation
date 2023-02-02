@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import ru.mobileup.sesame.kmm.form.util.computed
 import ru.mobileup.sesame.kmm.state.CMutableStateFlow
 import ru.mobileup.sesame.kmm.state.Optional
+import ru.mobileup.sesame.kmm.state.asCSharedFlow
 import ru.mobileup.sesame.kmm.state.asCStateFlow
 
 /**
@@ -49,7 +50,7 @@ class CheckControl(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
-    val scrollToItEvent get() = mutableScrollToItEventFlow.asSharedFlow()
+    val scrollToItEvent get() = mutableScrollToItEventFlow.asSharedFlow().asCSharedFlow()
 
     override fun requestFocus() {
         mutableScrollToItEventFlow.tryEmit(Unit)

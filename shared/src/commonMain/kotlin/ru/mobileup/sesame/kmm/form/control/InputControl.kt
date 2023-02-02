@@ -7,10 +7,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import ru.mobileup.sesame.kmm.form.options.KeyboardOptions
 import ru.mobileup.sesame.kmm.form.util.computed
-import ru.mobileup.sesame.kmm.state.CMutableStateFlow
-import ru.mobileup.sesame.kmm.state.CStateFlow
-import ru.mobileup.sesame.kmm.state.Optional
-import ru.mobileup.sesame.kmm.state.asCStateFlow
+import ru.mobileup.sesame.kmm.state.*
 
 /**
  * Logical representation of an input field. It allows to configure an input field and manage its state from ViewModel.
@@ -77,7 +74,7 @@ class InputControl(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
-    val scrollToItEvent get() = mutableScrollToItEventFlow.asSharedFlow()
+    val scrollToItEvent get() = mutableScrollToItEventFlow.asSharedFlow().asCSharedFlow()
 
     override fun requestFocus() {
         this.hasFocus.value = true
