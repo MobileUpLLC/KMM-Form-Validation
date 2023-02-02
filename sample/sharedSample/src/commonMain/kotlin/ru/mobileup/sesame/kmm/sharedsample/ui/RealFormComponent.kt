@@ -79,7 +79,8 @@ class RealFormComponent(
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Done
-        )
+        ),
+        visualTransformation = PasswordVisualTransformation()
     )
 
     override val termsCheckBox = CheckControl()
