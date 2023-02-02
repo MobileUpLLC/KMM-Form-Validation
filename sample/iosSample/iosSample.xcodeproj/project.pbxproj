@@ -11,9 +11,6 @@
 		EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */; };
 		EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FED2987B252001DCE8B /* Assets.xcassets */; };
 		EC7C1FF12987B252001DCE8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */; };
-		EC7C1FFB2987B252001DCE8B /* iosSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FFA2987B252001DCE8B /* iosSampleTests.swift */; };
-		EC7C20052987B252001DCE8B /* iosSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20042987B252001DCE8B /* iosSampleUITests.swift */; };
-		EC7C20072987B252001DCE8B /* iosSampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20062987B252001DCE8B /* iosSampleUITestsLaunchTests.swift */; };
 		EC7C20172987F483001DCE8B /* ObservableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20162987F483001DCE8B /* ObservableState.swift */; };
 		EC7C201929891C1D001DCE8B /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201829891C1D001DCE8B /* ViewExtensions.swift */; };
 		EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */; };
@@ -23,34 +20,12 @@
 		EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		EC7C1FF72987B252001DCE8B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EC7C1FDE2987B251001DCE8B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC7C1FE52987B251001DCE8B;
-			remoteInfo = iosSample;
-		};
-		EC7C20012987B252001DCE8B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EC7C1FDE2987B251001DCE8B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC7C1FE52987B251001DCE8B;
-			remoteInfo = iosSample;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		EC7C1FE62987B251001DCE8B /* iosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleApp.swift; sourceTree = "<group>"; };
 		EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithControl.swift; sourceTree = "<group>"; };
 		EC7C1FED2987B252001DCE8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		EC7C1FF62987B252001DCE8B /* iosSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC7C1FFA2987B252001DCE8B /* iosSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleTests.swift; sourceTree = "<group>"; };
-		EC7C20002987B252001DCE8B /* iosSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iosSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC7C20042987B252001DCE8B /* iosSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleUITests.swift; sourceTree = "<group>"; };
-		EC7C20062987B252001DCE8B /* iosSampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EC7C20162987F483001DCE8B /* ObservableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableState.swift; sourceTree = "<group>"; };
 		EC7C201829891C1D001DCE8B /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualFormatter.swift; sourceTree = "<group>"; };
@@ -68,20 +43,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC7C1FF32987B252001DCE8B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC7C1FFD2987B252001DCE8B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -89,8 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				EC7C1FE82987B251001DCE8B /* iosSample */,
-				EC7C1FF92987B252001DCE8B /* iosSampleTests */,
-				EC7C20032987B252001DCE8B /* iosSampleUITests */,
 				EC7C1FE72987B251001DCE8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,8 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				EC7C1FE62987B251001DCE8B /* iosSample.app */,
-				EC7C1FF62987B252001DCE8B /* iosSampleTests.xctest */,
-				EC7C20002987B252001DCE8B /* iosSampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,23 +81,6 @@
 				EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		EC7C1FF92987B252001DCE8B /* iosSampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				EC7C1FFA2987B252001DCE8B /* iosSampleTests.swift */,
-			);
-			path = iosSampleTests;
-			sourceTree = "<group>";
-		};
-		EC7C20032987B252001DCE8B /* iosSampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EC7C20042987B252001DCE8B /* iosSampleUITests.swift */,
-				EC7C20062987B252001DCE8B /* iosSampleUITestsLaunchTests.swift */,
-			);
-			path = iosSampleUITests;
 			sourceTree = "<group>";
 		};
 		EC7C20152987F458001DCE8B /* State */ = {
@@ -193,42 +133,6 @@
 			productReference = EC7C1FE62987B251001DCE8B /* iosSample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EC7C1FF52987B252001DCE8B /* iosSampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC7C200D2987B252001DCE8B /* Build configuration list for PBXNativeTarget "iosSampleTests" */;
-			buildPhases = (
-				EC7C1FF22987B252001DCE8B /* Sources */,
-				EC7C1FF32987B252001DCE8B /* Frameworks */,
-				EC7C1FF42987B252001DCE8B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EC7C1FF82987B252001DCE8B /* PBXTargetDependency */,
-			);
-			name = iosSampleTests;
-			productName = iosSampleTests;
-			productReference = EC7C1FF62987B252001DCE8B /* iosSampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		EC7C1FFF2987B252001DCE8B /* iosSampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC7C20102987B252001DCE8B /* Build configuration list for PBXNativeTarget "iosSampleUITests" */;
-			buildPhases = (
-				EC7C1FFC2987B252001DCE8B /* Sources */,
-				EC7C1FFD2987B252001DCE8B /* Frameworks */,
-				EC7C1FFE2987B252001DCE8B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EC7C20022987B252001DCE8B /* PBXTargetDependency */,
-			);
-			name = iosSampleUITests;
-			productName = iosSampleUITests;
-			productReference = EC7C20002987B252001DCE8B /* iosSampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -241,14 +145,6 @@
 				TargetAttributes = {
 					EC7C1FE52987B251001DCE8B = {
 						CreatedOnToolsVersion = 14.1;
-					};
-					EC7C1FF52987B252001DCE8B = {
-						CreatedOnToolsVersion = 14.1;
-						TestTargetID = EC7C1FE52987B251001DCE8B;
-					};
-					EC7C1FFF2987B252001DCE8B = {
-						CreatedOnToolsVersion = 14.1;
-						TestTargetID = EC7C1FE52987B251001DCE8B;
 					};
 				};
 			};
@@ -266,8 +162,6 @@
 			projectRoot = "";
 			targets = (
 				EC7C1FE52987B251001DCE8B /* iosSample */,
-				EC7C1FF52987B252001DCE8B /* iosSampleTests */,
-				EC7C1FFF2987B252001DCE8B /* iosSampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -279,20 +173,6 @@
 			files = (
 				EC7C1FF12987B252001DCE8B /* Preview Assets.xcassets in Resources */,
 				EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC7C1FF42987B252001DCE8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC7C1FFE2987B252001DCE8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,37 +215,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC7C1FF22987B252001DCE8B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EC7C1FFB2987B252001DCE8B /* iosSampleTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC7C1FFC2987B252001DCE8B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EC7C20072987B252001DCE8B /* iosSampleUITestsLaunchTests.swift in Sources */,
-				EC7C20052987B252001DCE8B /* iosSampleUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EC7C1FF82987B252001DCE8B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EC7C1FE52987B251001DCE8B /* iosSample */;
-			targetProxy = EC7C1FF72987B252001DCE8B /* PBXContainerItemProxy */;
-		};
-		EC7C20022987B252001DCE8B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EC7C1FE52987B251001DCE8B /* iosSample */;
-			targetProxy = EC7C20012987B252001DCE8B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EC7C20082987B252001DCE8B /* Debug */ = {
@@ -550,78 +400,6 @@
 			};
 			name = Release;
 		};
-		EC7C200E2987B252001DCE8B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.mobileup.sesame.kmm.form.iosSampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iosSample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iosSample";
-			};
-			name = Debug;
-		};
-		EC7C200F2987B252001DCE8B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.mobileup.sesame.kmm.form.iosSampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iosSample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iosSample";
-			};
-			name = Release;
-		};
-		EC7C20112987B252001DCE8B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.mobileup.sesame.kmm.form.iosSampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iosSample;
-			};
-			name = Debug;
-		};
-		EC7C20122987B252001DCE8B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.mobileup.sesame.kmm.form.iosSampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = iosSample;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -639,24 +417,6 @@
 			buildConfigurations = (
 				EC7C200B2987B252001DCE8B /* Debug */,
 				EC7C200C2987B252001DCE8B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EC7C200D2987B252001DCE8B /* Build configuration list for PBXNativeTarget "iosSampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EC7C200E2987B252001DCE8B /* Debug */,
-				EC7C200F2987B252001DCE8B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EC7C20102987B252001DCE8B /* Build configuration list for PBXNativeTarget "iosSampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EC7C20112987B252001DCE8B /* Debug */,
-				EC7C20122987B252001DCE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
