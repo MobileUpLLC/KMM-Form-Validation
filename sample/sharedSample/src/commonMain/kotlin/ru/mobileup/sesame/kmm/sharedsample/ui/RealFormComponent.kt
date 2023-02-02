@@ -1,7 +1,7 @@
 package ru.mobileup.sesame.kmm.sharedsample.ui
 
 import com.arkivanov.decompose.ComponentContext
-import dev.icerock.moko.resources.ColorResource
+import dev.icerock.moko.graphics.Color
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
@@ -21,9 +21,9 @@ import ru.mobileup.sesame.kmm.sharedsample.utils.componentCoroutineScope
 import ru.mobileup.sesame.kmm.sharedsample.utils.computed
 import ru.mobileup.sesame.kmm.state.asCStateFlow
 
-enum class SubmitButtonState(val color: ColorResource) {
-    Valid(Res.colors.green),
-    Invalid(Res.colors.red)
+enum class SubmitButtonState(val color: Color) {
+    Valid(Res.colors.green.color),
+    Invalid(Res.colors.red.color)
 }
 
 class RealFormComponent(
