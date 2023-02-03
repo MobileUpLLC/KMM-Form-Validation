@@ -1,8 +1,6 @@
 package ru.mobileup.sesame.kmm.sharedsample.ui
 
 import com.arkivanov.decompose.ComponentContext
-import dev.icerock.moko.graphics.Color
-import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.channels.Channel
@@ -20,9 +18,9 @@ import ru.mobileup.sesame.kmm.sharedsample.utils.InputControl
 import ru.mobileup.sesame.kmm.sharedsample.utils.componentCoroutineScope
 import ru.mobileup.sesame.kmm.sharedsample.utils.computed
 
-enum class SubmitButtonState(val color: Color) {
-    Valid(Res.colors.green.color),
-    Invalid(Res.colors.red.color)
+enum class SubmitButtonState {
+    Valid,
+    Invalid
 }
 
 class RealFormComponent(
@@ -34,6 +32,8 @@ class RealFormComponent(
         private const val PHONE_MAX_LENGTH = 10
         private const val PASSWORD_MIN_LENGTH = 6
         private const val RUS_PHONE_DIGIT_COUNT = 10
+        private const val EMAIL_REGEX_PATTERN =
+            "[a-zA-Z0-9+._%\\-]{1,256}@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
     }
 
     private val coroutineScope = componentCoroutineScope()
@@ -97,29 +97,29 @@ class RealFormComponent(
         )
 
         input(nameInput) {
-            isNotBlank(StringDesc.Resource(Res.strings.field_is_blank_error_message))
+            isNotBlank(Res.strings.field_is_blank_error_message)
         }
 
         input(emailInput, required = false) {
-            isNotBlank(StringDesc.Resource(Res.strings.field_is_blank_error_message))
+            isNotBlank(Res.strings.field_is_blank_error_message)
             regex(
-                regex = "[a-zA-Z0-9+._%\\-]{1,256}@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+".toRegex(),
-                errorMessage = StringDesc.Resource(Res.strings.invalid_email_error_message)
+                regex = EMAIL_REGEX_PATTERN.toRegex(),
+                errorMessageRes = Res.strings.invalid_email_error_message
             )
         }
 
         input(phoneInput) {
-            isNotBlank(StringDesc.Resource(Res.strings.field_is_blank_error_message))
+            isNotBlank(Res.strings.field_is_blank_error_message)
             validation(
                 { str ->
                     str.count { it.isDigit() } == RUS_PHONE_DIGIT_COUNT
                 },
-                StringDesc.Resource(Res.strings.invalid_phone_error_message)
+                Res.strings.invalid_phone_error_message
             )
         }
 
         input(passwordInput) {
-            isNotBlank(StringDesc.Resource(Res.strings.field_is_blank_error_message))
+            isNotBlank(Res.strings.field_is_blank_error_message)
             minLength(
                 PASSWORD_MIN_LENGTH,
                 StringDesc.ResourceFormatted(
@@ -129,19 +129,19 @@ class RealFormComponent(
             )
             validation(
                 { str -> str.any { it.isDigit() } },
-                StringDesc.Resource(Res.strings.must_contain_digit_error_message)
+                Res.strings.must_contain_digit_error_message
             )
         }
 
         input(confirmPasswordInput) {
-            isNotBlank(StringDesc.Resource(Res.strings.field_is_blank_error_message))
+            isNotBlank(Res.strings.field_is_blank_error_message)
             equalsTo(
                 passwordInput,
-                StringDesc.Resource(Res.strings.passwords_do_not_match_error_message)
+                Res.strings.passwords_do_not_match_error_message
             )
         }
 
-        checked(termsCheckBox, StringDesc.Resource(Res.strings.terms_are_accepted_error_message))
+        checked(termsCheckBox, Res.strings.terms_are_accepted_error_message)
     }
 
     private val dynamicResult = coroutineScope.dynamicValidationResult(formValidator)

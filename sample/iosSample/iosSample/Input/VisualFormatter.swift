@@ -23,7 +23,7 @@ class VisualFormatter: Formatter{
     override func string(for obj: Any?) -> String? {
         let string = obj as? String
         
-        if let string = string{
+        if let string = string {
             return visualTransformation.filter(text: string).text
         } else {
             return nil

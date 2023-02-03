@@ -21,10 +21,14 @@ kotlin {
             dependencies {
                 implementation(libs.coroutines.core)
                 implementation(libs.moko.resources)
-                implementation(libs.moko.graphics)
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.compose.ui)
+                implementation(libs.compose.material)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

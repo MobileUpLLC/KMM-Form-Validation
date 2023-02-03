@@ -19,7 +19,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.sesame.kmm.android_sample.R
-import ru.mobileup.sesame.kmm.android_sample.utils.asCompose
+import ru.mobileup.sesame.kmm.toCompose
 import ru.mobileup.sesame.kmm.form.control.InputControl
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -57,7 +57,7 @@ fun PasswordTextField(
 
         OutlinedTextField(
             value = text,
-            keyboardOptions = inputControl.keyboardOptions.asCompose(),
+            keyboardOptions = inputControl.keyboardOptions.toCompose(),
             singleLine = inputControl.singleLine,
             label = {
                 Text(text = label)
@@ -67,7 +67,7 @@ fun PasswordTextField(
             visualTransformation = if (passwordVisibility) {
                 VisualTransformation.None
             } else {
-                inputControl.visualTransformation.asCompose()
+                inputControl.visualTransformation.toCompose()
             },
             trailingIcon = {
                 val image = if (passwordVisibility) {

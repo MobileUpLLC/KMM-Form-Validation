@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm.android_sample.utils
+package ru.mobileup.sesame.kmm
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.TransformedText
@@ -15,38 +15,38 @@ import androidx.compose.ui.text.input.KeyboardType as ComposeKeyBoardType
 import androidx.compose.ui.text.input.OffsetMapping as ComposeOffsetMapping
 import androidx.compose.ui.text.input.VisualTransformation as ComposeVisualTransformation
 
-fun VisualTransformation.asCompose(): ComposeVisualTransformation {
+fun VisualTransformation.toCompose(): ComposeVisualTransformation {
     return ComposeVisualTransformation {
         val transformedText = filter(it.text)
         TransformedText(
             AnnotatedString(transformedText.text),
-            transformedText.offsetMapping.asCompose()
+            transformedText.offsetMapping.toCompose()
         )
     }
 }
 
-fun OffsetMapping.asCompose(): ComposeOffsetMapping {
+fun OffsetMapping.toCompose(): ComposeOffsetMapping {
     return object : ComposeOffsetMapping {
         override fun originalToTransformed(offset: Int): Int {
-            return this@asCompose.originalToTransformed(offset)
+            return this@toCompose.originalToTransformed(offset)
         }
 
         override fun transformedToOriginal(offset: Int): Int {
-            return this@asCompose.transformedToOriginal(offset)
+            return this@toCompose.transformedToOriginal(offset)
         }
     }
 }
 
-fun KeyboardOptions.asCompose(): ComposeKeyboardOptions {
+fun KeyboardOptions.toCompose(): ComposeKeyboardOptions {
     return ComposeKeyboardOptions(
-        capitalization = capitalization.asCompose(),
+        capitalization = capitalization.toCompose(),
         autoCorrect = autoCorrect,
-        keyboardType = keyboardType.asCompose(),
-        imeAction = imeAction.asCompose()
+        keyboardType = keyboardType.toCompose(),
+        imeAction = imeAction.toCompose()
     )
 }
 
-fun KeyboardCapitalization.asCompose(): ComposeKeyboardCapitalization {
+fun KeyboardCapitalization.toCompose(): ComposeKeyboardCapitalization {
     return when (this) {
         KeyboardCapitalization.None -> ComposeKeyboardCapitalization.None
         KeyboardCapitalization.Characters -> ComposeKeyboardCapitalization.Characters
@@ -55,7 +55,7 @@ fun KeyboardCapitalization.asCompose(): ComposeKeyboardCapitalization {
     }
 }
 
-fun KeyboardType.asCompose(): ComposeKeyBoardType {
+fun KeyboardType.toCompose(): ComposeKeyBoardType {
     return when (this) {
         KeyboardType.Text -> ComposeKeyBoardType.Text
         KeyboardType.Ascii -> ComposeKeyBoardType.Ascii
@@ -68,7 +68,7 @@ fun KeyboardType.asCompose(): ComposeKeyBoardType {
     }
 }
 
-fun ImeAction.asCompose(): ComposeImeAction {
+fun ImeAction.toCompose(): ComposeImeAction {
     return when (this) {
         ImeAction.Default -> ComposeImeAction.Default
         ImeAction.None -> ComposeImeAction.None

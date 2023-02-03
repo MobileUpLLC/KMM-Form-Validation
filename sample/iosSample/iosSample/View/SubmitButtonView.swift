@@ -24,7 +24,7 @@ struct SubmitButtonView: View {
     let label: String
     
     var body: some View {
-        let color = buttonState.value!.color.toUIColor()
+
         Button(action: {
             formComponent.onSubmitClicked()
         }, label: {
@@ -32,6 +32,6 @@ struct SubmitButtonView: View {
                 .padding(8)
         })
         .buttonStyle(BorderedButtonStyle())
-        .foregroundColor(Color(color))
+        .foregroundColor(buttonState.value?.toUI())
     }
 }

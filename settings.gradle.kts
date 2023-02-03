@@ -66,12 +66,10 @@ pluginManagement {
                 library("moko-graphics", "dev.icerock.moko", "graphics").version("0.9.0")
 
                 version("decompose", "1.0.0-beta-04")
+                version("essenty", "0.8.0")
                 library("decompose", "com.arkivanov.decompose", "decompose").versionRef("decompose")
-                library(
-                    "decompose-compose",
-                    "com.arkivanov.decompose",
-                    "extensions-compose-jetpack"
-                ).versionRef("decompose")
+                library("decompose-compose", "com.arkivanov.decompose", "extensions-compose-jetpack").versionRef("decompose")
+                library("essenty-lifecycle", "com.arkivanov.essenty", "lifecycle").versionRef("essenty")
 
                 version("konfetti", "1.3.2")
                 library("konfetti", "nl.dionsegijn", "konfetti").versionRef("konfetti")

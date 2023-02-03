@@ -57,3 +57,15 @@ extension KeyboardCapitalization {
         return capitalization
     }
 }
+
+extension SubmitButtonState {
+    func toUI() -> Color {
+        let color: Color
+        switch self {
+        case SubmitButtonState.invalid: color = Color.red
+        case SubmitButtonState.valid: color = Color.green
+        default: color = Color.red
+        }
+        return color
+    }
+}

@@ -15,8 +15,9 @@ kotlin {
         it.binaries.framework {
             baseName = "sharedSample"
             export(project(":shared"))
-            export(libs.moko.graphics)
             export(libs.moko.resources)
+            export(libs.decompose)
+            export(libs.essenty.lifecycle)
         }
     }
 
@@ -26,8 +27,7 @@ kotlin {
                 api(project(":shared"))
                 implementation(libs.coroutines.core)
                 api(libs.moko.resources)
-                api(libs.moko.graphics)
-                implementation(libs.decompose)
+                api(libs.decompose)
             }
         }
         val androidMain by getting

@@ -14,7 +14,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
-import ru.mobileup.sesame.kmm.android_sample.utils.asCompose
+import ru.mobileup.sesame.kmm.toCompose
 import ru.mobileup.sesame.kmm.form.control.InputControl
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -50,12 +50,12 @@ fun TextField(
 
         OutlinedTextField(
             value = text,
-            keyboardOptions = inputControl.keyboardOptions.asCompose(),
+            keyboardOptions = inputControl.keyboardOptions.toCompose(),
             singleLine = inputControl.singleLine,
             label = { Text(text = label) },
             onValueChange = inputControl::onTextChanged,
             isError = error != null,
-            visualTransformation = inputControl.visualTransformation.asCompose(),
+            visualTransformation = inputControl.visualTransformation.toCompose(),
             modifier = modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester)

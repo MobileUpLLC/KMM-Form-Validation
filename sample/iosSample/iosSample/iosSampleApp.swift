@@ -11,37 +11,32 @@ import sharedSample
 @main
 struct iosSampleApp: App {
     
-    init() {
-        formComponent = Application.shared.getFormComponent()
-        successFlow = ObservableFlow<KotlinUnit>(flow: formComponent.dropKonfettiEvent)
-    }
-    
-    let formComponent: FormComponent
-    let successFlow: ObservableFlow<KotlinUnit>
-    
-    @State
-    var isSuccessShow: Bool = false
+    @StateObject
+    private var rootHolder = RootHolder()
     
     var body: some Scene {
         WindowGroup {
-            VStack{
-                if isSuccessShow{
-                    Text("Success")
-                        .padding(8)
-                }
-                TextFieldWithControl(inputControl: formComponent.nameInput, hint: "Name")
-                TextFieldWithControl(inputControl: formComponent.phoneInput, hint: "Phone")
-                TextFieldWithControl(inputControl: formComponent.emailInput, hint: "Email")
-                SecureTextFieldWithControl(inputControl: formComponent.passwordInput, hint: "Password")
-                SecureTextFieldWithControl(inputControl: formComponent.confirmPasswordInput, hint: "Confirm Password")
-                ToggleView(checkControl: formComponent.termsCheckBox, label: "Terms")
-                SubmitButtonView(formComponent: formComponent, label: "Submit")
-                    .onReceive(successFlow.$value) { output in
-                        if output != nil{
-                            isSuccessShow = true
-                        }
-                    }
-            }
+            FormView(formComponent: rootHolder.formComponent)
+                .onAppear { LifecycleRegistryExtKt.resume(self.rootHolder.lifecycle) }
+                .onDisappear { LifecycleRegistryExtKt.stop(self.rootHolder.lifecycle) }
         }
+    }
+}
+
+private class RootHolder : ObservableObject {
+    let lifecycle: LifecycleRegistry
+    let formComponent: FormComponent
+    
+    init() {
+        
+        lifecycle = LifecycleRegistryKt.LifecycleRegistry()
+        formComponent = Application.shared.createFormComponent(
+            componentContext: DefaultComponentContext(lifecycle: lifecycle)
+        )
+        lifecycle.onCreate()
+    }
+    
+    deinit {
+        lifecycle.onDestroy()
     }
 }

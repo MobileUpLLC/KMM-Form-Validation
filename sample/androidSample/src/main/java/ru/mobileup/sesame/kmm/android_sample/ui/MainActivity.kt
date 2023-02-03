@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.defaultComponentContext
 import ru.mobileup.sesame.kmm.android_sample.ui.theme.SesameKMMFormTheme
+import ru.mobileup.sesame.kmm.sharedsample.Application
 import ru.mobileup.sesame.kmm.sharedsample.ui.RealFormComponent
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    FormUi(component = RealFormComponent(defaultComponentContext()))
+                    FormUi(component = Application.createFormComponent(defaultComponentContext()))
                 }
             }
         }

@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.graphics.colorInt
 import ru.mobileup.sesame.kmm.android_sample.R
 import ru.mobileup.sesame.kmm.android_sample.ui.widgets.*
 import ru.mobileup.sesame.kmm.sharedsample.ui.FormComponent
+import ru.mobileup.sesame.kmm.sharedsample.ui.SubmitButtonState
 
 @Composable
 fun FormUi(
@@ -75,11 +75,16 @@ fun FormUi(
                     label = stringResource(id = R.string.terms_hint)
                 )
 
+                val color = when(submitButtonState){
+                    SubmitButtonState.Valid -> R.color.green
+                    SubmitButtonState.Invalid -> R.color.red
+                }
+
                 MenuButton(
                     text = stringResource(R.string.submit_button),
                     onClick = component::onSubmitClicked,
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color(submitButtonState.color.colorInt()),
+                        backgroundColor = Color(color),
                     ),
                     modifier = Modifier.padding(top = 8.dp)
                 )
