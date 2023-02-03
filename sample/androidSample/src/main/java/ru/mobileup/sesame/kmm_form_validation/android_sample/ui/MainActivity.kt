@@ -8,14 +8,14 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.defaultComponentContext
-import ru.mobileup.sesame.kmm_form_validation.android_sample.ui.theme.SesameKMMFormTheme
+import ru.mobileup.sesame.kmm_form_validation.android_sample.ui.theme.AppTheme
 import ru.mobileup.sesame.kmm_form_validation.sharedsample.Application
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SesameKMMFormTheme {
+            AppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
