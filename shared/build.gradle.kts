@@ -42,7 +42,7 @@ kotlin {
 }
 
 android {
-    namespace = "ru.mobileup.sesame.kmm.form"
+    namespace = "ru.mobileup.kmm_form_validation"
     compileSdk = 33
     defaultConfig {
         minSdk = 23

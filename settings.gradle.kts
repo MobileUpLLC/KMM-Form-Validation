@@ -1,4 +1,4 @@
-rootProject.name = "SesameKMMForm"
+rootProject.name = "KMMFormValidation"
 
 pluginManagement {
     val kotlinVersion = "1.8.0"
