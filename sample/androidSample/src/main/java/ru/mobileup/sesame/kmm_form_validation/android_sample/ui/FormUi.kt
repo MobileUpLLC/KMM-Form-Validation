@@ -11,7 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.mobileup.sesame.kmm_form_validation.android_sample.R
@@ -75,16 +75,16 @@ fun FormUi(
                     label = stringResource(id = R.string.terms_hint)
                 )
 
-                val color = when(submitButtonState){
-                    SubmitButtonState.Valid -> R.color.green
-                    SubmitButtonState.Invalid -> R.color.red
+                val color = when (submitButtonState) {
+                    SubmitButtonState.Valid -> colorResource(R.color.green)
+                    SubmitButtonState.Invalid -> colorResource(R.color.red)
                 }
 
                 MenuButton(
                     text = stringResource(R.string.submit_button),
                     onClick = component::onSubmitClicked,
                     colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color(color),
+                        backgroundColor = color,
                     ),
                     modifier = Modifier.padding(top = 8.dp)
                 )
