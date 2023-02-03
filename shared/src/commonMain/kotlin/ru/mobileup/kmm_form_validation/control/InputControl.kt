@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
+import ru.mobileup.kmm_form_validation.options.TextTransformation
+import ru.mobileup.kmm_form_validation.options.VisualTransformation
 import ru.mobileup.kmm_form_validation.util.computed
 
 /**
@@ -19,8 +21,8 @@ class InputControl(
     val singleLine: Boolean = true,
     val maxLength: Int = Int.MAX_VALUE,
     val keyboardOptions: KeyboardOptions,
-    val textTransformation: ru.mobileup.kmm_form_validation.control.TextTransformation? = null,
-    val visualTransformation: ru.mobileup.kmm_form_validation.control.VisualTransformation = ru.mobileup.kmm_form_validation.control.VisualTransformation.Companion.None
+    val textTransformation: TextTransformation? = null,
+    val visualTransformation: VisualTransformation = VisualTransformation.Companion.None
 ) : ru.mobileup.kmm_form_validation.control.ValidatableControl<String> {
 
     constructor(coroutineScope: CoroutineScope) : this(
@@ -30,7 +32,7 @@ class InputControl(
         maxLength = Int.MAX_VALUE,
         keyboardOptions = KeyboardOptions(),
         textTransformation = null,
-        visualTransformation = ru.mobileup.kmm_form_validation.control.VisualTransformation.Companion.None
+        visualTransformation = VisualTransformation.Companion.None
     )
 
     private val _text = MutableStateFlow(correctText(initialText))

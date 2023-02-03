@@ -1,8 +1,8 @@
 package ru.mobileup.kmm_form_validation.sharedsample.ui
 
-import ru.mobileup.kmm_form_validation.control.OffsetMapping
-import ru.mobileup.kmm_form_validation.control.TransformedText
-import ru.mobileup.kmm_form_validation.control.VisualTransformation
+import ru.mobileup.kmm_form_validation.options.OffsetMapping
+import ru.mobileup.kmm_form_validation.options.TransformedText
+import ru.mobileup.kmm_form_validation.options.VisualTransformation
 
 object RussianPhoneNumberVisualTransformation : VisualTransformation {
     private const val FIRST_HARDCODE_SLOT = "+7"

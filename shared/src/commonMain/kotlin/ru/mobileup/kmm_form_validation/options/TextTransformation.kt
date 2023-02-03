@@ -1,4 +1,4 @@
-package ru.mobileup.kmm_form_validation.control
+package ru.mobileup.kmm_form_validation.options
 
 /**
  * Allows to apply text transformation (such as filtering).

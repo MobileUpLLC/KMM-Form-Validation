@@ -5,11 +5,7 @@ import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
-import ru.mobileup.kmm_form_validation.control.PasswordVisualTransformation
-import ru.mobileup.kmm_form_validation.options.ImeAction
-import ru.mobileup.kmm_form_validation.options.KeyboardCapitalization
-import ru.mobileup.kmm_form_validation.options.KeyboardOptions
-import ru.mobileup.kmm_form_validation.options.KeyboardType
+import ru.mobileup.kmm_form_validation.options.*
 import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl

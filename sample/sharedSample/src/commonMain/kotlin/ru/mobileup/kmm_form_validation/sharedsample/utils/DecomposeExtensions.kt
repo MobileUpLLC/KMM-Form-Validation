@@ -7,9 +7,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
-import ru.mobileup.kmm_form_validation.control.TextTransformation
-import ru.mobileup.kmm_form_validation.control.VisualTransformation
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
+import ru.mobileup.kmm_form_validation.options.TextTransformation
+import ru.mobileup.kmm_form_validation.options.VisualTransformation
 
 fun LifecycleOwner.componentCoroutineScope(): CoroutineScope {
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
