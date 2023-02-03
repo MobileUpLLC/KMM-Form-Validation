@@ -13,17 +13,17 @@ struct ToggleView: View {
     init(checkControl: CheckControl, label: String) {
         self.label = label
         termsControl = checkControl
-        termsState = ObservableFlow(checkControl.checked)
-        error = ObservableFlow(checkControl.error)
+        termsState = UnsafeObservableState(checkControl.checked)
+        error = UnsafeObservableState(checkControl.error)
     }
     
     var termsControl: CheckControl
     
     @ObservedObject
-    var termsState: ObservableFlow<KotlinBoolean>
+    var termsState: UnsafeObservableState<KotlinBoolean>
     
     @ObservedObject
-    private var error: ObservableFlow<StringDesc>
+    private var error: UnsafeObservableState<StringDesc>
     
     let label: String
     

@@ -13,13 +13,13 @@ struct SubmitButtonView: View {
     init(formComponent: FormComponent, label: String) {
         self.formComponent = formComponent
         self.label = label
-        self.buttonState = ObservableFlow(formComponent.submitButtonState)
+        self.buttonState = UnsafeObservableState(formComponent.submitButtonState)
     }
     
     let formComponent: FormComponent
     
     @ObservedObject
-    private var buttonState: ObservableFlow<SubmitButtonState>
+    private var buttonState: UnsafeObservableState<SubmitButtonState>
     
     let label: String
     

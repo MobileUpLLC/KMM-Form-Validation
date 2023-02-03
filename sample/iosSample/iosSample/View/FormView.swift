@@ -12,11 +12,11 @@ struct FormView: View {
     
     init(formComponent: FormComponent) {
         self.formComponent = formComponent
-        successFlow = ObservableFlow<KotlinUnit>(flow: formComponent.dropKonfettiEvent)
+        successFlow = UnsafeObservableState<KotlinUnit>(flow: formComponent.dropKonfettiEvent)
     }
     
     let formComponent: FormComponent
-    let successFlow: ObservableFlow<KotlinUnit>
+    let successFlow: UnsafeObservableState<KotlinUnit>
     
     @State
     var isSuccessShow: Bool = false

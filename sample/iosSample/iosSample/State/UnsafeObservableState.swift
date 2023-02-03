@@ -8,9 +8,7 @@
 import Foundation
 import sharedSample
 
-public class ObservableFlow<T: AnyObject>: ObservableObject {
-
-    private let observableState: FlowWrapper<T>
+public class UnsafeObservableState<T: AnyObject>: ObservableObject {
 
     @Published
     var value: T?
@@ -22,10 +20,9 @@ public class ObservableFlow<T: AnyObject>: ObservableObject {
     }
     
     init(value: T? = nil, flow: Kotlinx_coroutines_coreFlow) {
-        self.observableState = FlowWrapper<T>(flow: flow)
         self.value = value
         
-        cancelable = observableState.bind(consumer: { value in
+        cancelable = FlowWrapper<T>(flow: flow).collect(consumer: { value in
             self.value = value
         })
     }
@@ -35,30 +32,26 @@ public class ObservableFlow<T: AnyObject>: ObservableObject {
     }
 }
 
-public class MutableObservableFlow<T: AnyObject>: ObservableObject {
+public class UnsafeMutableObservableState<T: AnyObject>: ObservableObject {
 
-    private let observableState: MutableFlowWrapper<T>
+    private let wrapper: MutableStateFlowWrapper<T>
 
     @Published
     var value: T?
 
     private var cancelable: Cancelable? = nil
-
-    convenience init(_ state: Kotlinx_coroutines_coreMutableStateFlow) {
-        self.init(value: state.value as? T, state)
-    }
     
-    init(value: T? = nil, _ mutableFlow: Kotlinx_coroutines_coreMutableSharedFlow) {
-        self.observableState = MutableFlowWrapper<T>(mutableFlow: mutableFlow)
+    init(_ state: Kotlinx_coroutines_coreMutableStateFlow) {
+        self.wrapper = MutableStateFlowWrapper<T>(stateFlow: state)
         self.value = value
 
-         cancelable = observableState.bind(consumer: { value in
+         cancelable = wrapper.collect(consumer: { value in
              self.value = value
          })
     }
     
     func setValue(value: T){
-        observableState.update(value: value)
+        wrapper.update(value: value)
     }
 
     deinit {

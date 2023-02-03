@@ -15,10 +15,10 @@ struct TextFieldWithControl: View {
         self.hint = hint
         self.inputControl = inputControl
         self.keyboardOptions = inputControl.keyboardOptions
-        self.text = ObservableFlow(inputControl.text)
-        self.error = ObservableFlow(inputControl.error)
-        self.hasFocus = MutableObservableFlow(inputControl.hasFocus)
-        self.enabled = MutableObservableFlow(inputControl.enabled)
+        self.text = UnsafeObservableState(inputControl.text)
+        self.error = UnsafeObservableState(inputControl.error)
+        self.hasFocus = UnsafeMutableObservableState(inputControl.hasFocus)
+        self.enabled = UnsafeMutableObservableState(inputControl.enabled)
     }
     
     private let hint: String
@@ -26,16 +26,16 @@ struct TextFieldWithControl: View {
     private let inputControl: InputControl
 
     @ObservedObject
-    private var text: ObservableFlow<NSString>
+    private var text: UnsafeObservableState<NSString>
     
     @ObservedObject
-    private var error: ObservableFlow<StringDesc>
+    private var error: UnsafeObservableState<StringDesc>
     
     @ObservedObject
-    private var hasFocus: MutableObservableFlow<KotlinBoolean>
+    private var hasFocus: UnsafeMutableObservableState<KotlinBoolean>
     
     @ObservedObject
-    private var enabled: MutableObservableFlow<KotlinBoolean>
+    private var enabled: UnsafeMutableObservableState<KotlinBoolean>
 
     @State
     private var keyboardOptions: KeyboardOptions
