@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.form
+package ru.mobileup.sesame.kmm_form_validation.validation.form
 
 /**
  * Informs that a form was validated.

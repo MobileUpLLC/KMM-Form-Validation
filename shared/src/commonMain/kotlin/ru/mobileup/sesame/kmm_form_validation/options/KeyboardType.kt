@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.options
+package ru.mobileup.sesame.kmm_form_validation.options
 
 /**
  * Values representing the different available Keyboard Types.

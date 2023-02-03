@@ -5,18 +5,18 @@ import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
-import ru.mobileup.sesame.kmm_form_validation.form.control.PasswordVisualTransformation
-import ru.mobileup.sesame.kmm_form_validation.form.options.ImeAction
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardCapitalization
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardOptions
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardType
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.*
-import ru.mobileup.sesame.kmm_form_validation.form.validation.form.*
+import ru.mobileup.sesame.kmm_form_validation.control.PasswordVisualTransformation
+import ru.mobileup.sesame.kmm_form_validation.options.ImeAction
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardCapitalization
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardOptions
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardType
 import ru.mobileup.sesame.kmm_form_validation.sample.Res
 import ru.mobileup.sesame.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.sesame.kmm_form_validation.sharedsample.utils.InputControl
 import ru.mobileup.sesame.kmm_form_validation.sharedsample.utils.componentCoroutineScope
 import ru.mobileup.sesame.kmm_form_validation.sharedsample.utils.computed
+import ru.mobileup.sesame.kmm_form_validation.validation.control.*
+import ru.mobileup.sesame.kmm_form_validation.validation.form.*
 
 enum class SubmitButtonState {
     Valid,

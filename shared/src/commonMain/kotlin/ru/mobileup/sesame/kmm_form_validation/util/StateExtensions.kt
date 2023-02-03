@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package ru.mobileup.sesame.kmm_form_validation.form.util
+package ru.mobileup.sesame.kmm_form_validation.util
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow

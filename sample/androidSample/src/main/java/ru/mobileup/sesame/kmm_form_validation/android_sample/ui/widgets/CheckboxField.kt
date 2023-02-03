@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
-import ru.mobileup.sesame.kmm_form_validation.form.control.CheckControl
+import ru.mobileup.sesame.kmm_form_validation.control.CheckControl
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

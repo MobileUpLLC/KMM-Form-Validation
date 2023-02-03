@@ -1,6 +1,6 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.control
+package ru.mobileup.sesame.kmm_form_validation.validation.control
 
-import ru.mobileup.sesame.kmm_form_validation.form.control.ValidatableControl
+import ru.mobileup.sesame.kmm_form_validation.control.ValidatableControl
 
 /**
  * Interface for validation of a single control.

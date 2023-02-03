@@ -1,9 +1,9 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.control
+package ru.mobileup.sesame.kmm_form_validation.validation.control
 
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
-import ru.mobileup.sesame.kmm_form_validation.form.control.InputControl
+import ru.mobileup.sesame.kmm_form_validation.control.InputControl
 
 class InputValidatorBuilder(
     private val inputControl: InputControl,

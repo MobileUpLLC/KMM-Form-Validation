@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.control
+package ru.mobileup.sesame.kmm_form_validation.control
 
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardOptions
-import ru.mobileup.sesame.kmm_form_validation.form.util.computed
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardOptions
+import ru.mobileup.sesame.kmm_form_validation.util.computed
 
 /**
  * Logical representation of an input field. It allows to configure an input field and manage its state from ViewModel.

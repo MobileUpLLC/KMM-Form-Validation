@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.control
+package ru.mobileup.sesame.kmm_form_validation.validation.control
 
 import dev.icerock.moko.resources.desc.StringDesc
 

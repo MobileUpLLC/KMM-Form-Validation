@@ -1,9 +1,9 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.form
+package ru.mobileup.sesame.kmm_form_validation.validation.form
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
-import ru.mobileup.sesame.kmm_form_validation.form.control.ValidatableControl
-import ru.mobileup.sesame.kmm_form_validation.form.util.computed
+import ru.mobileup.sesame.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.sesame.kmm_form_validation.util.computed
 
 /**
  * Validates a form dynamically and emits validation result. Validation called whenever a value or skipInValidation

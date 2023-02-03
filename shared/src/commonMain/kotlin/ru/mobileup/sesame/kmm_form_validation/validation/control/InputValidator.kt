@@ -1,7 +1,7 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.control
+package ru.mobileup.sesame.kmm_form_validation.validation.control
 
-import ru.mobileup.sesame.kmm_form_validation.form.control.InputControl
-import ru.mobileup.sesame.kmm_form_validation.form.validation.form.FormValidatorBuilder
+import ru.mobileup.sesame.kmm_form_validation.control.InputControl
+import ru.mobileup.sesame.kmm_form_validation.validation.form.FormValidatorBuilder
 
 /**
  * Validator for [InputControl].

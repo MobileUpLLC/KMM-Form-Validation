@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.options
+package ru.mobileup.sesame.kmm_form_validation.options
 
 /**
  * Options to request software keyboard to capitalize the text. Applies to languages which

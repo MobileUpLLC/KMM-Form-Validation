@@ -1,16 +1,16 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.form
+package ru.mobileup.sesame.kmm_form_validation.validation.form
 
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
-import ru.mobileup.sesame.kmm_form_validation.form.control.CheckControl
-import ru.mobileup.sesame.kmm_form_validation.form.control.InputControl
-import ru.mobileup.sesame.kmm_form_validation.form.control.ValidatableControl
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.CheckValidator
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.ControlValidator
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.InputValidatorBuilder
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.ValidationResult
+import ru.mobileup.sesame.kmm_form_validation.control.CheckControl
+import ru.mobileup.sesame.kmm_form_validation.control.InputControl
+import ru.mobileup.sesame.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.sesame.kmm_form_validation.validation.control.CheckValidator
+import ru.mobileup.sesame.kmm_form_validation.validation.control.ControlValidator
+import ru.mobileup.sesame.kmm_form_validation.validation.control.InputValidatorBuilder
+import ru.mobileup.sesame.kmm_form_validation.validation.control.ValidationResult
 
 class FormValidatorBuilder {
 

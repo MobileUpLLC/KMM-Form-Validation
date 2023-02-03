@@ -1,11 +1,11 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.form
+package ru.mobileup.sesame.kmm_form_validation.validation.form
 
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import ru.mobileup.sesame.kmm_form_validation.form.control.ValidatableControl
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.ControlValidator
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.ValidationResult
+import ru.mobileup.sesame.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.sesame.kmm_form_validation.validation.control.ControlValidator
+import ru.mobileup.sesame.kmm_form_validation.validation.control.ValidationResult
 
 /**
  * Validator for multiple controls.

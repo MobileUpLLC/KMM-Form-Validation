@@ -1,14 +1,14 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.form
+package ru.mobileup.sesame.kmm_form_validation.validation.form
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import ru.mobileup.sesame.kmm_form_validation.form.control.ValidatableControl
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.ControlValidator
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.InputValidator
-import ru.mobileup.sesame.kmm_form_validation.form.validation.control.ValidationResult
+import ru.mobileup.sesame.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.sesame.kmm_form_validation.validation.control.ControlValidator
+import ru.mobileup.sesame.kmm_form_validation.validation.control.InputValidator
+import ru.mobileup.sesame.kmm_form_validation.validation.control.ValidationResult
 /**
  * High level feature for [FormValidator].
  */

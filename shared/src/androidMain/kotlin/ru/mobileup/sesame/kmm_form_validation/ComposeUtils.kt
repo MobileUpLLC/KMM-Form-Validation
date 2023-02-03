@@ -2,12 +2,12 @@ package ru.mobileup.sesame.kmm_form_validation
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.TransformedText
-import ru.mobileup.sesame.kmm_form_validation.form.control.OffsetMapping
-import ru.mobileup.sesame.kmm_form_validation.form.control.VisualTransformation
-import ru.mobileup.sesame.kmm_form_validation.form.options.ImeAction
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardCapitalization
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardOptions
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardType
+import ru.mobileup.sesame.kmm_form_validation.control.OffsetMapping
+import ru.mobileup.sesame.kmm_form_validation.control.VisualTransformation
+import ru.mobileup.sesame.kmm_form_validation.options.ImeAction
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardCapitalization
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardOptions
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardType
 import androidx.compose.foundation.text.KeyboardOptions as ComposeKeyboardOptions
 import androidx.compose.ui.text.input.ImeAction as ComposeImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization as ComposeKeyboardCapitalization

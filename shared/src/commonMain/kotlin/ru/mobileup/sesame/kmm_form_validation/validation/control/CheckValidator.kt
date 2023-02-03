@@ -1,9 +1,9 @@
-package ru.mobileup.sesame.kmm_form_validation.form.validation.control
+package ru.mobileup.sesame.kmm_form_validation.validation.control
 
 import dev.icerock.moko.resources.desc.StringDesc
-import ru.mobileup.sesame.kmm_form_validation.form.control.CheckControl
-import ru.mobileup.sesame.kmm_form_validation.form.validation.form.FormValidatorBuilder
-import ru.mobileup.sesame.kmm_form_validation.form.validation.form.checked
+import ru.mobileup.sesame.kmm_form_validation.control.CheckControl
+import ru.mobileup.sesame.kmm_form_validation.validation.form.FormValidatorBuilder
+import ru.mobileup.sesame.kmm_form_validation.validation.form.checked
 
 /**
  * Validator for [CheckControl].

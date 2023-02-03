@@ -7,11 +7,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
-import ru.mobileup.sesame.kmm_form_validation.form.control.CheckControl
-import ru.mobileup.sesame.kmm_form_validation.form.control.InputControl
-import ru.mobileup.sesame.kmm_form_validation.form.control.TextTransformation
-import ru.mobileup.sesame.kmm_form_validation.form.control.VisualTransformation
-import ru.mobileup.sesame.kmm_form_validation.form.options.KeyboardOptions
+import ru.mobileup.sesame.kmm_form_validation.control.CheckControl
+import ru.mobileup.sesame.kmm_form_validation.control.InputControl
+import ru.mobileup.sesame.kmm_form_validation.control.TextTransformation
+import ru.mobileup.sesame.kmm_form_validation.control.VisualTransformation
+import ru.mobileup.sesame.kmm_form_validation.options.KeyboardOptions
 
 fun LifecycleOwner.componentCoroutineScope(): CoroutineScope {
     val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)

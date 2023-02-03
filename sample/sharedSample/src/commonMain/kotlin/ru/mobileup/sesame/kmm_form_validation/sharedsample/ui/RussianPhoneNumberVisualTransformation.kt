@@ -1,8 +1,8 @@
 package ru.mobileup.sesame.kmm_form_validation.sharedsample.ui
 
-import ru.mobileup.sesame.kmm_form_validation.form.control.OffsetMapping
-import ru.mobileup.sesame.kmm_form_validation.form.control.TransformedText
-import ru.mobileup.sesame.kmm_form_validation.form.control.VisualTransformation
+import ru.mobileup.sesame.kmm_form_validation.control.OffsetMapping
+import ru.mobileup.sesame.kmm_form_validation.control.TransformedText
+import ru.mobileup.sesame.kmm_form_validation.control.VisualTransformation
 
 object RussianPhoneNumberVisualTransformation : VisualTransformation {
     private const val FIRST_HARDCODE_SLOT = "+7"

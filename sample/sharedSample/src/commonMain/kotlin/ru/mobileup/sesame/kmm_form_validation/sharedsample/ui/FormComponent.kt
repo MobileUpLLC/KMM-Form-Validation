@@ -2,8 +2,8 @@ package ru.mobileup.sesame.kmm_form_validation.sharedsample.ui
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
-import ru.mobileup.sesame.kmm_form_validation.form.control.CheckControl
-import ru.mobileup.sesame.kmm_form_validation.form.control.InputControl
+import ru.mobileup.sesame.kmm_form_validation.control.CheckControl
+import ru.mobileup.sesame.kmm_form_validation.control.InputControl
 
 interface FormComponent {
 

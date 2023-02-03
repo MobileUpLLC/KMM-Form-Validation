@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.control
+package ru.mobileup.sesame.kmm_form_validation.control
 
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
@@ -6,7 +6,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import ru.mobileup.sesame.kmm_form_validation.form.util.computed
+import ru.mobileup.sesame.kmm_form_validation.util.computed
 
 /**
  * Logical representation of a control with checkable state (CheckBox, Switch, etc). It allows to manage checked state from ViewModel.

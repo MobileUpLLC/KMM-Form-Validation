@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.control
+package ru.mobileup.sesame.kmm_form_validation.control
 
 /**
  * Provides bidirectional offset mapping between original and transformed text.

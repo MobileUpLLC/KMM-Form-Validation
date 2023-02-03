@@ -15,7 +15,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.sesame.kmm_form_validation.toCompose
-import ru.mobileup.sesame.kmm_form_validation.form.control.InputControl
+import ru.mobileup.sesame.kmm_form_validation.control.InputControl
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

@@ -1,4 +1,4 @@
-package ru.mobileup.sesame.kmm_form_validation.form.control
+package ru.mobileup.sesame.kmm_form_validation.control
 
 import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.flow.MutableStateFlow
