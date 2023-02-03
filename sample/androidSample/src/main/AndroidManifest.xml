@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="ru.mobileup.kmm_form_validation.android_sample.ui.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.App">

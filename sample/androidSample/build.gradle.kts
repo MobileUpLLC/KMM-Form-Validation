@@ -6,11 +6,11 @@ plugins {
 android {
     sourceSets.getByName("main").res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
 
-    namespace = "ru.mobileup.sesame.kmm_form_validation.android_sample"
+    namespace = "ru.mobileup.kmm_form_validation.android_sample"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "ru.mobileup.sesame.kmm_form_validation.android_sample"
+        applicationId = "ru.mobileup.kmm_form_validation.android_sample"
         minSdk = 23
         targetSdk = 33
         versionCode = 1

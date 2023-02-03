@@ -44,13 +44,13 @@ kotlin {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "ru.mobileup.sesame.kmm_form_validation.sample"
+    multiplatformResourcesPackage = "ru.mobileup.kmm_form_validation.sample"
     multiplatformResourcesClassName = "Res"
 }
 
 
 android {
-    namespace = "ru.mobileup.sesame.kmm_form_validation.sharedsample"
+    namespace = "ru.mobileup.kmm_form_validation.sharedsample"
     compileSdk = 33
     defaultConfig {
         minSdk = 23

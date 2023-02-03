@@ -1,5 +1,5 @@
-# Sesame KMM Forms
+# KMM Form Validation
 
-Library to control and validate form in KMM.
+Library to control and validate forms in KMM.
 
-This library based on [Sesame](https://github.com/aartikov/Sesame).
+This library is based on [sesame-form](https://github.com/aartikov/Sesame/tree/master/sesame-form).
