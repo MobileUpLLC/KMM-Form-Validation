@@ -65,8 +65,8 @@ pluginManagement {
                 library("moko-resources-compose", "dev.icerock.moko", "resources-compose").versionRef("moko_resources")
                 library("moko-graphics", "dev.icerock.moko", "graphics").version("0.9.0")
 
-                version("decompose", "1.0.0-beta-04")
-                version("essenty", "0.8.0")
+                version("decompose", "1.0.0")
+                version("essenty", "1.0.0")
                 library("decompose", "com.arkivanov.decompose", "decompose").versionRef("decompose")
                 library("decompose-compose", "com.arkivanov.decompose", "extensions-compose-jetpack").versionRef("decompose")
                 library("essenty-lifecycle", "com.arkivanov.essenty", "lifecycle").versionRef("essenty")
