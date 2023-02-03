@@ -44,8 +44,7 @@ kotlin {
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "ru.mobileup.kmm_form_validation.sample"
-    multiplatformResourcesClassName = "Res"
+    multiplatformResourcesPackage = "ru.mobileup.kmm_form_validation.sharedsample"
 }
 
 

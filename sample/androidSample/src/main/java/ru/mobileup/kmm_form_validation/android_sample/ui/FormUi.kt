@@ -16,6 +16,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.mobileup.kmm_form_validation.android_sample.R
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.*
+import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.ui.FormComponent
 import ru.mobileup.kmm_form_validation.sharedsample.ui.SubmitButtonState
 
@@ -43,36 +44,36 @@ fun FormUi(
             ) {
                 TextField(
                     component.nameInput,
-                    label = stringResource(id = R.string.name_hint),
+                    label = stringResource(id = MR.strings.name_hint.resourceId),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
 
                 TextField(
                     component.emailInput,
-                    label = stringResource(id = R.string.email_hint),
+                    label = stringResource(id = MR.strings.email_hint.resourceId),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
 
                 TextField(
                     component.phoneInput,
-                    label = stringResource(id = R.string.phone_hint),
+                    label = stringResource(id = MR.strings.phone_hint.resourceId),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
 
                 PasswordTextField(
                     component.passwordInput,
-                    label = stringResource(id = R.string.password_hint),
+                    label = stringResource(id = MR.strings.password_hint.resourceId),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
 
                 PasswordTextField(
                     component.confirmPasswordInput,
-                    label = stringResource(id = R.string.confirm_password_hint),
+                    label = stringResource(id = MR.strings.confirm_password_hint.resourceId),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
                 CheckboxField(
                     component.termsCheckBox,
-                    label = stringResource(id = R.string.terms_hint)
+                    label = stringResource(id = MR.strings.terms_hint.resourceId)
                 )
 
                 val color = when (submitButtonState) {
@@ -81,7 +82,7 @@ fun FormUi(
                 }
 
                 MenuButton(
-                    text = stringResource(R.string.submit_button),
+                    text = stringResource(MR.strings.submit_button.resourceId),
                     onClick = component::onSubmitClicked,
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = color,

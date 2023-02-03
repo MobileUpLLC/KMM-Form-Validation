@@ -10,7 +10,7 @@ import ru.mobileup.kmm_form_validation.options.ImeAction
 import ru.mobileup.kmm_form_validation.options.KeyboardCapitalization
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.KeyboardType
-import ru.mobileup.kmm_form_validation.sample.Res
+import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.componentCoroutineScope
@@ -97,51 +97,51 @@ class RealFormComponent(
         )
 
         input(nameInput) {
-            isNotBlank(Res.strings.field_is_blank_error_message)
+            isNotBlank(MR.strings.field_is_blank_error_message)
         }
 
         input(emailInput, required = false) {
-            isNotBlank(Res.strings.field_is_blank_error_message)
+            isNotBlank(MR.strings.field_is_blank_error_message)
             regex(
                 regex = EMAIL_REGEX_PATTERN.toRegex(),
-                errorMessageRes = Res.strings.invalid_email_error_message
+                errorMessageRes = MR.strings.invalid_email_error_message
             )
         }
 
         input(phoneInput) {
-            isNotBlank(Res.strings.field_is_blank_error_message)
+            isNotBlank(MR.strings.field_is_blank_error_message)
             validation(
                 { str ->
                     str.count { it.isDigit() } == RUS_PHONE_DIGIT_COUNT
                 },
-                Res.strings.invalid_phone_error_message
+                MR.strings.invalid_phone_error_message
             )
         }
 
         input(passwordInput) {
-            isNotBlank(Res.strings.field_is_blank_error_message)
+            isNotBlank(MR.strings.field_is_blank_error_message)
             minLength(
                 PASSWORD_MIN_LENGTH,
                 StringDesc.ResourceFormatted(
-                    Res.strings.min_length_error_message,
+                    MR.strings.min_length_error_message,
                     PASSWORD_MIN_LENGTH
                 )
             )
             validation(
                 { str -> str.any { it.isDigit() } },
-                Res.strings.must_contain_digit_error_message
+                MR.strings.must_contain_digit_error_message
             )
         }
 
         input(confirmPasswordInput) {
-            isNotBlank(Res.strings.field_is_blank_error_message)
+            isNotBlank(MR.strings.field_is_blank_error_message)
             equalsTo(
                 passwordInput,
-                Res.strings.passwords_do_not_match_error_message
+                MR.strings.passwords_do_not_match_error_message
             )
         }
 
-        checked(termsCheckBox, Res.strings.terms_are_accepted_error_message)
+        checked(termsCheckBox, MR.strings.terms_are_accepted_error_message)
     }
 
     private val dynamicResult = coroutineScope.dynamicValidationResult(formValidator)
