@@ -1,4 +1,4 @@
-rootProject.name = "KMMFormValidation"
+rootProject.name = "KMM Form Validation"
 
 pluginManagement {
     val kotlinVersion = "1.8.0"
@@ -42,6 +42,7 @@ pluginManagement {
 
                 version("compose", "1.4.0-alpha05")
                 version("composeCompiler", "1.4.0")
+                library("compose-foundation", "androidx.compose.foundation", "foundation").versionRef("compose")
                 library("compose-ui", "androidx.compose.ui", "ui").versionRef("compose")
                 library("compose-material", "androidx.compose.material", "material").versionRef("compose")
                 library("compose-tooling", "androidx.compose.ui", "ui-tooling").versionRef("compose")
@@ -63,6 +64,6 @@ pluginManagement {
         }
     }
 }
-include(":shared")
+include(":kmm-form-validation")
 include(":sample:androidSample")
 include(":sample:sharedSample")

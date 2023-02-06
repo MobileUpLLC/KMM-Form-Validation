@@ -3,8 +3,14 @@ plugins {
     id("com.android.library")
 }
 
+apply {
+    from("$rootDir/publish.gradle")
+}
+
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release")
+    }
 
     listOf(
         iosX64(),
@@ -25,8 +31,8 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(libs.compose.foundation)
                 implementation(libs.compose.ui)
-                implementation(libs.compose.material)
             }
         }
         val iosX64Main by getting

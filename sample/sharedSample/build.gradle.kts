@@ -14,7 +14,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "sharedSample"
-            export(project(":shared"))
+            export(project(":kmm-form-validation"))
             export(libs.moko.resources)
             export(libs.decompose)
             export(libs.essenty.lifecycle)
@@ -24,7 +24,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":shared"))
+                api(project(":kmm-form-validation"))
                 implementation(libs.coroutines.core)
                 api(libs.moko.resources)
                 api(libs.decompose)
