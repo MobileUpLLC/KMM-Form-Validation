@@ -3,16 +3,17 @@ package ru.mobileup.kmm_form_validation.sharedsample.ui
 import com.arkivanov.decompose.ComponentContext
 import dev.icerock.moko.resources.desc.ResourceFormatted
 import dev.icerock.moko.resources.desc.StringDesc
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import ru.mobileup.kmm_form_validation.options.*
 import ru.mobileup.kmm_form_validation.sharedsample.MR
-import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
-import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl
-import ru.mobileup.kmm_form_validation.sharedsample.utils.componentCoroutineScope
-import ru.mobileup.kmm_form_validation.sharedsample.utils.computed
+import ru.mobileup.kmm_form_validation.sharedsample.utils.*
 import ru.mobileup.kmm_form_validation.validation.control.*
-import ru.mobileup.kmm_form_validation.validation.form.*
+import ru.mobileup.kmm_form_validation.validation.form.RevalidateOnValueChanged
+import ru.mobileup.kmm_form_validation.validation.form.SetFocusOnFirstInvalidControlAfterValidation
+import ru.mobileup.kmm_form_validation.validation.form.ValidateOnFocusLost
+import ru.mobileup.kmm_form_validation.validation.form.checked
 
 enum class SubmitButtonState {
     Valid,
@@ -31,8 +32,6 @@ class RealFormComponent(
         private const val EMAIL_REGEX_PATTERN =
             "[a-zA-Z0-9+._%\\-]{1,256}@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
     }
-
-    private val coroutineScope = componentCoroutineScope()
 
     override val nameInput = InputControl(
         maxLength = NAME_MAX_LENGTH,
@@ -80,11 +79,9 @@ class RealFormComponent(
 
     override val termsCheckBox = CheckControl()
 
-    private val dropKonfettiChannel = Channel<Unit>(Channel.UNLIMITED)
+    override val valid = MutableStateFlow(false)
 
-    override val dropKonfettiEvent = dropKonfettiChannel.receiveAsFlow()
-
-    private val formValidator = coroutineScope.formValidator {
+    private val formValidator = formValidator {
 
         features = listOf(
             ValidateOnFocusLost,
@@ -140,16 +137,23 @@ class RealFormComponent(
         checked(termsCheckBox, MR.strings.terms_are_accepted_error_message)
     }
 
-    private val dynamicResult = coroutineScope.dynamicValidationResult(formValidator)
+    private val dynamicResult = dynamicValidationResult(formValidator)
 
-    override val submitButtonState = computed(coroutineScope, dynamicResult) { result ->
+    override val submitButtonState = computed(dynamicResult) { result ->
         if (result.isValid) SubmitButtonState.Valid else SubmitButtonState.Invalid
     }
 
+    init {
+        dynamicResult
+            .onEach {
+                if (!it.isValid) {
+                    valid.value = false
+                }
+            }
+            .launchIn(componentScope)
+    }
+
     override fun onSubmitClicked() {
-        val result = formValidator.validate()
-        if (result.isValid) {
-            dropKonfettiChannel.trySend(Unit)
-        }
+        valid.value = formValidator.validate().isValid
     }
 }

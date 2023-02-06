@@ -1,46 +1,42 @@
-//
-//  FormView.swift
-//  iosSample
-//
-//  Created by Andrey on 03.02.2023.
-//
-
 import SwiftUI
 import sharedSample
 
 struct FormView: View {
+
+    let formComponent: FormComponent
+    
+    @ObservedObject
+    var submitButtonState: UnsafeObservableState<SubmitButtonState>
+    
+    @ObservedObject
+    var valid: UnsafeObservableState<KotlinBoolean>
     
     init(formComponent: FormComponent) {
         self.formComponent = formComponent
-        successFlow = UnsafeObservableState<KotlinUnit>(flow: formComponent.dropKonfettiEvent)
+        self.submitButtonState = UnsafeObservableState<SubmitButtonState>(formComponent.submitButtonState)
+        self.valid = UnsafeObservableState<KotlinBoolean>(formComponent.valid)
     }
-    
-    let formComponent: FormComponent
-    let successFlow: UnsafeObservableState<KotlinUnit>
-    
-    @State
-    var isSuccessShow: Bool = false
     
     var body: some View {
         VStack{
-            if isSuccessShow{
-                Text("Success")
-                    .padding(8)
-            }
             TextFieldWithControl(inputControl: formComponent.nameInput, hint: "Name")
-            TextFieldWithControl(inputControl: formComponent.phoneInput, hint: "Phone")
             TextFieldWithControl(inputControl: formComponent.emailInput, hint: "Email")
+            TextFieldWithControl(inputControl: formComponent.phoneInput, hint: "Phone")
             SecureTextFieldWithControl(inputControl: formComponent.passwordInput, hint: "Password")
             SecureTextFieldWithControl(inputControl: formComponent.confirmPasswordInput, hint: "Confirm Password")
             ToggleView(checkControl: formComponent.termsCheckBox, label: "Terms")
-            SubmitButtonView(formComponent: formComponent, label: "Submit")
-                .onReceive(successFlow.$value) { output in
-                    if output != nil{
-                        isSuccessShow = true
-                    }
-                }
+            SubmitButtonView(buttonState: submitButtonState.value!, label: "Submit", action: formComponent.onSubmitClicked)
+            
+            if(valid.value?.boolValue ?? false) {
+                Text("Success").padding(8)
+            }
         }
     }
 }
 
 
+struct FormView_Previews: PreviewProvider {
+    static var previews: some View {
+        FormView(formComponent: FakeFormComponent())
+    }
+}

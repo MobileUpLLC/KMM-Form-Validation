@@ -1,6 +1,5 @@
 package ru.mobileup.kmm_form_validation.sharedsample.ui
 
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.control.InputControl
@@ -21,7 +20,7 @@ interface FormComponent {
 
     val submitButtonState: StateFlow<SubmitButtonState>
 
-    val dropKonfettiEvent: Flow<Unit>
+    val valid: StateFlow<Boolean>
 
     fun onSubmitClicked()
 }

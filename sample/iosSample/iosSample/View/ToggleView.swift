@@ -1,42 +1,37 @@
-//
-//  ToggleView.swift
-//  iosSample
-//
-//  Created by Andrey on 01.02.2023.
-//
-
 import SwiftUI
 import sharedSample
 
 struct ToggleView: View {
     
-    init(checkControl: CheckControl, label: String) {
-        self.label = label
-        termsControl = checkControl
-        termsState = UnsafeObservableState(checkControl.checked)
-        error = UnsafeObservableState(checkControl.error)
-    }
+    let checkControl: CheckControl
     
-    var termsControl: CheckControl
+    let label: String
     
     @ObservedObject
-    var termsState: UnsafeObservableState<KotlinBoolean>
+    var checked: UnsafeObservableState<KotlinBoolean>
     
     @ObservedObject
     private var error: UnsafeObservableState<StringDesc>
     
-    let label: String
+    init(checkControl: CheckControl, label: String) {
+        self.label = label
+        self.checkControl = checkControl
+        checked = UnsafeObservableState(checkControl.checked)
+        error = UnsafeObservableState(checkControl.error)
+    }
     
     var body: some View {
         VStack {
-            Toggle(isOn: Binding(
-                get: { Bool(termsState.value ?? false) },
-                set: termsControl.onCheckedChanged
-            ),
+            Toggle(
+                isOn: Binding(
+                    get: { checked.value?.boolValue ?? false },
+                    set: checkControl.onCheckedChanged
+                ),
                 label: {
-                Text(label)
+                    Text(label)
                 }
             )
+            
             if let error = error.value {
                 Text(error.localized())
                     .foregroundColor(.red)

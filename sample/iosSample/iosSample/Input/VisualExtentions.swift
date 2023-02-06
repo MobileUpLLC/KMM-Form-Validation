@@ -1,10 +1,3 @@
-//
-//  VisualExtentions.swift
-//  iosSample
-//
-//  Created by Andrey on 01.02.2023.
-//
-
 import Foundation
 import sharedSample
 import SwiftUI
