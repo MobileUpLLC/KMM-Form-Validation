@@ -19,16 +19,45 @@ struct FormView: View {
     
     var body: some View {
         VStack{
-            TextFieldWithControl(inputControl: formComponent.nameInput, hint: "Name")
-            TextFieldWithControl(inputControl: formComponent.emailInput, hint: "Email")
-            TextFieldWithControl(inputControl: formComponent.phoneInput, hint: "Phone")
-            SecureTextFieldWithControl(inputControl: formComponent.passwordInput, hint: "Password")
-            SecureTextFieldWithControl(inputControl: formComponent.confirmPasswordInput, hint: "Confirm Password")
-            ToggleView(checkControl: formComponent.termsCheckBox, label: "Terms")
-            SubmitButtonView(buttonState: submitButtonState.value!, label: "Submit", action: formComponent.onSubmitClicked)
+            TextFieldWithControl(
+                inputControl: formComponent.nameInput,
+                hint: MR.strings().name_hint.desc().localized()
+            )
+            
+            TextFieldWithControl(
+                inputControl: formComponent.emailInput,
+                hint: MR.strings().email_hint.desc().localized()
+            )
+            
+            TextFieldWithControl(
+                inputControl: formComponent.phoneInput,
+                hint: MR.strings().phone_hint.desc().localized()
+            )
+            
+            SecureTextFieldWithControl(
+                inputControl: formComponent.passwordInput,
+                hint: MR.strings().password_hint.desc().localized()
+            )
+            
+            SecureTextFieldWithControl(
+                inputControl: formComponent.confirmPasswordInput,
+                hint: MR.strings().confirm_password_hint.desc().localized()
+            )
+            
+            ToggleView(
+                checkControl: formComponent.termsCheckBox,
+                label: MR.strings().terms_hint.desc().localized()
+            )
+            
+            SubmitButtonView(
+                buttonState: submitButtonState.value!,
+                label: MR.strings().submit_button.desc().localized(),
+                action: formComponent.onSubmitClicked
+            )
             
             if(valid.value?.boolValue ?? false) {
-                Text("Success").padding(8)
+                Text(MR.strings().success_message.desc().localized())
+                    .padding(8)
             }
         }
     }

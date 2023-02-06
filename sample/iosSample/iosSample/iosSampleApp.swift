@@ -21,9 +21,8 @@ private class RootHolder : ObservableObject {
     let formComponent: FormComponent
     
     init() {
-        
         lifecycle = LifecycleRegistryKt.LifecycleRegistry()
-        formComponent = Application.shared.createFormComponent(
+        formComponent = Core.shared.createFormComponent(
             componentContext: DefaultComponentContext(lifecycle: lifecycle)
         )
         lifecycle.onCreate()

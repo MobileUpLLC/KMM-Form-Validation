@@ -9,7 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.defaultComponentContext
 import ru.mobileup.kmm_form_validation.android_sample.ui.theme.AppTheme
-import ru.mobileup.kmm_form_validation.sharedsample.Application
+import ru.mobileup.kmm_form_validation.sharedsample.Core
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    FormUi(component = Application.createFormComponent(defaultComponentContext()))
+                    FormUi(component = Core.createFormComponent(defaultComponentContext()))
                 }
             }
         }

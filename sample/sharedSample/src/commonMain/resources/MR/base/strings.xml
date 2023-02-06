@@ -8,6 +8,8 @@
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="terms_hint">Accept Terms of Use</string>
     <string name="submit_button">Submit</string>
+    <string name="success_message">Success</string>
+
     <string name="field_is_blank_error_message">Please fill this field</string>
     <string name="invalid_email_error_message">Invalid e-mail address</string>
     <string name="invalid_phone_error_message">Invalid phone number</string>
