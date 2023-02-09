@@ -1,64 +1,76 @@
-import Foundation
 import sharedSample
 import SwiftUI
 
 extension KeyboardType {
     func toUI() -> UIKeyboardType {
-        let keyboardType: UIKeyboardType
         switch self {
-            case .text: keyboardType = .default
-            case .ascii: keyboardType = .asciiCapable
-            case .number: keyboardType = .numberPad
-            case .phone: keyboardType = .phonePad
-            case .uri: keyboardType = .URL
-            case .email: keyboardType = .emailAddress
-            case .password: keyboardType = .default
-            case .numberpassword: keyboardType = .numberPad
-            default: keyboardType = .default
+        case .ascii:
+            return .asciiCapable
+        case .number:
+            return .numberPad
+        case .phone:
+            return .phonePad
+        case .uri:
+            return .URL
+        case .email:
+            return .emailAddress
+        case .numberpassword:
+            return .numberPad
+        case .text, .password:
+            return .default
+        default:
+            return .default
         }
-        return keyboardType
     }
 }
 
 extension ImeAction {
     func toUI() -> SubmitLabel {
-        let label: SubmitLabel
         switch self {
-            case .default_: label = .done
-            case .done: label = .done
-            case .go: label = .go
-            case .search: label = .search
-            case .send: label = .send
-            case .previous: label = .route
-            case .next: label = .next
-            default: label = .done
+        case .done:
+            return .done
+        case .go:
+            return .go
+        case .search:
+            return .search
+        case .send:
+            return .send
+        case .previous:
+            return .route
+        case .next:
+            return .next
+        default:
+            return .done
         }
-        return label
     }
 }
 
 extension KeyboardCapitalization {
-    func toUI() -> TextInputAutocapitalization{
-        let capitalization: TextInputAutocapitalization
+    func toUI() -> TextInputAutocapitalization {
         switch self {
-            case .none: capitalization = .never
-            case .characters: capitalization = .characters
-            case .sentences: capitalization = .sentences
-            case .words: capitalization = .words
-            default: capitalization = .never
+        case .characters:
+            return .characters
+        case .sentences:
+            return .sentences
+        case .words:
+            return .words
+        case .none:
+            return .never
+        default:
+            return .never
         }
-        return capitalization
     }
 }
 
 extension SubmitButtonState {
     func toUI() -> Color {
-        let color: Color
         switch self {
-        case SubmitButtonState.invalid: color = Color.red
-        case SubmitButtonState.valid: color = Color.green
-        default: color = Color.red
+        case SubmitButtonState.invalid:
+            return .red
+        case SubmitButtonState.valid:
+            return .green
+        default:
+            return .red
         }
-        return color
     }
 }

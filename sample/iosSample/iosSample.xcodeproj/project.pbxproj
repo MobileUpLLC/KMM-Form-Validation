@@ -14,7 +14,6 @@
 		EC7C20172987F483001DCE8B /* UnsafeObservableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20162987F483001DCE8B /* UnsafeObservableState.swift */; };
 		EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */; };
 		EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */; };
-		EC7C2020298A6B76001DCE8B /* SecureTextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */; };
 		EC7C2023298A710B001DCE8B /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C2022298A710B001DCE8B /* ToggleView.swift */; };
 		EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */; };
 		ECB57B3B298CFC4E00AE547C /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB57B3A298CFC4E00AE547C /* FormView.swift */; };
@@ -29,7 +28,6 @@
 		EC7C20162987F483001DCE8B /* UnsafeObservableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeObservableState.swift; sourceTree = "<group>"; };
 		EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualFormatter.swift; sourceTree = "<group>"; };
 		EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualExtentions.swift; sourceTree = "<group>"; };
-		EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextFieldWithControl.swift; sourceTree = "<group>"; };
 		EC7C2022298A710B001DCE8B /* ToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
 		EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
 		ECB57B3A298CFC4E00AE547C /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		EC7C2021298A70E7001DCE8B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */,
 				EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */,
 				EC7C2022298A710B001DCE8B /* ToggleView.swift */,
 				EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */,
@@ -208,7 +205,6 @@
 				EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */,
 				EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */,
 				EC7C20172987F483001DCE8B /* UnsafeObservableState.swift in Sources */,
-				EC7C2020298A6B76001DCE8B /* SecureTextFieldWithControl.swift in Sources */,
 				ECB57B3B298CFC4E00AE547C /* FormView.swift in Sources */,
 				EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */,
 				EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */,
@@ -340,6 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosSample/Preview Content\"";
+				DEVELOPMENT_TEAM = 4778UMCE49;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sharedSample/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -374,6 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iosSample/Preview Content\"";
+				DEVELOPMENT_TEAM = 4778UMCE49;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../sharedSample/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				GENERATE_INFOPLIST_FILE = YES;

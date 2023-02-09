@@ -1,11 +1,12 @@
 import Foundation
 import sharedSample
 
-class VisualFormatter: Formatter{
+class VisualFormatter: Formatter {
     let visualTransformation: VisualTransformation
     
     init(_ visualTransformation: VisualTransformation) {
         self.visualTransformation = visualTransformation
+        
         super.init()
     }
     
@@ -23,9 +24,14 @@ class VisualFormatter: Formatter{
         }
     }
     
-    override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
+    override func getObjectValue(
+        _ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?,
+        for string: String,
+        errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?
+    ) -> Bool {
         let result = visualTransformation.restore(text: string)
         obj?.pointee = result as AnyObject
+        
         return true
     }
 }

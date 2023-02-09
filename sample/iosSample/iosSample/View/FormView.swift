@@ -2,14 +2,10 @@ import SwiftUI
 import sharedSample
 
 struct FormView: View {
+    @ObservedObject var submitButtonState: UnsafeObservableState<SubmitButtonState>
+    @ObservedObject var valid: UnsafeObservableState<KotlinBoolean>
 
     let formComponent: FormComponent
-    
-    @ObservedObject
-    var submitButtonState: UnsafeObservableState<SubmitButtonState>
-    
-    @ObservedObject
-    var valid: UnsafeObservableState<KotlinBoolean>
     
     init(formComponent: FormComponent) {
         self.formComponent = formComponent
@@ -21,27 +17,32 @@ struct FormView: View {
         VStack{
             TextFieldWithControl(
                 inputControl: formComponent.nameInput,
-                hint: MR.strings().name_hint.desc().localized()
+                hint: MR.strings().name_hint.desc().localized(),
+                isSecure: false
             )
             
             TextFieldWithControl(
                 inputControl: formComponent.emailInput,
-                hint: MR.strings().email_hint.desc().localized()
+                hint: MR.strings().email_hint.desc().localized(),
+                isSecure: false
             )
             
             TextFieldWithControl(
                 inputControl: formComponent.phoneInput,
-                hint: MR.strings().phone_hint.desc().localized()
+                hint: MR.strings().phone_hint.desc().localized(),
+                isSecure: false
             )
             
-            SecureTextFieldWithControl(
+            TextFieldWithControl(
                 inputControl: formComponent.passwordInput,
-                hint: MR.strings().password_hint.desc().localized()
+                hint: MR.strings().password_hint.desc().localized(),
+                isSecure: true
             )
             
-            SecureTextFieldWithControl(
+            TextFieldWithControl(
                 inputControl: formComponent.confirmPasswordInput,
-                hint: MR.strings().confirm_password_hint.desc().localized()
+                hint: MR.strings().confirm_password_hint.desc().localized(),
+                isSecure: true
             )
             
             ToggleView(
@@ -49,9 +50,9 @@ struct FormView: View {
                 label: MR.strings().terms_hint.desc().localized()
             )
             
-            SubmitButtonView(
-                buttonState: submitButtonState.value!,
+            SubmitButton(
                 label: MR.strings().submit_button.desc().localized(),
+                buttonState: submitButtonState.value!,
                 action: formComponent.onSubmitClicked
             )
             
