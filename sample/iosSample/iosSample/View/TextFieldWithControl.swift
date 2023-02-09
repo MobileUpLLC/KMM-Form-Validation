@@ -5,8 +5,9 @@ import sharedSample
 struct TextFieldWithControl: View {
     
     private let hint: String
-    
     private let inputControl: InputControl
+    private let keyboardOptions: KeyboardOptions
+    private let visualTransformation: VisualTransformation
 
     @ObservedObject
     private var text: UnsafeObservableState<NSString>
@@ -19,9 +20,6 @@ struct TextFieldWithControl: View {
     
     @ObservedObject
     private var enabled: UnsafeObservableState<KotlinBoolean>
-
-    @State
-    private var keyboardOptions: KeyboardOptions
     
     @FocusState
     private var isFocused: Bool
@@ -30,6 +28,7 @@ struct TextFieldWithControl: View {
         self.hint = hint
         self.inputControl = inputControl
         self.keyboardOptions = inputControl.keyboardOptions
+        self.visualTransformation = inputControl.visualTransformation
         self.text = UnsafeObservableState(inputControl.text)
         self.error = UnsafeObservableState(inputControl.error)
         self.hasFocus = UnsafeObservableState(inputControl.hasFocus)
@@ -40,12 +39,11 @@ struct TextFieldWithControl: View {
         VStack {
             TextField(
                 hint,
-                value: Binding {
-                    String(text.value ?? "")
+                text: Binding {
+                    visualTransformation.filter(text: String(text.value ?? "")).text
                 } set: { value in
-                    inputControl.onTextChanged(text:value)
-                },
-                formatter: VisualFormatter(inputControl.visualTransformation)
+                    inputControl.onTextChanged(text: visualTransformation.restore(text: value))
+                }
             )
             .textFieldStyle(.roundedBorder)
             .focused($isFocused)

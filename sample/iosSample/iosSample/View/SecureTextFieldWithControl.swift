@@ -5,8 +5,8 @@ import sharedSample
 struct SecureTextFieldWithControl: View {
     
     private let hint: String
-    
     private let inputControl: InputControl
+    private let keyboardOptions: KeyboardOptions
     
     @ObservedObject
     private var text: UnsafeObservableState<NSString>
@@ -19,9 +19,6 @@ struct SecureTextFieldWithControl: View {
     
     @ObservedObject
     private var enabled: UnsafeObservableState<KotlinBoolean>
-    
-    @State
-    private var keyboardOptions: KeyboardOptions
     
     @FocusState
     private var isFocused: Bool
@@ -46,7 +43,7 @@ struct SecureTextFieldWithControl: View {
                 },
                 prompt: Text(hint),
                 label: {
-                    Text("123")
+                    Text("123") // TODO: что должно быть вместо "123"?
                 }
             )
             .textFieldStyle(.roundedBorder)
