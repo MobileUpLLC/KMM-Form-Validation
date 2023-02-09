@@ -32,10 +32,10 @@ struct TextFieldWithControl: View {
                     String(text.value ?? "")
                 } set: { value in
                     inputControl.onTextChanged(text: value)
+                    text.value = text.value
                 },
                 isSecure: isSecure,
-                hint: hint,
-                formatter: VisualFormatter(inputControl.visualTransformation)
+                hint: hint
             )
             .disabled(!(enabled.value?.boolValue ?? false))
             .keyboardType(keyboardOptions.keyboardType.toUI())
@@ -61,7 +61,6 @@ struct TextFieldWithControl: View {
         
         let isSecure: Bool
         let hint: String
-        let formatter: Formatter
         
         var body: some View {
             if isSecure {
@@ -75,11 +74,7 @@ struct TextFieldWithControl: View {
                 .textContentType(.password)
                 .textFieldStyle(.roundedBorder)
             } else {
-                TextField(
-                    hint,
-                    value: $text,
-                    formatter: formatter
-                )
+                TextField(hint, text: $text)
                 .textFieldStyle(.roundedBorder)
             }
         }
