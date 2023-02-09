@@ -52,7 +52,8 @@ struct TextFieldWithControl: View {
                     .foregroundColor(.red)
             }
         }
-        .padding(4)
+        .padding(.horizontal, 4)
+        .padding(.vertical, 40)
     }
     
     private struct TextFieldView: View {
@@ -71,6 +72,7 @@ struct TextFieldWithControl: View {
                         Text("")
                     }
                 )
+                .textContentType(.password)
                 .textFieldStyle(.roundedBorder)
             } else {
                 TextField(
