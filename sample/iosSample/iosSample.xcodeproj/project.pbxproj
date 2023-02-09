@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E521689129955B3F00F366EF /* ScrolledFocusField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E521689029955B3F00F366EF /* ScrolledFocusField.swift */; };
 		EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */; };
 		EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */; };
 		EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FED2987B252001DCE8B /* Assets.xcassets */; };
 		EC7C1FF12987B252001DCE8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */; };
 		EC7C20172987F483001DCE8B /* UnsafeObservableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C20162987F483001DCE8B /* UnsafeObservableState.swift */; };
-		EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */; };
 		EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */; };
 		EC7C2023298A710B001DCE8B /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C2022298A710B001DCE8B /* ToggleView.swift */; };
 		EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */; };
@@ -20,13 +20,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E521689029955B3F00F366EF /* ScrolledFocusField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrolledFocusField.swift; sourceTree = "<group>"; };
 		EC7C1FE62987B251001DCE8B /* iosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleApp.swift; sourceTree = "<group>"; };
 		EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithControl.swift; sourceTree = "<group>"; };
 		EC7C1FED2987B252001DCE8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC7C1FF02987B252001DCE8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC7C20162987F483001DCE8B /* UnsafeObservableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeObservableState.swift; sourceTree = "<group>"; };
-		EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualFormatter.swift; sourceTree = "<group>"; };
 		EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualExtentions.swift; sourceTree = "<group>"; };
 		EC7C2022298A710B001DCE8B /* ToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
 		EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButtonView.swift; sourceTree = "<group>"; };
@@ -44,6 +44,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E521688F29955B0E00F366EF /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				E521689029955B3F00F366EF /* ScrolledFocusField.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		E521689429955E2100F366EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E521689529955E5600F366EF /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E521689629955E6800F366EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EC7C1FED2987B252001DCE8B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		EC7C1FDD2987B251001DCE8B = {
 			isa = PBXGroup;
 			children = (
@@ -64,10 +96,9 @@
 			isa = PBXGroup;
 			children = (
 				EC7C2021298A70E7001DCE8B /* View */,
-				EC7C201C298A6AB4001DCE8B /* Input */,
 				EC7C20152987F458001DCE8B /* State */,
-				EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */,
-				EC7C1FED2987B252001DCE8B /* Assets.xcassets */,
+				E521689529955E5600F366EF /* Application */,
+				E521689629955E6800F366EF /* Resources */,
 				EC7C1FEF2987B252001DCE8B /* Preview Content */,
 			);
 			path = iosSample;
@@ -89,18 +120,11 @@
 			path = State;
 			sourceTree = "<group>";
 		};
-		EC7C201C298A6AB4001DCE8B /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				EC7C201A298A6A66001DCE8B /* VisualFormatter.swift */,
-				EC7C201D298A6AD1001DCE8B /* VisualExtentions.swift */,
-			);
-			path = Input;
-			sourceTree = "<group>";
-		};
 		EC7C2021298A70E7001DCE8B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E521689429955E2100F366EF /* Extensions */,
+				E521688F29955B0E00F366EF /* ViewModifiers */,
 				EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */,
 				EC7C2022298A710B001DCE8B /* ToggleView.swift */,
 				EC7C2024298A7883001DCE8B /* SubmitButtonView.swift */,
@@ -201,12 +225,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC7C2023298A710B001DCE8B /* ToggleView.swift in Sources */,
-				EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */,
 				EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */,
 				EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */,
 				EC7C20172987F483001DCE8B /* UnsafeObservableState.swift in Sources */,
 				ECB57B3B298CFC4E00AE547C /* FormView.swift in Sources */,
 				EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */,
+				E521689129955B3F00F366EF /* ScrolledFocusField.swift in Sources */,
 				EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

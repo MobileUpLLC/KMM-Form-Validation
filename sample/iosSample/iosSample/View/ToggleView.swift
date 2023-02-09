@@ -2,11 +2,11 @@ import SwiftUI
 import sharedSample
 
 struct ToggleView: View {
-    @ObservedObject var checked: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject private var checked: UnsafeObservableState<KotlinBoolean>
     @ObservedObject private var error: UnsafeObservableState<StringDesc>
     
-    let checkControl: CheckControl
-    let label: String
+    private let checkControl: CheckControl
+    private let label: String
     
     init(checkControl: CheckControl, label: String) {
         self.label = label

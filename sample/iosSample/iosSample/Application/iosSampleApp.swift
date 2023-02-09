@@ -14,7 +14,7 @@ struct iosSampleApp: App {
     }
 }
 
-private class RootHolder : ObservableObject {
+private final class RootHolder : ObservableObject {
     let lifecycle: LifecycleRegistry
     let formComponent: FormComponent
     

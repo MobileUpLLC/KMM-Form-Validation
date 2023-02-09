@@ -1,7 +1,7 @@
 import Foundation
 import sharedSample
 
-public class UnsafeObservableState<T: AnyObject>: ObservableObject {
+public final class UnsafeObservableState<T: AnyObject>: ObservableObject {
     @Published var value: T?
 
     private var cancelable: Cancelable? = nil

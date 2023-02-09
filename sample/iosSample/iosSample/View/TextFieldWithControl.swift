@@ -23,6 +23,8 @@ struct TextFieldWithControl: View {
         self.error = UnsafeObservableState(inputControl.error)
         self.hasFocus = UnsafeObservableState(inputControl.hasFocus)
         self.enabled = UnsafeObservableState(inputControl.enabled)
+        
+        isFocused = hasFocus.value?.boolValue ?? false
     }
         
     var body: some View {
@@ -46,14 +48,16 @@ struct TextFieldWithControl: View {
             .onChange(of: isFocused) { newValue in
                 inputControl.onFocusChanged(hasFocus: newValue)
             }
+            .onChange(of: hasFocus.value?.boolValue ?? false) { newValue in
+                isFocused = hasFocus.value?.boolValue ?? false
+            }
             
             if let error = error.value {
                 Text(error.localized())
                     .foregroundColor(.red)
             }
         }
-        .padding(.horizontal, 4)
-        .padding(.vertical, 40)
+        .padding(20)
     }
     
     private struct TextFieldView: View {
