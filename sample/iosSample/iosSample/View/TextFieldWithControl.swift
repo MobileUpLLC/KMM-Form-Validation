@@ -43,6 +43,7 @@ struct TextFieldWithControl: View {
                     visualTransformation.filter(text: String(text.value ?? "")).text
                 } set: { value in
                     inputControl.onTextChanged(text: visualTransformation.restore(text: value))
+                    text.value = text.value
                 }
             )
             .textFieldStyle(.roundedBorder)
