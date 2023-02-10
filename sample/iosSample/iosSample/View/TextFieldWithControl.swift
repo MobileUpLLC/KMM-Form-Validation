@@ -14,7 +14,7 @@ struct TextFieldWithControl: View {
     private let hint: String
     private let isSecure: Bool
     
-    init(inputControl: InputControl, hint: String, isSecure: Bool) {
+    init(inputControl: InputControl, hint: String, isSecure: Bool = false) {
         self.hint = hint
         self.inputControl = inputControl
         self.isSecure = isSecure

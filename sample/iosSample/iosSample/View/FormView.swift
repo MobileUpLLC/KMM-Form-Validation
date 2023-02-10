@@ -3,7 +3,6 @@ import sharedSample
 
 struct FormView: View {
     private enum Field: Int {
-        
         case name = 0
         case email = 1
         case phone = 2
@@ -28,7 +27,7 @@ struct FormView: View {
         ScrollView(showsIndicators: false) {
             ScrollViewReader { proxy in
                 VStack {
-                    TitleView()
+                    getTitle()
                     getTextFiledStackView(proxy: proxy)
                     ToggleView(
                         checkControl: formComponent.termsCheckBox,
@@ -54,12 +53,22 @@ struct FormView: View {
         }
     }
     
+    private func getTitle() -> some View {
+        HStack {
+            Text("Default Form")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.gray)
+            Spacer()
+        }
+        .padding(.vertical, 20)
+    }
+    
     private func getTextFiledStackView(proxy: ScrollViewProxy) -> some View {
         VStack {
             TextFieldWithControl(
                 inputControl: formComponent.nameInput,
-                hint: MR.strings().name_hint.desc().localized(),
-                isSecure: false
+                hint: MR.strings().name_hint.desc().localized()
             )
             .scrolledFocus(
                 focus: _focus,
@@ -70,8 +79,7 @@ struct FormView: View {
             .id(Field.name.rawValue)
             TextFieldWithControl(
                 inputControl: formComponent.emailInput,
-                hint: MR.strings().email_hint.desc().localized(),
-                isSecure: false
+                hint: MR.strings().email_hint.desc().localized()
             )
             .scrolledFocus(
                 focus: _focus,
@@ -82,8 +90,7 @@ struct FormView: View {
             .id(Field.email.rawValue)
             TextFieldWithControl(
                 inputControl: formComponent.phoneInput,
-                hint: MR.strings().phone_hint.desc().localized(),
-                isSecure: false
+                hint: MR.strings().phone_hint.desc().localized()
             )
             .scrolledFocus(
                 focus: _focus,
@@ -117,19 +124,6 @@ struct FormView: View {
             )
             .id(Field.passwordConfirmation.rawValue)
         }
-    }
-}
-
-private struct TitleView: View {
-    var body: some View {
-        HStack {
-            Text("Default Form")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.gray)
-            Spacer()
-        }
-        .padding(.vertical, 20)
     }
 }
 
