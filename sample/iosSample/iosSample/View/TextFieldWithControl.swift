@@ -78,7 +78,7 @@ struct TextFieldWithControl: View {
                 }
         }
         
-        @ViewBuilder private func createTextField() -> some View {
+        private func createTextField() -> some View {
             if isSecure {
                 SecureField(
                     text: $text,

@@ -27,7 +27,7 @@ struct FormView: View {
         ScrollView(showsIndicators: false) {
             ScrollViewReader { proxy in
                 VStack {
-                    getTitle()
+                    getTitleView()
                     getTextFiledStackView(proxy: proxy)
                     ToggleView(
                         checkControl: formComponent.termsCheckBox,
@@ -53,7 +53,7 @@ struct FormView: View {
         }
     }
     
-    private func getTitle() -> some View {
+    private func getTitleView() -> some View {
         HStack {
             Text("Default Form")
                 .font(.largeTitle)
