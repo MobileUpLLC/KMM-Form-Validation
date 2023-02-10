@@ -13,6 +13,10 @@ public final class UnsafeObservableState<T: AnyObject>: ObservableObject {
             self.value = value
         }
     }
+    
+    func reemitValue() {
+        value = value
+    }
    
     deinit {
         self.cancelable?.cancel()

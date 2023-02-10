@@ -7,9 +7,9 @@ struct TextFieldWithControl: View {
     @ObservedObject private var hasFocus: UnsafeObservableState<KotlinBoolean>
     @ObservedObject private var isEnabled: UnsafeObservableState<KotlinBoolean>
     
-    @State private var keyboardOptions: KeyboardOptions
     @FocusState private var isFocused: Bool
     
+    private let keyboardOptions: KeyboardOptions
     private let inputControl: InputControl
     private let hint: String
     private let isSecure: Bool
@@ -23,8 +23,6 @@ struct TextFieldWithControl: View {
         self.error = UnsafeObservableState(inputControl.error)
         self.hasFocus = UnsafeObservableState(inputControl.hasFocus)
         self.isEnabled = UnsafeObservableState(inputControl.enabled)
-        
-        isFocused = hasFocus.value?.boolValue ?? false
     }
         
     var body: some View {
@@ -34,7 +32,7 @@ struct TextFieldWithControl: View {
                     String(text.value ?? "")
                 } set: { value in
                     inputControl.onTextChanged(text: value)
-                    text.value = text.value
+                    text.reemitValue()
                 },
                 isSecure: isSecure,
                 hint: hint
@@ -49,7 +47,7 @@ struct TextFieldWithControl: View {
                 inputControl.onFocusChanged(hasFocus: newValue)
             }
             .onChange(of: hasFocus.value?.boolValue ?? false) { newValue in
-                isFocused = hasFocus.value?.boolValue ?? false
+                isFocused = newValue
             }
             
             if let error = error.value {
