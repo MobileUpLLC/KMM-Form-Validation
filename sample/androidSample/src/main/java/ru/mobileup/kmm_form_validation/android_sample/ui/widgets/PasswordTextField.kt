@@ -15,16 +15,17 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.kmm_form_validation.android_sample.R
+import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.toCompose
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PasswordTextField(
-    inputControl: ru.mobileup.kmm_form_validation.control.InputControl,
+    inputControl: InputControl,
     label: String,
     modifier: Modifier = Modifier
 ) {
@@ -64,9 +65,9 @@ fun PasswordTextField(
             isError = error != null,
             onValueChange = inputControl::onTextChanged,
             visualTransformation = if (passwordVisibility) {
-                VisualTransformation.None
-            } else {
                 inputControl.visualTransformation.toCompose()
+            } else {
+                PasswordVisualTransformation()
             },
             trailingIcon = {
                 val image = if (passwordVisibility) {

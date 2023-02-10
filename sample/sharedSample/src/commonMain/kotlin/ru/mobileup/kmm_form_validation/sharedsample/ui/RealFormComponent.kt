@@ -6,7 +6,10 @@ import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import ru.mobileup.kmm_form_validation.options.*
+import ru.mobileup.kmm_form_validation.options.ImeAction
+import ru.mobileup.kmm_form_validation.options.KeyboardCapitalization
+import ru.mobileup.kmm_form_validation.options.KeyboardOptions
+import ru.mobileup.kmm_form_validation.options.KeyboardType
 import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.utils.*
 import ru.mobileup.kmm_form_validation.validation.control.*
@@ -57,7 +60,7 @@ class RealFormComponent(
             keyboardType = KeyboardType.Phone,
             imeAction = ImeAction.Next
         ),
-        textTransformation = { it.replace(Regex("[^1234567890(-)+]"), "") },
+        textTransformation = { text -> text.filter { it.isDigit() } },
         visualTransformation = RussianPhoneNumberVisualTransformation
     )
 
@@ -65,16 +68,14 @@ class RealFormComponent(
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Next
-        ),
-        visualTransformation = PasswordVisualTransformation()
+        )
     )
 
     override val confirmPasswordInput = InputControl(
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Done
-        ),
-        visualTransformation = PasswordVisualTransformation()
+        )
     )
 
     override val termsCheckBox = CheckControl()

@@ -3,9 +3,7 @@ import sharedSample
 
 @main
 struct iosSampleApp: App {
-    
-    @StateObject
-    private var rootHolder = RootHolder()
+    @StateObject private var rootHolder = RootHolder()
     
     var body: some Scene {
         WindowGroup {
@@ -16,7 +14,7 @@ struct iosSampleApp: App {
     }
 }
 
-private class RootHolder : ObservableObject {
+private final class RootHolder : ObservableObject {
     let lifecycle: LifecycleRegistry
     let formComponent: FormComponent
     
