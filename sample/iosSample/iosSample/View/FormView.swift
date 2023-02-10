@@ -28,6 +28,14 @@ struct FormView: View {
         ScrollView(showsIndicators: false) {
             ScrollViewReader { proxy in
                 VStack{
+                    HStack {
+                        Text("Default Form")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding(.vertical, 20)
                     TextFieldWithControl(
                         inputControl: formComponent.nameInput,
                         hint: MR.strings().name_hint.desc().localized(),
@@ -103,10 +111,12 @@ struct FormView: View {
                     if(isValid.value?.boolValue ?? false) {
                         Text(MR.strings().success_message.desc().localized())
                             .padding(8)
+                            .foregroundColor(submitButtonState.value?.toUI())
                     }
                     
                     Color.clear.padding(.bottom, 70)
                 }
+                .padding()
             }
         }
     }

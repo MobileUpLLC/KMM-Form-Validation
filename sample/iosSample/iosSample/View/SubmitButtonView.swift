@@ -11,10 +11,12 @@ struct SubmitButton: View {
             action: action,
             label: {
                 Text(label)
-                    .padding(8)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 20)
             }
         )
         .buttonStyle(BorderedButtonStyle())
         .foregroundColor(buttonState.toUI())
+        .cornerRadius(20)
     }
 }

@@ -35,6 +35,7 @@ struct TextFieldWithControl: View {
                     text.reemitValue()
                 },
                 isSecure: isSecure,
+                isError: error.value == nil,
                 hint: hint
             )
             .disabled(!(isEnabled.value?.boolValue ?? false))
@@ -51,20 +52,33 @@ struct TextFieldWithControl: View {
             }
             
             if let error = error.value {
-                Text(error.localized())
-                    .foregroundColor(.red)
+                HStack {
+                    Text(error.localized())
+                        .foregroundColor(.red)
+                    Spacer()
+                }
             }
         }
-        .padding(20)
+        .padding(.vertical, 10)
     }
     
     private struct TextFieldView: View {
         @Binding var text: String
         
         let isSecure: Bool
+        let isError: Bool
         let hint: String
         
         var body: some View {
+            createTextField()
+                .padding(10)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(isError ? Color.gray : Color.red, lineWidth: 2)
+                }
+        }
+        
+        @ViewBuilder private func createTextField() -> some View {
             if isSecure {
                 SecureField(
                     text: $text,
@@ -73,11 +87,8 @@ struct TextFieldWithControl: View {
                         Text("")
                     }
                 )
-                .textContentType(.password)
-                .textFieldStyle(.roundedBorder)
             } else {
                 TextField(hint, text: $text)
-                .textFieldStyle(.roundedBorder)
             }
         }
     }

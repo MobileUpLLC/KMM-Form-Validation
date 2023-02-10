@@ -28,8 +28,11 @@ struct ToggleView: View {
             )
             
             if let error = error.value {
-                Text(error.localized())
-                    .foregroundColor(.red)
+                HStack {
+                    Text(error.localized())
+                        .foregroundColor(.red)
+                    Spacer()
+                }
             }
         }
         .padding(4)
