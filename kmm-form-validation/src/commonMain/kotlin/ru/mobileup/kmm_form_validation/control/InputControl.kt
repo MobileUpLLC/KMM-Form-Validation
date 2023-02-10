@@ -22,7 +22,7 @@ class InputControl(
     val maxLength: Int = Int.MAX_VALUE,
     val keyboardOptions: KeyboardOptions,
     val textTransformation: TextTransformation? = null,
-    val visualTransformation: VisualTransformation = VisualTransformation.Companion.None
+    val visualTransformation: VisualTransformation = VisualTransformation.None
 ) : ValidatableControl<String> {
 
     constructor(coroutineScope: CoroutineScope) : this(
