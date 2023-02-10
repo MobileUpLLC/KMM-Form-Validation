@@ -5,13 +5,13 @@ struct TextFieldWithControl: View {
     @ObservedObject private var text: UnsafeObservableState<NSString>
     @ObservedObject private var error: UnsafeObservableState<StringDesc>
     @ObservedObject private var hasFocus: UnsafeObservableState<KotlinBoolean>
-    @ObservedObject private var enabled: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject private var isEnabled: UnsafeObservableState<KotlinBoolean>
     
     @State private var keyboardOptions: KeyboardOptions
     @FocusState private var isFocused: Bool
     
-    private let hint: String
     private let inputControl: InputControl
+    private let hint: String
     private let isSecure: Bool
     
     init(inputControl: InputControl, hint: String, isSecure: Bool) {
@@ -22,7 +22,7 @@ struct TextFieldWithControl: View {
         self.text = UnsafeObservableState(inputControl.text)
         self.error = UnsafeObservableState(inputControl.error)
         self.hasFocus = UnsafeObservableState(inputControl.hasFocus)
-        self.enabled = UnsafeObservableState(inputControl.enabled)
+        self.isEnabled = UnsafeObservableState(inputControl.enabled)
         
         isFocused = hasFocus.value?.boolValue ?? false
     }
@@ -39,7 +39,7 @@ struct TextFieldWithControl: View {
                 isSecure: isSecure,
                 hint: hint
             )
-            .disabled(!(enabled.value?.boolValue ?? false))
+            .disabled(!(isEnabled.value?.boolValue ?? false))
             .keyboardType(keyboardOptions.keyboardType.toUI())
             .submitLabel(keyboardOptions.imeAction.toUI())
             .textInputAutocapitalization(keyboardOptions.capitalization.toUI())

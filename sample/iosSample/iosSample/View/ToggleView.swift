@@ -2,7 +2,7 @@ import SwiftUI
 import sharedSample
 
 struct ToggleView: View {
-    @ObservedObject private var checked: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject private var isChecked: UnsafeObservableState<KotlinBoolean>
     @ObservedObject private var error: UnsafeObservableState<StringDesc>
     
     private let checkControl: CheckControl
@@ -11,7 +11,7 @@ struct ToggleView: View {
     init(checkControl: CheckControl, label: String) {
         self.label = label
         self.checkControl = checkControl
-        checked = UnsafeObservableState(checkControl.checked)
+        isChecked = UnsafeObservableState(checkControl.checked)
         error = UnsafeObservableState(checkControl.error)
     }
     
@@ -19,7 +19,7 @@ struct ToggleView: View {
         VStack {
             Toggle(
                 isOn: Binding(
-                    get: { checked.value?.boolValue ?? false },
+                    get: { isChecked.value?.boolValue ?? false },
                     set: checkControl.onCheckedChanged
                 ),
                 label: {

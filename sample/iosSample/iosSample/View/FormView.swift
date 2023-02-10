@@ -12,7 +12,7 @@ struct FormView: View {
     }
     
     @ObservedObject private var submitButtonState: UnsafeObservableState<SubmitButtonState>
-    @ObservedObject private var valid: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject private var isValid: UnsafeObservableState<KotlinBoolean>
     
     @FocusState private var focus: Int?
     
@@ -21,7 +21,7 @@ struct FormView: View {
     init(formComponent: FormComponent) {
         self.formComponent = formComponent
         self.submitButtonState = UnsafeObservableState<SubmitButtonState>(formComponent.submitButtonState)
-        self.valid = UnsafeObservableState<KotlinBoolean>(formComponent.valid)
+        self.isValid = UnsafeObservableState<KotlinBoolean>(formComponent.valid)
     }
     
     var body: some View {
@@ -100,7 +100,7 @@ struct FormView: View {
                         action: formComponent.onSubmitClicked
                     )
                     
-                    if(valid.value?.boolValue ?? false) {
+                    if(isValid.value?.boolValue ?? false) {
                         Text(MR.strings().success_message.desc().localized())
                             .padding(8)
                     }
