@@ -8,10 +8,14 @@ import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.input.TextFieldValue
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.kmm_form_validation.toCompose
@@ -26,7 +30,27 @@ fun TextField(
     val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val hasFocus by inputControl.hasFocus.collectAsState()
     val error by inputControl.error.collectAsState()
-    val text by inputControl.text.collectAsState()
+    val currentValue by inputControl.text.collectAsState()
+
+    var currentSelection by rememberSaveable(stateSaver = TextRangeSaver) {
+        mutableStateOf(TextRange(0))
+    }
+
+    var currentComposition by rememberSaveable(stateSaver = NullableTextRangeSaver) {
+        mutableStateOf(null)
+    }
+
+    val currentTextFieldValue by remember {
+        derivedStateOf {
+            TextFieldValue(currentValue, currentSelection, currentComposition)
+        }
+    }
+
+    LaunchedEffect(key1 = inputControl.moveCursorEvent) {
+        inputControl.moveCursorEvent.collectLatest {
+            currentSelection = TextRange(it)
+        }
+    }
 
     Column(
         modifier = modifier
@@ -48,11 +72,15 @@ fun TextField(
         }
 
         OutlinedTextField(
-            value = text,
+            value = currentTextFieldValue,
             keyboardOptions = inputControl.keyboardOptions.toCompose(),
             singleLine = inputControl.singleLine,
             label = { Text(text = label) },
-            onValueChange = inputControl::onTextChanged,
+            onValueChange = {
+                inputControl.onTextChanged(it.text)
+                currentSelection = it.selection
+                currentComposition = it.composition
+            },
             isError = error != null,
             visualTransformation = inputControl.visualTransformation.toCompose(),
             modifier = modifier
@@ -66,3 +94,13 @@ fun TextField(
         ErrorText(error?.localized() ?: "")
     }
 }
+
+private val TextRangeSaver = listSaver(
+    save = { listOf(it.start, it.end) },
+    restore = { TextRange(it[0], it[1]) }
+)
+
+private val NullableTextRangeSaver = listSaver<TextRange?, Int>(
+    save = { if (it != null) listOf(it.start, it.end) else emptyList() },
+    restore = { TextRange(it[0], it[1]) }
+)

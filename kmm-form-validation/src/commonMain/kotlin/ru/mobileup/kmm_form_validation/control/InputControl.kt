@@ -79,6 +79,13 @@ class InputControl(
 
     val scrollToItEvent get() = mutableScrollToItEventFlow as Flow<Unit>
 
+    private val mutableMoveCursorEvent = MutableSharedFlow<Int>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+
+    val moveCursorEvent get() = mutableMoveCursorEvent as Flow<Int>
+
     override fun requestFocus() {
         this.hasFocus.value = true
         mutableScrollToItEventFlow.tryEmit(Unit)
@@ -99,8 +106,16 @@ class InputControl(
         this.hasFocus.value = hasFocus
     }
 
+    fun moveCursor(position: Int) {
+        mutableMoveCursorEvent.tryEmit(position)
+    }
+
     private fun correctText(text: String): String {
         val transformedText = textTransformation?.transform(text) ?: text
         return transformedText.take(maxLength)
     }
+}
+
+fun InputControl.moveCursorToEnd() {
+    moveCursor(text.value.length)
 }
