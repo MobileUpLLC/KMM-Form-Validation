@@ -5,7 +5,7 @@ plugins {
 }
 
 kotlin {
-    android()
+    androidTarget()
 
     listOf(
         iosX64(),
@@ -30,7 +30,9 @@ kotlin {
                 api(libs.decompose)
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependsOn(commonMain)
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -49,11 +51,23 @@ multiplatformResources {
 
 
 android {
+    val minSdkVersion: Int by rootProject.extra
+    val targetSdkVersion: Int by rootProject.extra
+
     namespace = "ru.mobileup.kmm_form_validation.sharedsample"
-    compileSdk = 33
+    compileSdk = targetSdkVersion
     defaultConfig {
-        minSdk = 23
-        targetSdk = 33
+        minSdk = minSdkVersion
+        targetSdk = targetSdkVersion
     }
-    sourceSets.getByName("main").res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
+    sourceSets.getByName("main") {
+        res.srcDirs(
+            // Workaround for Moko resources. See: https://github.com/icerockdev/moko-resources/issues/353#issuecomment-1179713713
+            File(layout.buildDirectory.asFile.get(), "generated/moko/androidMain/res")
+        )
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }

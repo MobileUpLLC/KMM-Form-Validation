@@ -48,10 +48,17 @@ kotlin {
 }
 
 android {
+    val minSdkVersion: Int by rootProject.extra
+    val targetSdkVersion: Int by rootProject.extra
+
     namespace = "ru.mobileup.kmm_form_validation"
-    compileSdk = 33
+    compileSdk = targetSdkVersion
     defaultConfig {
-        minSdk = 23
-        targetSdk = 33
+        minSdk = minSdkVersion
+        targetSdk = targetSdkVersion
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
