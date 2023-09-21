@@ -4,15 +4,22 @@ plugins {
 }
 
 android {
-    sourceSets.getByName("main").res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
+    sourceSets.getByName("main") {
+        res.srcDirs(
+            // Workaround for Moko resources. See: https://github.com/icerockdev/moko-resources/issues/353#issuecomment-1179713713
+            File(layout.buildDirectory.asFile.get(), "generated/moko/androidMain/res")
+        )
+    }
+    val minSdkVersion: Int by rootProject.extra
+    val targetSdkVersion: Int by rootProject.extra
 
     namespace = "ru.mobileup.kmm_form_validation.android_sample"
-    compileSdk = 33
+    compileSdk = targetSdkVersion
 
     defaultConfig {
         applicationId = "ru.mobileup.kmm_form_validation.android_sample"
-        minSdk = 23
-        targetSdk = 33
+        minSdk = minSdkVersion
+        targetSdk = targetSdkVersion
         versionCode = 1
         versionName = "1.0"
 
@@ -31,11 +38,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -55,7 +62,7 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.tooling)
     implementation(libs.compose.material)
-    implementation(libs.moko.resources.compose)
+    implementation(libs.moko.resourcesCompose)
     implementation(libs.decompose)
     implementation(libs.decompose.compose)
     implementation(libs.konfetti)
