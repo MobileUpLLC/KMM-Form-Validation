@@ -7,7 +7,7 @@ KMM library to control and validate forms. This library is based on [sesame-form
 
 ## Gradle setup
 ```kotlin
-library("forms", "ru.mobileup", "kmm-form-validation").version("1.0.0-alpha1")
+library("forms", "ru.mobileup", "kmm-form-validation").version("1.0.0")
 ```
 
 ## License
