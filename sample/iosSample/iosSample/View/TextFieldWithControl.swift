@@ -1,68 +1,95 @@
 import SwiftUI
-import Combine
 import sharedSample
 
 struct TextFieldWithControl: View {
+    @ObservedObject private var text: UnsafeObservableState<NSString>
+    @ObservedObject private var error: UnsafeObservableState<StringDesc>
+    @ObservedObject private var hasFocus: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject private var isEnabled: UnsafeObservableState<KotlinBoolean>
     
-    private let hint: String
+    @FocusState private var isFocused: Bool
     
+    private let keyboardOptions: KeyboardOptions
     private let inputControl: InputControl
-
-    @ObservedObject
-    private var text: UnsafeObservableState<NSString>
+    private let hint: String
+    private let isSecure: Bool
     
-    @ObservedObject
-    private var error: UnsafeObservableState<StringDesc>
-    
-    @ObservedObject
-    private var hasFocus: UnsafeObservableState<KotlinBoolean>
-    
-    @ObservedObject
-    private var enabled: UnsafeObservableState<KotlinBoolean>
-
-    @State
-    private var keyboardOptions: KeyboardOptions
-    
-    @FocusState
-    private var isFocused: Bool
-    
-    init(inputControl: InputControl, hint: String) {
+    init(inputControl: InputControl, hint: String, isSecure: Bool = false) {
         self.hint = hint
         self.inputControl = inputControl
+        self.isSecure = isSecure
         self.keyboardOptions = inputControl.keyboardOptions
         self.text = UnsafeObservableState(inputControl.text)
         self.error = UnsafeObservableState(inputControl.error)
         self.hasFocus = UnsafeObservableState(inputControl.hasFocus)
-        self.enabled = UnsafeObservableState(inputControl.enabled)
+        self.isEnabled = UnsafeObservableState(inputControl.enabled)
     }
         
     var body: some View {
         VStack {
-            TextField(
-                hint,
-                value: Binding {
+            TextFieldView(
+                text: Binding {
                     String(text.value ?? "")
                 } set: { value in
-                    inputControl.onTextChanged(text:value)
+                    inputControl.onTextChanged(text: value)
+                    text.reemitValue()
                 },
-                formatter: VisualFormatter(inputControl.visualTransformation)
+                isSecure: isSecure,
+                isError: error.value == nil,
+                hint: hint
             )
-            .textFieldStyle(.roundedBorder)
-            .focused($isFocused)
-            .onChange(of: isFocused) { newValue in
-                inputControl.onFocusChanged(hasFocus: newValue)
-            }
-            .disabled(!(enabled.value?.boolValue ?? false))
+            .disabled(!(isEnabled.value?.boolValue ?? false))
             .keyboardType(keyboardOptions.keyboardType.toUI())
             .submitLabel(keyboardOptions.imeAction.toUI())
             .textInputAutocapitalization(keyboardOptions.capitalization.toUI())
             .autocorrectionDisabled(!keyboardOptions.autoCorrect)
+            .focused($isFocused)
+            .onChange(of: isFocused) { newValue in
+                inputControl.onFocusChanged(hasFocus: newValue)
+            }
+            .onChange(of: hasFocus.value?.boolValue ?? false) { newValue in
+                isFocused = newValue
+            }
             
             if let error = error.value {
-                Text(error.localized())
-                    .foregroundColor(.red)
+                HStack {
+                    Text(error.localized())
+                        .foregroundColor(.red)
+                    Spacer()
+                }
             }
         }
-        .padding(4)
+        .padding(.vertical, 10)
+    }
+    
+    private struct TextFieldView: View {
+        @Binding var text: String
+        
+        let isSecure: Bool
+        let isError: Bool
+        let hint: String
+        
+        var body: some View {
+            createTextField()
+                .padding(10)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(isError ? Color.gray : Color.red, lineWidth: 2)
+                }
+        }
+        
+        private func createTextField() -> some View {
+            if isSecure {
+                SecureField(
+                    text: $text,
+                    prompt: Text(hint),
+                    label: {
+                        Text("")
+                    }
+                )
+            } else {
+                TextField(hint, text: $text)
+            }
+        }
     }
 }
