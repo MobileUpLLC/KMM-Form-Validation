@@ -12,7 +12,6 @@ import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 import ru.mobileup.kmm_form_validation.android_sample.R
 
-
 @Composable
 fun KonfettiWidget(modifier: Modifier = Modifier) {
     BoxWithConstraints(modifier) {
@@ -42,6 +41,4 @@ fun KonfettiWidget(modifier: Modifier = Modifier) {
             }
         )
     }
-
-
 }

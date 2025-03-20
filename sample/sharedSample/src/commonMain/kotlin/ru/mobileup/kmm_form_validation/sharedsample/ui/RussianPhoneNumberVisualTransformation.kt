@@ -10,19 +10,17 @@ object RussianPhoneNumberVisualTransformation : VisualTransformation {
     private const val THIRD_HARDCODE_SLOT = ") "
     private const val DECORATE_HARDCODE_SLOT = "-"
 
+    // "" -> "+7"
+    // "ABCDEFGHIJ" -> "+7 (ABC) DEF-GH-IJ"
+
     override fun filter(text: String): TransformedText {
-        var hasPrefix = false
+        val trimmed = text.take(10)
         var output = ""
-        if (text.isNotEmpty()) {
-            if (text.startsWith(FIRST_HARDCODE_SLOT)) {
-                hasPrefix = true
-            }
-            output += FIRST_HARDCODE_SLOT
+
+        output += FIRST_HARDCODE_SLOT
+        if (trimmed.isNotEmpty()) {
             output += SECOND_HARDCODE_SLOT
         }
-
-        var trimmed = if (hasPrefix) text.drop(2) else text
-        trimmed = if (trimmed.length >= 10) trimmed.substring(0 until 10) else trimmed
 
         for (i in trimmed.indices) {
             output += trimmed[i]
@@ -35,20 +33,31 @@ object RussianPhoneNumberVisualTransformation : VisualTransformation {
 
         val numberOffsetTranslator = object : OffsetMapping {
             override fun originalToTransformed(offset: Int): Int {
-                if (offset <= 0) return offset
-                if (offset <= 2) return offset + 4
-                if (offset <= 5) return offset + 6
-                if (offset <= 7) return offset + 7
-                if (offset <= 9) return offset + 8
-                return 18
+                if (trimmed.isEmpty()) {
+                    return 2
+                }
+
+                return when {
+                    offset < 3 -> offset + 4
+                    offset < 6 -> offset + 6
+                    offset < 8 -> offset + 7
+                    else -> offset + 8
+                }
             }
 
             override fun transformedToOriginal(offset: Int): Int {
-                if (offset <= 4) return offset
-                if (offset <= 7) return offset - 4
-                if (offset <= 11) return offset - 6
-                if (offset <= 15) return offset - 7
-                return 10
+                if (trimmed.isEmpty()) {
+                    return 0
+                }
+
+                return when {
+                    offset < 4 -> 0
+                    offset < 7 -> offset - 4
+                    offset < 8 -> offset - 5
+                    offset < 12 -> offset - 6
+                    offset < 15 -> offset - 7
+                    else -> offset - 8
+                }
             }
         }
 

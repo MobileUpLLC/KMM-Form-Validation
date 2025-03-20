@@ -19,12 +19,13 @@ import androidx.compose.ui.text.input.VisualTransformation
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.kmm_form_validation.android_sample.R
+import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.toCompose
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PasswordTextField(
-    inputControl: ru.mobileup.kmm_form_validation.control.InputControl,
+    inputControl: InputControl,
     label: String,
     modifier: Modifier = Modifier
 ) {
