@@ -10,12 +10,12 @@ sealed class ValidationResult {
     /**
      * An input is valid.
      */
-    object Valid : ValidationResult()
+    data object Valid : ValidationResult()
 
     /**
      * Validation was skipped.
      */
-    object Skipped : ValidationResult()
+    data object Skipped : ValidationResult()
 
     /**
      * An input is invalid.

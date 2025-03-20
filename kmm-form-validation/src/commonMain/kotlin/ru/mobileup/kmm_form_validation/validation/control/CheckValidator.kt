@@ -12,11 +12,11 @@ import ru.mobileup.kmm_form_validation.validation.form.checked
  *
  * Use [FormValidatorBuilder.checked] to create it with a handy DSL.
  */
-class CheckValidator constructor(
-    override val control: ru.mobileup.kmm_form_validation.control.CheckControl,
+class CheckValidator(
+    override val control: CheckControl,
     private val validation: (Boolean) -> ValidationResult,
     private val showError: ((StringDesc) -> Unit)? = null
-) : ControlValidator<ru.mobileup.kmm_form_validation.control.CheckControl> {
+) : ControlValidator<CheckControl> {
 
     override fun validate(displayResult: Boolean): ValidationResult {
         return getValidationResult().also {

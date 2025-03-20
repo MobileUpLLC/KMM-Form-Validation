@@ -14,7 +14,7 @@ internal fun <T1, T2, R> computed(
     flow2: StateFlow<T2>,
     transform: (T1, T2) -> R
 ): StateFlow<R> {
-    return computedImpls(coroutineScope, flow1, flow2) { args: List<*> ->
+    return computedImpl(coroutineScope, flow1, flow2) { args: List<*> ->
         transform(
             args[0] as T1,
             args[1] as T2
@@ -22,7 +22,7 @@ internal fun <T1, T2, R> computed(
     }
 }
 
-private inline fun <T, R> computedImpls(
+private inline fun <T, R> computedImpl(
     coroutineScope: CoroutineScope,
     vararg flows: StateFlow<T>,
     crossinline transform: (List<T>) -> R

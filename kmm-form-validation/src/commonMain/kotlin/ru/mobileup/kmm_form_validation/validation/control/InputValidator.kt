@@ -10,11 +10,11 @@ import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
  *
  * Use [FormValidatorBuilder.input] to create it with a handy DSL.
  */
-class InputValidator constructor(
-    override val control: ru.mobileup.kmm_form_validation.control.InputControl,
+class InputValidator(
+    override val control: InputControl,
     private val required: Boolean = true,
     private val validations: List<(String) -> ValidationResult>
-) : ControlValidator<ru.mobileup.kmm_form_validation.control.InputControl> {
+) : ControlValidator<InputControl> {
 
     override fun validate(displayResult: Boolean): ValidationResult {
         return getValidationResult().also {

@@ -1,6 +1,5 @@
 package ru.mobileup.kmm_form_validation.options
 
-
 enum class ImeAction {
     /**
      * Use the platform and keyboard defaults and let the keyboard to decide the action. The
