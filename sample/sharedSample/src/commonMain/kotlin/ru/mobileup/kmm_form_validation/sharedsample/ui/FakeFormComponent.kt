@@ -50,7 +50,7 @@ class FakeFormComponent : FormComponent, ComponentContext by DefaultComponentCon
 
     override val submitButtonState = MutableStateFlow(SubmitButtonState.Valid)
 
-    override val valid = MutableStateFlow(false)
+    override val showConfetti = MutableStateFlow(false)
 
     override fun onSubmitClicked() = Unit
 }

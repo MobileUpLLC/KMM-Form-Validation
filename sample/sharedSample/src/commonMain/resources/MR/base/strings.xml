@@ -13,8 +13,8 @@
     <string name="field_is_blank_error_message">Please fill this field</string>
     <string name="invalid_email_error_message">Invalid e-mail address</string>
     <string name="invalid_phone_error_message">Invalid phone number</string>
+    <string name="invalid_password_error_message">Your password must be %1$s–%2$s characters long, include at least one digit, one lowercase letter, one uppercase letter, and one special character (%3$s), and must not contain spaces.</string>
     <string name="min_length_error_message">Minimum %d symbols</string>
-    <string name="must_contain_digit_error_message">Must contain a digit</string>
     <string name="passwords_do_not_match_error_message">Passwords do not match</string>
     <string name="terms_are_accepted_error_message">Please accept the terms of use</string>
 </resources>

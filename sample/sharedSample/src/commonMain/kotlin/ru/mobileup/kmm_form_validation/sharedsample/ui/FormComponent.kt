@@ -20,7 +20,7 @@ interface FormComponent {
 
     val submitButtonState: StateFlow<SubmitButtonState>
 
-    val valid: StateFlow<Boolean>
+    val showConfetti: StateFlow<Boolean>
 
     fun onSubmitClicked()
 }

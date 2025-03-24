@@ -7,9 +7,17 @@ import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -18,14 +26,17 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
+import ru.mobileup.kmm_form_validation.control.InputControl
+import ru.mobileup.kmm_form_validation.options.VisualTransformation
 import ru.mobileup.kmm_form_validation.toCompose
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TextField(
-    inputControl: ru.mobileup.kmm_form_validation.control.InputControl,
+    inputControl: InputControl,
     label: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    visualTransformation: VisualTransformation? = null,
 ) {
     val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val hasFocus by inputControl.hasFocus.collectAsState()
@@ -82,7 +93,8 @@ fun TextField(
                 currentComposition = it.composition
             },
             isError = error != null,
-            visualTransformation = inputControl.visualTransformation.toCompose(),
+            visualTransformation = (visualTransformation
+                ?: inputControl.visualTransformation).toCompose(),
             modifier = modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
