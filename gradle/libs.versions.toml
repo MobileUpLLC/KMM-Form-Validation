@@ -1,0 +1,40 @@
+[versions]
+minSdk = "23"
+targetSdk = "35"
+compileSdk = "35"
+kotlin = "2.1.20"
+androidGradlePlugin = "8.7.3"
+coroutines = "1.10.1"
+activity = "1.10.1"
+compose = "1.7.8"
+mokoResources = "0.24.5"
+decompose = "3.2.2"
+essenty = "2.5.0"
+konfetti = "1.3.2"
+
+[libraries]
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity" }
+
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+
+moko-resources = { module = "dev.icerock.moko:resources", version.ref = "mokoResources" }
+moko-resourcesCompose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResources" }
+
+decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
+essenty-lifecycle = { module = "com.arkivanov.essenty:lifecycle", version.ref = "essenty" }
+
+konfetti = { module = "nl.dionsegijn:konfetti", version.ref = "konfetti" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResources" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

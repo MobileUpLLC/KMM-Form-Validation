@@ -9,7 +9,6 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -57,9 +56,23 @@ fun TextField(
         }
     }
 
+    val focusRequester = remember { FocusRequester() }
+
     LaunchedEffect(key1 = inputControl.moveCursorEvent) {
         inputControl.moveCursorEvent.collectLatest {
             currentSelection = TextRange(it)
+        }
+    }
+
+    LaunchedEffect(hasFocus) {
+        if (hasFocus) {
+            focusRequester.requestFocus()
+        }
+    }
+
+    LaunchedEffect(key1 = inputControl) {
+        inputControl.scrollToItEvent.collectLatest {
+            bringIntoViewRequester.bringIntoView()
         }
     }
 
@@ -68,20 +81,6 @@ fun TextField(
             .fillMaxWidth()
             .bringIntoViewRequester(bringIntoViewRequester)
     ) {
-        val focusRequester = remember { FocusRequester() }
-
-        if (hasFocus) {
-            SideEffect {
-                focusRequester.requestFocus()
-            }
-        }
-
-        LaunchedEffect(key1 = inputControl) {
-            inputControl.scrollToItEvent.collectLatest {
-                bringIntoViewRequester.bringIntoView()
-            }
-        }
-
         OutlinedTextField(
             value = currentTextFieldValue,
             keyboardOptions = inputControl.keyboardOptions.toCompose(),

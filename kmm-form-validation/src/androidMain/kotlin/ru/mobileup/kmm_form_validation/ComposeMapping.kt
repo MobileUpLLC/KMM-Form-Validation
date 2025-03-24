@@ -40,7 +40,7 @@ fun OffsetMapping.toCompose(): ComposeOffsetMapping {
 fun KeyboardOptions.toCompose(): ComposeKeyboardOptions {
     return ComposeKeyboardOptions(
         capitalization = capitalization.toCompose(),
-        autoCorrect = autoCorrect,
+        autoCorrectEnabled = autoCorrect,
         keyboardType = keyboardType.toCompose(),
         imeAction = imeAction.toCompose()
     )

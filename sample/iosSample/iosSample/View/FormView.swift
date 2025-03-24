@@ -14,7 +14,7 @@ struct FormView: View {
     init(formComponent: FormComponent) {
         self.formComponent = formComponent
         self.submitButtonState = UnsafeObservableState<SubmitButtonState>(formComponent.submitButtonState)
-        self.valid = UnsafeObservableState<KotlinBoolean>(formComponent.valid)
+        self.valid = UnsafeObservableState<KotlinBoolean>(formComponent.showConfetti)
     }
     
     var body: some View {
