@@ -3,9 +3,10 @@ package ru.mobileup.kmm_form_validation.validation.control
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
+import ru.mobileup.kmm_form_validation.control.InputControl
 
 class InputValidatorBuilder(
-    private val inputControl: ru.mobileup.kmm_form_validation.control.InputControl,
+    private val inputControl: InputControl,
     private val required: Boolean
 ) {
 
@@ -117,7 +118,7 @@ fun InputValidatorBuilder.minLength(length: Int, errorMessageRes: StringResource
  * Adds a validation that checks that an input equals to an input of another input control.
  */
 fun InputValidatorBuilder.equalsTo(
-    inputControl: ru.mobileup.kmm_form_validation.control.InputControl,
+    inputControl: InputControl,
     errorMessage: StringDesc
 ) {
     validation(
@@ -130,7 +131,7 @@ fun InputValidatorBuilder.equalsTo(
  * Adds a validation that checks that an input equals to an input of another input control.
  */
 fun InputValidatorBuilder.equalsTo(
-    inputControl: ru.mobileup.kmm_form_validation.control.InputControl,
+    inputControl: InputControl,
     errorMessageRes: StringResource
 ) {
     equalsTo(inputControl, StringDesc.Resource(errorMessageRes))
