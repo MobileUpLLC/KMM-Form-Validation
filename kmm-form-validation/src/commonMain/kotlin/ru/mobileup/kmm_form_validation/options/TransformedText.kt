@@ -1,6 +1,5 @@
 package ru.mobileup.kmm_form_validation.options
 
-
 /**
  * The transformed text with offset offset mapping
  */

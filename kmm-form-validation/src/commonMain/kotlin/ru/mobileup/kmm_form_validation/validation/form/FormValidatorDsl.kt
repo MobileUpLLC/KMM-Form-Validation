@@ -38,7 +38,7 @@ class FormValidatorBuilder {
      * @param showError a callback that is called to show one-time error such as a toast. For permanent errors use [CheckControl.error] state.
      */
     fun check(
-        checkControl: ru.mobileup.kmm_form_validation.control.CheckControl,
+        checkControl: CheckControl,
         validation: (Boolean) -> ValidationResult,
         showError: ((StringDesc) -> Unit)? = null
     ) {
@@ -51,7 +51,7 @@ class FormValidatorBuilder {
      * @param required specifies if blank input is considered valid.
      */
     fun input(
-        inputControl: ru.mobileup.kmm_form_validation.control.InputControl,
+        inputControl: InputControl,
         required: Boolean = true,
         buildBlock: InputValidatorBuilder.() -> Unit
     ) {
@@ -83,7 +83,7 @@ fun CoroutineScope.formValidator(buildBlock: FormValidatorBuilder.() -> Unit): F
  * Adds a validator that checks that [checkControl] is checked.
  */
 fun FormValidatorBuilder.checked(
-    checkControl: ru.mobileup.kmm_form_validation.control.CheckControl,
+    checkControl: CheckControl,
     errorMessage: StringDesc,
     showError: ((StringDesc) -> Unit)? = null
 ) {
@@ -100,7 +100,7 @@ fun FormValidatorBuilder.checked(
  * Adds a validator that checks that [checkControl] is checked.
  */
 fun FormValidatorBuilder.checked(
-    checkControl: ru.mobileup.kmm_form_validation.control.CheckControl,
+    checkControl: CheckControl,
     errorMessageRes: StringResource,
     showError: ((StringDesc) -> Unit)? = null
 ) {
