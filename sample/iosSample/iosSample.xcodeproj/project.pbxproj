@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C1ADA502D92EF5100EB6B6D /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1ADA4F2D92EF5100EB6B6D /* ConfettiSwiftUI */; };
 		EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */; };
 		EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */; };
 		EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FED2987B252001DCE8B /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C1ADA502D92EF5100EB6B6D /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +159,9 @@
 				Base,
 			);
 			mainGroup = EC7C1FDD2987B251001DCE8B;
+			packageReferences = (
+				6C1ADA4E2D92EF5100EB6B6D /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+			);
 			productRefGroup = EC7C1FE72987B251001DCE8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -422,6 +427,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6C1ADA4E2D92EF5100EB6B6D /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6C1ADA4F2D92EF5100EB6B6D /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C1ADA4E2D92EF5100EB6B6D /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EC7C1FDE2987B251001DCE8B /* Project object */;
 }

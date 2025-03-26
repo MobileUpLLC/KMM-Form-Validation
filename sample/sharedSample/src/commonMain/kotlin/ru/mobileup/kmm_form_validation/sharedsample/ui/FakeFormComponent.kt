@@ -48,6 +48,8 @@ class FakeFormComponent : FormComponent, ComponentContext by DefaultComponentCon
 
     override val termsCheckBox = CheckControl(fakeScope)
 
+    override val newsletterCheckBox = CheckControl(fakeScope)
+
     override val submitButtonState = MutableStateFlow(SubmitButtonState.Valid)
 
     override val showConfetti = MutableStateFlow(false)

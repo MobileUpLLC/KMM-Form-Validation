@@ -17,7 +17,6 @@ import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.componentScope
 import ru.mobileup.kmm_form_validation.sharedsample.utils.computed
-import ru.mobileup.kmm_form_validation.sharedsample.utils.dynamicValidationResult
 import ru.mobileup.kmm_form_validation.sharedsample.utils.formValidator
 import ru.mobileup.kmm_form_validation.validation.control.equalsTo
 import ru.mobileup.kmm_form_validation.validation.control.isNotBlank
@@ -47,7 +46,6 @@ class RealFormComponent(
         private const val RUS_PHONE_DIGIT_COUNT = 10
         private const val EMAIL_REGEX_PATTERN =
             "[a-zA-Z0-9+._%\\-]{1,256}@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
-
     }
 
     override val nameInput = InputControl(
@@ -95,6 +93,8 @@ class RealFormComponent(
     )
 
     override val termsCheckBox = CheckControl()
+
+    override val newsletterCheckBox = CheckControl()
 
     override val showConfetti = MutableStateFlow(false)
 
@@ -161,16 +161,16 @@ class RealFormComponent(
         containsDigit && containsLowercase && containsUppercase && containsSpecChar && notContainsInvalidChar && validLength
     }
 
-    private val dynamicResult = dynamicValidationResult(formValidator)
+    private val validationState = formValidator.validationState
 
-    override val submitButtonState = computed(dynamicResult) { result ->
+    override val submitButtonState = computed(validationState) { result ->
         if (result.isValid) SubmitButtonState.Valid else SubmitButtonState.Invalid
     }
 
     init {
-        dynamicResult
+        validationState
             .onEach {
-                if (!it.isValid) {
+                if (it.isInvalid) {
                     showConfetti.value = false
                 }
             }

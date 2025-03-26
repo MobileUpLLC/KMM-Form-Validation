@@ -12,8 +12,8 @@ import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
  */
 class InputValidator(
     override val control: InputControl,
-    private val required: Boolean = true,
-    private val validations: List<(String) -> ValidationResult>
+    val required: Boolean = true,
+    private val validations: List<(String) -> ValidationResult>,
 ) : ControlValidator<InputControl> {
 
     override fun validate(displayResult: Boolean): ValidationResult {
@@ -41,9 +41,10 @@ class InputValidator(
         return ValidationResult.Valid
     }
 
-    private fun displayValidationResult(validationResult: ValidationResult) =
-        when (validationResult) {
-            ValidationResult.Valid, ValidationResult.Skipped -> control.error.value = null
-            is ValidationResult.Invalid -> control.error.value = validationResult.errorMessage
-        }
+    private fun displayValidationResult(
+        validationResult: ValidationResult,
+    ) = when (validationResult) {
+        is ValidationResult.Invalid -> control.error.value = validationResult.errorMessage
+        else -> control.error.value = null
+    }
 }

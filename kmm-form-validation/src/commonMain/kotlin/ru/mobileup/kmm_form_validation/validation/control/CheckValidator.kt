@@ -15,7 +15,7 @@ import ru.mobileup.kmm_form_validation.validation.form.checked
 class CheckValidator(
     override val control: CheckControl,
     private val validation: (Boolean) -> ValidationResult,
-    private val showError: ((StringDesc) -> Unit)? = null
+    private val showError: ((StringDesc) -> Unit)? = null,
 ) : ControlValidator<CheckControl> {
 
     override fun validate(displayResult: Boolean): ValidationResult {
@@ -32,12 +32,14 @@ class CheckValidator(
         return validation(control.value.value)
     }
 
-    private fun displayValidationResult(validationResult: ValidationResult) =
-        when (validationResult) {
-            ValidationResult.Valid, ValidationResult.Skipped -> control.error.value = null
-            is ValidationResult.Invalid -> {
-                control.error.value = validationResult.errorMessage
-                showError?.invoke(validationResult.errorMessage)
-            }
+    private fun displayValidationResult(
+        validationResult: ValidationResult,
+    ) = when (validationResult) {
+        is ValidationResult.Invalid -> {
+            control.error.value = validationResult.errorMessage
+            showError?.invoke(validationResult.errorMessage)
         }
+
+        else -> control.error.value = null
+    }
 }

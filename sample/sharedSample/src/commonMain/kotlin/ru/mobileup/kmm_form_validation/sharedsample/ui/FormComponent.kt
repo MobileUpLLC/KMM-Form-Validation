@@ -18,6 +18,8 @@ interface FormComponent {
 
     val termsCheckBox: CheckControl
 
+    val newsletterCheckBox: CheckControl
+
     val submitButtonState: StateFlow<SubmitButtonState>
 
     val showConfetti: StateFlow<Boolean>

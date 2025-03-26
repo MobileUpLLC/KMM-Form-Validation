@@ -1,24 +1,23 @@
 import SwiftUI
 import sharedSample
+import ConfettiSwiftUI
 
 struct FormView: View {
-
+    
     let formComponent: FormComponent
     
-    @ObservedObject
-    var submitButtonState: UnsafeObservableState<SubmitButtonState>
-    
-    @ObservedObject
-    var valid: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject var submitButtonState: UnsafeObservableState<SubmitButtonState>
+    @ObservedObject var showConfetti: UnsafeObservableState<KotlinBoolean>
+    @State private var triggerConfetti: Int = 0
     
     init(formComponent: FormComponent) {
         self.formComponent = formComponent
         self.submitButtonState = UnsafeObservableState<SubmitButtonState>(formComponent.submitButtonState)
-        self.valid = UnsafeObservableState<KotlinBoolean>(formComponent.showConfetti)
+        self.showConfetti = UnsafeObservableState<KotlinBoolean>(formComponent.showConfetti)
     }
     
     var body: some View {
-        VStack{
+        VStack(spacing: 16) {
             TextFieldWithControl(
                 inputControl: formComponent.nameInput,
                 hint: MR.strings().name_hint.desc().localized()
@@ -49,17 +48,25 @@ struct FormView: View {
                 label: MR.strings().terms_hint.desc().localized()
             )
             
-            SubmitButtonView(
-                buttonState: submitButtonState.value!,
-                label: MR.strings().submit_button.desc().localized(),
-                action: formComponent.onSubmitClicked
+            ToggleView(
+                checkControl: formComponent.newsletterCheckBox,
+                label: MR.strings().newsletter_hint.desc().localized()
             )
             
-            if(valid.value?.boolValue ?? false) {
-                Text(MR.strings().success_message.desc().localized())
-                    .padding(8)
+            SubmitButtonView(
+                buttonState: submitButtonState.value!,
+                label: MR.strings().submit_button.desc().localized()
+            ) {
+                formComponent.onSubmitClicked()
+                if showConfetti.value == true {
+                    triggerConfetti += 1
+                }
             }
+            
+            Spacer()
         }
+        .padding(16)
+        .confettiCannon(trigger: $triggerConfetti)
     }
 }
 

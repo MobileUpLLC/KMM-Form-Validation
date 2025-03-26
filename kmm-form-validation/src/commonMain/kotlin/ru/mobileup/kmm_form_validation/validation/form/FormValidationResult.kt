@@ -11,4 +11,6 @@ data class FormValidationResult(
 ) {
 
     val isValid get() = controlResults.values.none { it is ValidationResult.Invalid }
+
+    val isInvalid get() = !isValid
 }

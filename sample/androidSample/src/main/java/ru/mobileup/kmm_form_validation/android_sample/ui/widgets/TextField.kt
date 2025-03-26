@@ -41,6 +41,7 @@ fun TextField(
     val hasFocus by inputControl.hasFocus.collectAsState()
     val error by inputControl.error.collectAsState()
     val currentValue by inputControl.text.collectAsState()
+    val enabled by inputControl.enabled.collectAsState()
 
     var currentSelection by rememberSaveable(stateSaver = TextRangeSaver) {
         mutableStateOf(TextRange(0))
@@ -82,7 +83,14 @@ fun TextField(
             .bringIntoViewRequester(bringIntoViewRequester)
     ) {
         OutlinedTextField(
+            modifier = modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester)
+                .onFocusChanged {
+                    inputControl.onFocusChanged(it.isFocused)
+                },
             value = currentTextFieldValue,
+            enabled = enabled,
             keyboardOptions = inputControl.keyboardOptions.toCompose(),
             singleLine = inputControl.singleLine,
             label = { Text(text = label) },
@@ -93,13 +101,7 @@ fun TextField(
             },
             isError = error != null,
             visualTransformation = (visualTransformation
-                ?: inputControl.visualTransformation).toCompose(),
-            modifier = modifier
-                .fillMaxWidth()
-                .focusRequester(focusRequester)
-                .onFocusChanged {
-                    inputControl.onFocusChanged(it.isFocused)
-                }
+                ?: inputControl.visualTransformation).toCompose()
         )
 
         ErrorText(error?.localized() ?: "")
