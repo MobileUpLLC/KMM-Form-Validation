@@ -104,3 +104,8 @@ publishing {
 signing {
     sign publishing.publications
 }
+
+// Workaround for https://github.com/gradle/gradle/issues/26091
+tasks.withType(AbstractPublishToMaven.class).configureEach {
+    mustRunAfter(tasks.withType(Sign.class))
+}
