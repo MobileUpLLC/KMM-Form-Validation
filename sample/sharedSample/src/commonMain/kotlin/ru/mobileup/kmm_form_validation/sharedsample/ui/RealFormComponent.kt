@@ -17,7 +17,6 @@ import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.componentScope
 import ru.mobileup.kmm_form_validation.sharedsample.utils.computed
-import ru.mobileup.kmm_form_validation.sharedsample.utils.dynamicValidationResult
 import ru.mobileup.kmm_form_validation.sharedsample.utils.formValidator
 import ru.mobileup.kmm_form_validation.validation.control.equalsTo
 import ru.mobileup.kmm_form_validation.validation.control.isNotBlank
@@ -162,16 +161,16 @@ class RealFormComponent(
         containsDigit && containsLowercase && containsUppercase && containsSpecChar && notContainsInvalidChar && validLength
     }
 
-    private val dynamicResult = dynamicValidationResult(formValidator)
+    private val validationState = formValidator.validationState
 
-    override val submitButtonState = computed(dynamicResult) { result ->
+    override val submitButtonState = computed(validationState) { result ->
         if (result.isValid) SubmitButtonState.Valid else SubmitButtonState.Invalid
     }
 
     init {
-        dynamicResult
+        validationState
             .onEach {
-                if (!it.isValid) {
+                if (it.isInvalid) {
                     showConfetti.value = false
                 }
             }

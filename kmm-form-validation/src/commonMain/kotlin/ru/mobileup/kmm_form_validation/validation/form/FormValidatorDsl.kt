@@ -62,7 +62,7 @@ class FormValidatorBuilder {
     }
 
     fun build(coroutineScope: CoroutineScope): FormValidator {
-        return FormValidator(validators).apply {
+        return FormValidator(validators, coroutineScope).apply {
             features.forEach { feature ->
                 feature.install(coroutineScope, this)
             }

@@ -1,18 +1,13 @@
 package ru.mobileup.kmm_form_validation.sharedsample.utils
 
 import com.arkivanov.decompose.ComponentContext
-import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.TextTransformation
 import ru.mobileup.kmm_form_validation.options.VisualTransformation
-import ru.mobileup.kmm_form_validation.validation.form.FormValidationResult
 import ru.mobileup.kmm_form_validation.validation.form.FormValidator
 import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
-import ru.mobileup.kmm_form_validation.validation.form.dynamicHasError
-import ru.mobileup.kmm_form_validation.validation.form.dynamicIsFilled
-import ru.mobileup.kmm_form_validation.validation.form.dynamicValidationResult
 import ru.mobileup.kmm_form_validation.validation.form.formValidator
 
 fun ComponentContext.InputControl(
@@ -39,15 +34,3 @@ fun ComponentContext.CheckControl(
 fun ComponentContext.formValidator(
     buildBlock: FormValidatorBuilder.() -> Unit,
 ): FormValidator = componentScope.formValidator(buildBlock)
-
-fun ComponentContext.dynamicValidationResult(
-    formValidator: FormValidator,
-): StateFlow<FormValidationResult> = componentScope.dynamicValidationResult(formValidator)
-
-fun ComponentContext.dynamicHasError(
-    formValidator: FormValidator,
-): StateFlow<Boolean> = componentScope.dynamicHasError(formValidator)
-
-fun ComponentContext.dynamicIsFilled(
-    formValidator: FormValidator,
-): StateFlow<Boolean> = componentScope.dynamicIsFilled(formValidator)
