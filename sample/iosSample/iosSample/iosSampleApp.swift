@@ -4,8 +4,7 @@ import sharedSample
 @main
 struct iosSampleApp: App {
     
-    @StateObject
-    private var rootHolder = RootHolder()
+    @StateObject private var rootHolder = RootHolder()
     
     var body: some Scene {
         WindowGroup {

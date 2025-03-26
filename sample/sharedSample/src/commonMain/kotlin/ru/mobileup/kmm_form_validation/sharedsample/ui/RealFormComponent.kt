@@ -47,7 +47,6 @@ class RealFormComponent(
         private const val RUS_PHONE_DIGIT_COUNT = 10
         private const val EMAIL_REGEX_PATTERN =
             "[a-zA-Z0-9+._%\\-]{1,256}@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+"
-
     }
 
     override val nameInput = InputControl(
@@ -95,6 +94,8 @@ class RealFormComponent(
     )
 
     override val termsCheckBox = CheckControl()
+
+    override val newsletterCheckBox = CheckControl()
 
     override val showConfetti = MutableStateFlow(false)
 

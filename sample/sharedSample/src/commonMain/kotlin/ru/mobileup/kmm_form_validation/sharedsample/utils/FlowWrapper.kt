@@ -19,9 +19,7 @@ open class FlowWrapper<T>(
     fun collect(consumer: (T) -> Unit): Cancelable {
         val scope = CoroutineScope(Dispatchers.Main.immediate)
 
-        flow
-            .onEach { consumer(it) }
-            .launchIn(scope)
+        flow.onEach(consumer).launchIn(scope)
 
         return object : Cancelable {
             override fun cancel() {

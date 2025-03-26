@@ -5,26 +5,15 @@ import sharedSample
 struct SecureTextFieldWithControl: View {
     
     private let hint: String
-    
     private let inputControl: InputControl
     
-    @ObservedObject
-    private var text: UnsafeObservableState<NSString>
+    @ObservedObject private var text: UnsafeObservableState<NSString>
+    @ObservedObject private var error: UnsafeObservableState<StringDesc>
+    @ObservedObject private var hasFocus: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject private var enabled: UnsafeObservableState<KotlinBoolean>
     
-    @ObservedObject
-    private var error: UnsafeObservableState<StringDesc>
-    
-    @ObservedObject
-    private var hasFocus: UnsafeObservableState<KotlinBoolean>
-    
-    @ObservedObject
-    private var enabled: UnsafeObservableState<KotlinBoolean>
-    
-    @State
-    private var keyboardOptions: KeyboardOptions
-    
-    @FocusState
-    private var isFocused: Bool
+    @State private var keyboardOptions: KeyboardOptions
+    @FocusState private var isFocused: Bool
     
     init(inputControl: InputControl, hint: String) {
         self.hint = hint
@@ -46,10 +35,16 @@ struct SecureTextFieldWithControl: View {
                 },
                 prompt: Text(hint),
                 label: {
-                    Text("123")
+                    Text("Password input")
                 }
             )
+            .textContentType(.password)
+            .focused($isFocused)
             .textFieldStyle(.roundedBorder)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(error.value != nil ? Color.red : Color.clear, lineWidth: 1)
+            )
             .focused($isFocused)
             .onChange(of: isFocused) { newValue in
                 inputControl.onFocusChanged(hasFocus: newValue)
@@ -62,9 +57,11 @@ struct SecureTextFieldWithControl: View {
             
             if let error = error.value {
                 Text(error.localized())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.caption)
                     .foregroundColor(.red)
             }
         }
-        .padding(4)
+        .animation(Animation.easeInOut(duration: 0.3), value: UUID())
     }
 }

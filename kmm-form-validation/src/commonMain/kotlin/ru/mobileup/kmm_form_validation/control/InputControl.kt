@@ -20,20 +20,10 @@ class InputControl(
     initialText: String = "",
     val singleLine: Boolean = true,
     val maxLength: Int = Int.MAX_VALUE,
-    val keyboardOptions: KeyboardOptions,
+    val keyboardOptions: KeyboardOptions = KeyboardOptions(),
     val textTransformation: TextTransformation? = null,
-    val visualTransformation: VisualTransformation = VisualTransformation.None
+    val visualTransformation: VisualTransformation = VisualTransformation.None,
 ) : ValidatableControl<String> {
-
-    constructor(coroutineScope: CoroutineScope) : this(
-        coroutineScope = coroutineScope,
-        initialText = "",
-        singleLine = true,
-        maxLength = Int.MAX_VALUE,
-        keyboardOptions = KeyboardOptions(),
-        textTransformation = null,
-        visualTransformation = VisualTransformation.None
-    )
 
     private val _text = MutableStateFlow(correctText(initialText))
 
@@ -66,11 +56,7 @@ class InputControl(
     override val value: StateFlow<String> = _text
 
     override val skipInValidation =
-        computed(
-            coroutineScope,
-            visible,
-            enabled
-        ) { visible, enabled -> !visible || !enabled }
+        computed(coroutineScope, visible, enabled) { visible, enabled -> !visible || !enabled }
 
     private val mutableScrollToItEventFlow = MutableSharedFlow<Unit>(
         extraBufferCapacity = 1,

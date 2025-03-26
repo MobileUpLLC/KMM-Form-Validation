@@ -4,14 +4,10 @@ import sharedSample
 struct ToggleView: View {
     
     let checkControl: CheckControl
-    
     let label: String
     
-    @ObservedObject
-    var checked: UnsafeObservableState<KotlinBoolean>
-    
-    @ObservedObject
-    private var error: UnsafeObservableState<StringDesc>
+    @ObservedObject var checked: UnsafeObservableState<KotlinBoolean>
+    @ObservedObject private var error: UnsafeObservableState<StringDesc>
     
     init(checkControl: CheckControl, label: String) {
         self.label = label
@@ -34,9 +30,11 @@ struct ToggleView: View {
             
             if let error = error.value {
                 Text(error.localized())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.caption)
                     .foregroundColor(.red)
             }
         }
-        .padding(4)
+        .animation(Animation.easeInOut(duration: 0.3), value: UUID())
     }
 }

@@ -95,6 +95,11 @@ fun FormUi(
                 label = stringResource(id = MR.strings.terms_hint.resourceId)
             )
 
+            CheckboxField(
+                checkControl = component.newsletterCheckBox,
+                label = stringResource(id = MR.strings.newsletter_hint.resourceId)
+            )
+
             val backgroundColor by animateColorAsState(
                 when (submitButtonState) {
                     SubmitButtonState.Valid -> colorResource(R.color.green)

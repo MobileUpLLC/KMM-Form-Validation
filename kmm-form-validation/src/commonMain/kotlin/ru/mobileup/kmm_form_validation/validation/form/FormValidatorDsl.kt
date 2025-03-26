@@ -40,7 +40,7 @@ class FormValidatorBuilder {
     fun check(
         checkControl: CheckControl,
         validation: (Boolean) -> ValidationResult,
-        showError: ((StringDesc) -> Unit)? = null
+        showError: ((StringDesc) -> Unit)? = null,
     ) {
         val checkValidator = CheckValidator(checkControl, validation, showError)
         validator(checkValidator)
@@ -53,7 +53,7 @@ class FormValidatorBuilder {
     fun input(
         inputControl: InputControl,
         required: Boolean = true,
-        buildBlock: InputValidatorBuilder.() -> Unit
+        buildBlock: InputValidatorBuilder.() -> Unit,
     ) {
         val inputValidator = InputValidatorBuilder(inputControl, required)
             .apply(buildBlock)
@@ -85,14 +85,12 @@ fun CoroutineScope.formValidator(buildBlock: FormValidatorBuilder.() -> Unit): F
 fun FormValidatorBuilder.checked(
     checkControl: CheckControl,
     errorMessage: StringDesc,
-    showError: ((StringDesc) -> Unit)? = null
+    showError: ((StringDesc) -> Unit)? = null,
 ) {
-    this.check(
-        checkControl,
-        validation = {
-            if (it) ValidationResult.Valid else ValidationResult.Invalid(errorMessage)
-        },
-        showError
+    check(
+        checkControl = checkControl,
+        validation = { if (it) ValidationResult.Valid else ValidationResult.Invalid(errorMessage) },
+        showError = showError
     )
 }
 
@@ -102,7 +100,7 @@ fun FormValidatorBuilder.checked(
 fun FormValidatorBuilder.checked(
     checkControl: CheckControl,
     errorMessageRes: StringResource,
-    showError: ((StringDesc) -> Unit)? = null
+    showError: ((StringDesc) -> Unit)? = null,
 ) {
     checked(checkControl, StringDesc.Resource(errorMessageRes), showError)
 }

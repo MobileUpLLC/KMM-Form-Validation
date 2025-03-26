@@ -7,6 +7,7 @@
     <string name="password_hint">Password</string>
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="terms_hint">Accept Terms of Use</string>
+    <string name="newsletter_hint">Subscribe to newsletter</string>
     <string name="submit_button">Submit</string>
     <string name="success_message">Success</string>
 
