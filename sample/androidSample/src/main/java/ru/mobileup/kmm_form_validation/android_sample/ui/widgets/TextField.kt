@@ -40,7 +40,7 @@ fun TextField(
     val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val hasFocus by inputControl.hasFocus.collectAsState()
     val error by inputControl.error.collectAsState()
-    val currentValue by inputControl.text.collectAsState()
+    val currentValue by inputControl.valueState.collectAsState()
     val enabled by inputControl.enabled.collectAsState()
 
     var currentSelection by rememberSaveable(stateSaver = TextRangeSaver) {
@@ -95,7 +95,7 @@ fun TextField(
             singleLine = inputControl.singleLine,
             label = { Text(text = label) },
             onValueChange = {
-                inputControl.onTextChanged(it.text)
+                inputControl.onValueChanged(it.text)
                 currentSelection = it.selection
                 currentComposition = it.composition
             },

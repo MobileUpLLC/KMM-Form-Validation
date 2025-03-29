@@ -6,10 +6,12 @@ import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.control.InputControl
+import ru.mobileup.kmm_form_validation.control.PickerControl
 import ru.mobileup.kmm_form_validation.control.ValidatableControl
 import ru.mobileup.kmm_form_validation.validation.control.CheckValidator
 import ru.mobileup.kmm_form_validation.validation.control.ControlValidator
 import ru.mobileup.kmm_form_validation.validation.control.InputValidatorBuilder
+import ru.mobileup.kmm_form_validation.validation.control.PickerValidatorBuilder
 import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
 
 class FormValidatorBuilder {
@@ -17,7 +19,8 @@ class FormValidatorBuilder {
     private val validators = mutableMapOf<ValidatableControl<*>, ControlValidator<*>>()
 
     /**
-     * Allows to add additional features to form validation. @see [FormValidationFeature].
+     * Allows to add additional features to form validation.
+     * @see [FormValidationFeature].
      */
     var features = listOf<FormValidationFeature>()
 
@@ -39,11 +42,11 @@ class FormValidatorBuilder {
      */
     fun check(
         checkControl: CheckControl,
-        validation: (Boolean) -> ValidationResult,
         showError: ((StringDesc) -> Unit)? = null,
+        validation: (Boolean) -> ValidationResult,
     ) {
-        val checkValidator = CheckValidator(checkControl, validation, showError)
-        validator(checkValidator)
+        CheckValidator(checkControl, validation, showError)
+            .run(::validator)
     }
 
     /**
@@ -55,17 +58,32 @@ class FormValidatorBuilder {
         required: Boolean = true,
         buildBlock: InputValidatorBuilder.() -> Unit,
     ) {
-        val inputValidator = InputValidatorBuilder(inputControl, required)
+        InputValidatorBuilder(inputControl, required)
             .apply(buildBlock)
             .build()
-        validator(inputValidator)
+            .run(::validator)
     }
 
-    fun build(coroutineScope: CoroutineScope): FormValidator {
-        return FormValidator(validators, coroutineScope).apply {
-            features.forEach { feature ->
-                feature.install(coroutineScope, this)
-            }
+    /**
+     * Adds a validator for [PickerControl]. Use [buildBlock] to configure validation for a given control.
+     * @param required Specifies whether a value must be selected for validation to pass.
+     */
+    fun <T> picker(
+        pickerControl: PickerControl<T>,
+        required: Boolean = true,
+        buildBlock: PickerValidatorBuilder<T>.() -> Unit,
+    ) {
+        PickerValidatorBuilder(pickerControl, required)
+            .apply(buildBlock)
+            .build()
+            .run(::validator)
+    }
+
+    fun build(
+        coroutineScope: CoroutineScope,
+    ): FormValidator = FormValidator(validators, coroutineScope).apply {
+        features.forEach { feature ->
+            feature.install(coroutineScope, this)
         }
     }
 }
@@ -73,11 +91,9 @@ class FormValidatorBuilder {
 /**
  * Creates [FormValidator]. Use [buildBlock] to configure validation.
  */
-fun CoroutineScope.formValidator(buildBlock: FormValidatorBuilder.() -> Unit): FormValidator {
-    return FormValidatorBuilder()
-        .apply(buildBlock)
-        .build(this)
-}
+fun CoroutineScope.formValidator(
+    buildBlock: FormValidatorBuilder.() -> Unit,
+): FormValidator = FormValidatorBuilder().apply(buildBlock).build(this)
 
 /**
  * Adds a validator that checks that [checkControl] is checked.
@@ -86,12 +102,8 @@ fun FormValidatorBuilder.checked(
     checkControl: CheckControl,
     errorMessage: StringDesc,
     showError: ((StringDesc) -> Unit)? = null,
-) {
-    check(
-        checkControl = checkControl,
-        validation = { if (it) ValidationResult.Valid else ValidationResult.Invalid(errorMessage) },
-        showError = showError
-    )
+) = check(checkControl, showError) {
+    if (it) ValidationResult.Valid else ValidationResult.Invalid(errorMessage)
 }
 
 /**
@@ -101,6 +113,4 @@ fun FormValidatorBuilder.checked(
     checkControl: CheckControl,
     errorMessageRes: StringResource,
     showError: ((StringDesc) -> Unit)? = null,
-) {
-    checked(checkControl, StringDesc.Resource(errorMessageRes), showError)
-}
+) = checked(checkControl, StringDesc.Resource(errorMessageRes), showError)

@@ -6,17 +6,18 @@ import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Control that can be validated.
- * @param ValueT type of value managed by a control.
+ * @param T type of value managed by a control.
  *
  * @see: [InputControl]
  * @see: [CheckControl]
+ * @see: [PickerControl]
  */
-interface ValidatableControl<ValueT : Any> {
+interface ValidatableControl<T> {
 
     /**
-     * Control value.
+     * The current value of the control.
      */
-    val value: StateFlow<ValueT>
+    val valueState: StateFlow<T>
 
     /**
      * Displayed error.
@@ -24,12 +25,16 @@ interface ValidatableControl<ValueT : Any> {
     val error: MutableStateFlow<StringDesc?>
 
     /**
-     * Is control should be skipped during validation.
+     * Indicates whether the control should be skipped during validation.
      */
     val skipInValidation: StateFlow<Boolean>
 
     /**
-     * Moves focus to a control.
+     * Updates the control's value.
+     * This method should be called whenever the value changes on the UI
+     * to ensure that the control state remains in sync.
+     *
+     * @param value The new value to be set.
      */
-    fun requestFocus()
+    fun onValueChanged(value: T)
 }

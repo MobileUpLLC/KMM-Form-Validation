@@ -11,28 +11,36 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.localized
 import ru.mobileup.kmm_form_validation.android_sample.R
 import ru.mobileup.kmm_form_validation.android_sample.ui.theme.AppTheme
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.CheckboxField
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.KonfettiWidget
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.MenuButton
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.PasswordTextField
+import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.PickerField
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.TextField
 import ru.mobileup.kmm_form_validation.options.VisualTransformation
 import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.ui.FakeFormComponent
 import ru.mobileup.kmm_form_validation.sharedsample.ui.FormComponent
+import ru.mobileup.kmm_form_validation.sharedsample.ui.Gender
 import ru.mobileup.kmm_form_validation.sharedsample.ui.SubmitButtonState
 
 @Composable
@@ -66,12 +74,47 @@ fun FormUi(
                 label = stringResource(id = MR.strings.name_hint.resourceId),
             )
 
+            var isExpanded by remember { mutableStateOf(false) }
+            val gender by component.genderPicker.valueState.collectAsState()
+
+            PickerField(
+                pickerControl = component.genderPicker,
+                onClick = { isExpanded = !isExpanded },
+                isExpanded = isExpanded,
+                label = stringResource(id = MR.strings.gender_hint.resourceId),
+            ) {
+                Column {
+                    Gender.entries.forEach {
+                        DropdownMenuItem(
+                            onClick = {
+                                component.genderPicker.onValueChanged(it)
+                                isExpanded = false
+                            }
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .align(Alignment.CenterVertically),
+                                text = it.displayValueDesc.localized()
+                            )
+                            if (it == gender) {
+                                Text(
+                                    modifier = Modifier.align(Alignment.CenterVertically),
+                                    text = "✓",
+                                    style = MaterialTheme.typography.h6
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+
             TextField(
                 inputControl = component.emailInput,
                 label = stringResource(id = MR.strings.email_hint.resourceId),
             )
 
-            val phone by component.phoneInput.text.collectAsState()
+            val phone by component.phoneInput.valueState.collectAsState()
             val phoneHasFocus by component.phoneInput.hasFocus.collectAsState()
 
             TextField(
