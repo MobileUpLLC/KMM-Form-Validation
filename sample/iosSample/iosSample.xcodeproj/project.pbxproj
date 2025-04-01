@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C1ADA502D92EF5100EB6B6D /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1ADA4F2D92EF5100EB6B6D /* ConfettiSwiftUI */; };
+		6C833F9D2D9C201900C7BFFB /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C833F9C2D9C201600C7BFFB /* PickerView.swift */; };
 		EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */; };
 		EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */; };
 		EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FED2987B252001DCE8B /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C833F9C2D9C201600C7BFFB /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		EC7C1FE62987B251001DCE8B /* iosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleApp.swift; sourceTree = "<group>"; };
 		EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithControl.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		EC7C2021298A70E7001DCE8B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6C833F9C2D9C201600C7BFFB /* PickerView.swift */,
 				EC7C201F298A6B76001DCE8B /* SecureTextFieldWithControl.swift */,
 				EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */,
 				EC7C2022298A710B001DCE8B /* ToggleView.swift */,
@@ -214,6 +217,7 @@
 				EC7C2025298A7883001DCE8B /* SubmitButtonView.swift in Sources */,
 				EC7C20172987F483001DCE8B /* UnsafeObservableState.swift in Sources */,
 				EC7C2020298A6B76001DCE8B /* SecureTextFieldWithControl.swift in Sources */,
+				6C833F9D2D9C201900C7BFFB /* PickerView.swift in Sources */,
 				ECB57B3B298CFC4E00AE547C /* FormView.swift in Sources */,
 				EC7C201E298A6AD1001DCE8B /* VisualExtentions.swift in Sources */,
 				EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */,

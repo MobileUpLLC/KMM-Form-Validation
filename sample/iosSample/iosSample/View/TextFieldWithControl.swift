@@ -19,7 +19,7 @@ struct TextFieldWithControl: View {
         self.hint = hint
         self.inputControl = inputControl
         self.keyboardOptions = inputControl.keyboardOptions
-        self.text = UnsafeObservableState(inputControl.text)
+        self.text = UnsafeObservableState(inputControl.valueState)
         self.error = UnsafeObservableState(inputControl.error)
         self.hasFocus = UnsafeObservableState(inputControl.hasFocus)
         self.enabled = UnsafeObservableState(inputControl.enabled)
@@ -32,7 +32,7 @@ struct TextFieldWithControl: View {
                 value: Binding {
                     String(text.value ?? "")
                 } set: { value in
-                    inputControl.onTextChanged(text:value)
+                    inputControl.onValueChanged(value: value)
                 },
                 formatter: VisualFormatter(inputControl.visualTransformation)
             )
