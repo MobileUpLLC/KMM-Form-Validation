@@ -52,12 +52,12 @@ You can integrate `InputControl` with Jetpack Compose `TextField` as follows:
 ```kotlin
 @Composable
 fun NameField(inputControl: InputControl) {
-    val text by inputControl.text.collectAsState()
+    val text by inputControl.value.collectAsState()
     val enabled by inputControl.enabled.collectAsState()
 
     TextField(
         value = text,
-        onValueChange = inputControl::onTextChanged,
+        onValueChange = inputControl::onValueChange,
         enabled = enabled,
         visualTransformation = inputControl.visualTransformation.toCompose(),
     )
@@ -87,7 +87,7 @@ fun TermsCheckbox(checkControl: CheckControl) {
 
     Checkbox(
         checked = checked,
-        onCheckedChange = checkControl::onCheckedChanged,
+        onCheckedChange = checkControl::onValueChange,
         enabled = enabled
     )
 }
