@@ -17,7 +17,6 @@ class InputValidator(
 ) : BaseValidator<String, InputControl>(control) {
 
     override fun performValidation(): ValidationResult {
-        if (control.skipInValidation.value) return ValidationResult.Skipped
         if (control.valueState.value.isBlank() && !required) return ValidationResult.Valid
 
         validations.forEach { validation ->

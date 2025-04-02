@@ -19,10 +19,7 @@ class CheckValidator(
     private val showError: ((StringDesc) -> Unit)? = null,
 ) : BaseValidator<Boolean, CheckControl>(control) {
 
-    override fun performValidation(): ValidationResult {
-        if (control.skipInValidation.value) return ValidationResult.Skipped
-        return validation(control.valueState.value)
-    }
+    override fun performValidation(): ValidationResult = validation(control.valueState.value)
 
     override fun displayValidationResult(result: ValidationResult) {
         super.displayValidationResult(result)

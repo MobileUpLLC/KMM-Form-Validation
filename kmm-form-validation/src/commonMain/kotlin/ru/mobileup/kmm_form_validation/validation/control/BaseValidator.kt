@@ -14,8 +14,13 @@ abstract class BaseValidator<T, C : ValidatableControl<T>>(
     override val control: C,
 ) : ControlValidator<C> {
 
-    override fun validate(displayResult: Boolean): ValidationResult =
+    override fun validate(
+        displayResult: Boolean,
+    ): ValidationResult = if (control.skipInValidation.value) {
+        ValidationResult.Skipped
+    } else {
         performValidation().also { if (displayResult) displayValidationResult(it) }
+    }
 
     /**
      * Executes the validation logic.

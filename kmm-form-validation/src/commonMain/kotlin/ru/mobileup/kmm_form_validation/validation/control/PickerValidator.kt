@@ -19,7 +19,6 @@ class PickerValidator<T>(
 ) : BaseValidator<T?, PickerControl<T>>(control) {
 
     override fun performValidation(): ValidationResult {
-        if (control.skipInValidation.value) return ValidationResult.Skipped
         if (control.valueState.value == null && !required) return ValidationResult.Valid
 
         validations.forEach { validation ->
