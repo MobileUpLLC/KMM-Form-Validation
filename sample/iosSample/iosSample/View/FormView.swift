@@ -16,7 +16,7 @@ struct FormView: View {
         self.formComponent = formComponent
         self.submitButtonState = UnsafeObservableState<SubmitButtonState>(formComponent.submitButtonState)
         self.showConfetti = UnsafeObservableState<KotlinBoolean>(formComponent.showConfetti)
-        self.selectedGender = UnsafeObservableState<Gender>(formComponent.genderPicker.valueState)
+        self.selectedGender = UnsafeObservableState<Gender>(formComponent.genderPicker.value)
     }
     
     var body: some View {
@@ -33,7 +33,7 @@ struct FormView: View {
                 ) { closePicker in
                     ForEach(Gender.entries, id: \.self) { gender in
                         Button(action: {
-                            formComponent.genderPicker.onValueChanged(value: gender)
+                            formComponent.genderPicker.onValueChange(value: gender)
                             closePicker()
                         }) {
                             HStack {

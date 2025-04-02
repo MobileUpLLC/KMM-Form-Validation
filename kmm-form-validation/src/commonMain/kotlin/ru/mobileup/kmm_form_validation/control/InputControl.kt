@@ -48,7 +48,7 @@ class InputControl(
         super.requestFocus()
     }
 
-    override fun onValueChanged(value: String) {
+    override fun onValueChange(value: String) {
         _value.value = correctText(value)
     }
 
@@ -57,7 +57,7 @@ class InputControl(
      *
      * @param hasFocus `true` if the field is focused, `false` otherwise.
      */
-    fun onFocusChanged(hasFocus: Boolean) {
+    fun onFocusChange(hasFocus: Boolean) {
         this.hasFocus.value = hasFocus
     }
 

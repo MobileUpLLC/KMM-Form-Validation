@@ -63,7 +63,7 @@ fun PasswordTextField(
                 Text(text = label)
             },
             isError = error != null,
-            onValueChange = inputControl::onValueChanged,
+            onValueChange = inputControl::onValueChange,
             visualTransformation = if (passwordVisibility) {
                 VisualTransformation.None
             } else {
@@ -84,7 +84,7 @@ fun PasswordTextField(
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
                 .onFocusChanged {
-                    inputControl.onFocusChanged(it.isFocused)
+                    inputControl.onFocusChange(it.isFocused)
                 }
         )
 

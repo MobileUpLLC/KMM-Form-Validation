@@ -87,7 +87,7 @@ fun TextField(
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
                 .onFocusChanged {
-                    inputControl.onFocusChanged(it.isFocused)
+                    inputControl.onFocusChange(it.isFocused)
                 },
             value = currentTextFieldValue,
             enabled = enabled,
@@ -95,7 +95,7 @@ fun TextField(
             singleLine = inputControl.singleLine,
             label = { Text(text = label) },
             onValueChange = {
-                inputControl.onValueChanged(it.text)
+                inputControl.onValueChange(it.text)
                 currentSelection = it.selection
                 currentComposition = it.composition
             },

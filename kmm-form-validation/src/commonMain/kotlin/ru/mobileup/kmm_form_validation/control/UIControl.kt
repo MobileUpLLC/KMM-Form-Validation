@@ -56,7 +56,7 @@ interface UIControl<T> {
      *
      * @param value The new value to be set.
      */
-    fun onValueChanged(value: T)
+    fun onValueChange(value: T)
 
     /**
      * Moves focus to the control, ensuring it is ready for user interaction.

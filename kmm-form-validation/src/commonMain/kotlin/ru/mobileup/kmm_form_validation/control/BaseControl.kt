@@ -46,7 +46,7 @@ abstract class BaseControl<T>(
         _scrollToItEvent.tryEmit(Unit)
     }
 
-    override fun onValueChanged(value: T) {
+    override fun onValueChange(value: T) {
         _value.value = value
     }
 }

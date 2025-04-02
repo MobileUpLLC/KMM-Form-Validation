@@ -87,7 +87,7 @@ fun FormUi(
                     Gender.entries.forEach {
                         DropdownMenuItem(
                             onClick = {
-                                component.genderPicker.onValueChanged(it)
+                                component.genderPicker.onValueChange(it)
                                 isExpanded = false
                             }
                         ) {

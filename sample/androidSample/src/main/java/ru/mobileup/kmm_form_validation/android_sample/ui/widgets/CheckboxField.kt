@@ -56,7 +56,7 @@ fun CheckboxField(
             CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
                 Checkbox(
                     checked = checked,
-                    onCheckedChange = checkControl::onValueChanged,
+                    onCheckedChange = checkControl::onValueChange,
                     enabled = enabled
                 )
             }
