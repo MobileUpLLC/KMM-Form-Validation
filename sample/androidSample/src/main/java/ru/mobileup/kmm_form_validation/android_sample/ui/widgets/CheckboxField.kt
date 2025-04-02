@@ -7,16 +7,21 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.material.Checkbox
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.localized
-import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.kmm_form_validation.control.CheckControl
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
@@ -24,22 +29,25 @@ import ru.mobileup.kmm_form_validation.control.CheckControl
 fun CheckboxField(
     checkControl: CheckControl,
     label: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    val bringIntoViewRequester = remember { BringIntoViewRequester() }
-
-    val checked by checkControl.checked.collectAsState()
+    val checked by checkControl.value.collectAsState()
     val enabled by checkControl.enabled.collectAsState()
     val error by checkControl.error.collectAsState()
 
-    Column(modifier = modifier.fillMaxWidth()) {
+    val bringIntoViewRequester = remember { BringIntoViewRequester() }
 
-        LaunchedEffect(key1 = checkControl) {
-            checkControl.scrollToItEvent.collectLatest {
-                bringIntoViewRequester.bringIntoView()
-            }
+    LaunchedEffect(Unit) {
+        checkControl.scrollToItEvent.collect {
+            bringIntoViewRequester.bringIntoView()
         }
-        
+    }
+
+    Column(
+        modifier = modifier
+            .bringIntoViewRequester(bringIntoViewRequester)
+            .fillMaxWidth()
+    ) {
         Row(
             modifier = modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -48,7 +56,7 @@ fun CheckboxField(
             CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
                 Checkbox(
                     checked = checked,
-                    onCheckedChange = { checkControl.onCheckedChanged(it) },
+                    onCheckedChange = checkControl::onValueChange,
                     enabled = enabled
                 )
             }

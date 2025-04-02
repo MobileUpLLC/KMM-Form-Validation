@@ -3,11 +3,13 @@ package ru.mobileup.kmm_form_validation.sharedsample.ui
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
+import dev.icerock.moko.resources.desc.desc
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.control.InputControl
+import ru.mobileup.kmm_form_validation.control.PickerControl
 import ru.mobileup.kmm_form_validation.options.KeyboardCapitalization
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.KeyboardType
@@ -45,6 +47,8 @@ class FakeFormComponent : FormComponent, ComponentContext by DefaultComponentCon
         fakeScope,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
     )
+
+    override val genderPicker = PickerControl<Gender>(fakeScope) { "".desc() }
 
     override val termsCheckBox = CheckControl(fakeScope)
 

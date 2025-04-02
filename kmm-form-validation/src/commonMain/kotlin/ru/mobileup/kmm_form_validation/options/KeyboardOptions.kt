@@ -5,11 +5,4 @@ data class KeyboardOptions(
     val autoCorrect: Boolean = true,
     val keyboardType: KeyboardType = KeyboardType.Text,
     val imeAction: ImeAction = ImeAction.Default
-) {
-    constructor() : this(
-        capitalization = KeyboardCapitalization.None,
-        autoCorrect = true,
-        keyboardType = KeyboardType.Text,
-        imeAction = ImeAction.Default
-    )
-}
+)

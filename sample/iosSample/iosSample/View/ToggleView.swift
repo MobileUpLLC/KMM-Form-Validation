@@ -12,7 +12,7 @@ struct ToggleView: View {
     init(checkControl: CheckControl, label: String) {
         self.label = label
         self.checkControl = checkControl
-        checked = UnsafeObservableState(checkControl.checked)
+        checked = UnsafeObservableState(checkControl.value)
         error = UnsafeObservableState(checkControl.error)
     }
     
@@ -21,7 +21,7 @@ struct ToggleView: View {
             Toggle(
                 isOn: Binding(
                     get: { checked.value?.boolValue ?? false },
-                    set: checkControl.onCheckedChanged
+                    set: { newValue in checkControl.onValueChange(value: KotlinBoolean(bool: newValue)) }
                 ),
                 label: {
                     Text(label)

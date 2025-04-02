@@ -7,7 +7,7 @@ import ru.mobileup.kmm_form_validation.control.InputControl
 
 class InputValidatorBuilder(
     private val inputControl: InputControl,
-    private val required: Boolean
+    private val required: Boolean,
 ) {
 
     private val validations = mutableListOf<(String) -> ValidationResult>()
@@ -27,7 +27,7 @@ class InputValidatorBuilder(
 /**
  * Adds an arbitrary validation. Validations are processed sequentially until first error.
  */
-fun InputValidatorBuilder.validation(isValid: (String) -> Boolean, errorMessage: StringDesc) {
+fun InputValidatorBuilder.validation(errorMessage: StringDesc, isValid: (String) -> Boolean) {
     validation {
         if (isValid(it)) {
             ValidationResult.Valid
@@ -41,18 +41,18 @@ fun InputValidatorBuilder.validation(isValid: (String) -> Boolean, errorMessage:
  * Adds an arbitrary validation. Validations are processed sequentially until first error.
  */
 fun InputValidatorBuilder.validation(
+    errorMessageRes: StringResource,
     isValid: (String) -> Boolean,
-    errorMessageRes: StringResource
 ) {
-    validation(isValid, StringDesc.Resource(errorMessageRes))
+    validation(StringDesc.Resource(errorMessageRes), isValid)
 }
 
 /**
  * Adds an arbitrary validation. Validations are processed sequentially until first error.
  */
 fun InputValidatorBuilder.validation(
+    errorMessage: () -> StringDesc,
     isValid: (String) -> Boolean,
-    errorMessage: () -> StringDesc
 ) {
     validation {
         if (isValid(it)) {
@@ -66,73 +66,51 @@ fun InputValidatorBuilder.validation(
 /**
  * Adds a validation that checks that an input is not blank.
  */
-fun InputValidatorBuilder.isNotBlank(errorMessage: StringDesc) {
-    validation(
-        isValid = { it.isNotBlank() },
-        errorMessage
-    )
-}
+fun InputValidatorBuilder.isNotBlank(errorMessage: StringDesc) =
+    validation(errorMessage, String::isNotBlank)
 
 /**
  * Adds a validation that checks that an input is not blank.
  */
-fun InputValidatorBuilder.isNotBlank(errorMessageRes: StringResource) {
+fun InputValidatorBuilder.isNotBlank(errorMessageRes: StringResource) =
     isNotBlank(StringDesc.Resource(errorMessageRes))
-}
 
 /**
  * Adds a validation that checks that an input matches [regex].
  */
-fun InputValidatorBuilder.regex(regex: Regex, errorMessage: StringDesc) {
-    validation(
-        isValid = { regex.matches(it) },
-        errorMessage
-    )
-}
+fun InputValidatorBuilder.regex(regex: Regex, errorMessage: StringDesc) =
+    validation(errorMessage, regex::matches)
 
 /**
  * Adds a validation that checks that an input matches [regex].
  */
-fun InputValidatorBuilder.regex(regex: Regex, errorMessageRes: StringResource) {
+fun InputValidatorBuilder.regex(regex: Regex, errorMessageRes: StringResource) =
     regex(regex, StringDesc.Resource(errorMessageRes))
-}
 
 /**
  * Adds a validation that checks that an input has at least given number of symbols.
  */
-fun InputValidatorBuilder.minLength(length: Int, errorMessage: StringDesc) {
-    validation(
-        isValid = { it.length >= length },
-        errorMessage
-    )
-}
+fun InputValidatorBuilder.minLength(length: Int, errorMessage: StringDesc) =
+    validation(errorMessage) { it.length >= length }
 
 /**
  * Adds a validation that checks that an input has at least given number of symbols.
  */
-fun InputValidatorBuilder.minLength(length: Int, errorMessageRes: StringResource) {
+fun InputValidatorBuilder.minLength(length: Int, errorMessageRes: StringResource) =
     minLength(length, StringDesc.Resource(errorMessageRes))
-}
 
 /**
  * Adds a validation that checks that an input equals to an input of another input control.
  */
 fun InputValidatorBuilder.equalsTo(
     inputControl: InputControl,
-    errorMessage: StringDesc
-) {
-    validation(
-        isValid = { it == inputControl.value.value },
-        errorMessage
-    )
-}
+    errorMessage: StringDesc,
+) = validation(errorMessage) { it == inputControl.value.value }
 
 /**
  * Adds a validation that checks that an input equals to an input of another input control.
  */
 fun InputValidatorBuilder.equalsTo(
     inputControl: InputControl,
-    errorMessageRes: StringResource
-) {
-    equalsTo(inputControl, StringDesc.Resource(errorMessageRes))
-}
+    errorMessageRes: StringResource,
+) = equalsTo(inputControl, StringDesc.Resource(errorMessageRes))

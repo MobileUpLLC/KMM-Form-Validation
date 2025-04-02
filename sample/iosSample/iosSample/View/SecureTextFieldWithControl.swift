@@ -19,7 +19,7 @@ struct SecureTextFieldWithControl: View {
         self.hint = hint
         self.inputControl = inputControl
         self.keyboardOptions = inputControl.keyboardOptions
-        self.text = UnsafeObservableState(inputControl.text)
+        self.text = UnsafeObservableState(inputControl.value)
         self.error = UnsafeObservableState(inputControl.error)
         self.hasFocus = UnsafeObservableState(inputControl.hasFocus)
         self.enabled = UnsafeObservableState(inputControl.enabled)
@@ -31,7 +31,7 @@ struct SecureTextFieldWithControl: View {
                 text: Binding {
                     String(text.value ?? "")
                 } set: { value in
-                    inputControl.onTextChanged(text:value)
+                    inputControl.onValueChange(value: value)
                 },
                 prompt: Text(hint),
                 label: {
@@ -47,7 +47,7 @@ struct SecureTextFieldWithControl: View {
             )
             .focused($isFocused)
             .onChange(of: isFocused) { newValue in
-                inputControl.onFocusChanged(hasFocus: newValue)
+                inputControl.onFocusChange(hasFocus: newValue)
             }
             .disabled(!(enabled.value?.boolValue ?? false))
             .keyboardType(keyboardOptions.keyboardType.toUI())

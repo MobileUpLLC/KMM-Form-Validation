@@ -1,6 +1,5 @@
 package ru.mobileup.kmm_form_validation.control
 
-import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
@@ -10,10 +9,10 @@ import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.TextTransformation
 import ru.mobileup.kmm_form_validation.options.VisualTransformation
-import ru.mobileup.kmm_form_validation.util.computed
 
 /**
- * Logical representation of an input field. It allows to configure an input field and manage its state from ViewModel.
+ * Logical representation of an input field.
+ * It provides configuration options and manages the text input state.
  */
 class InputControl(
     coroutineScope: CoroutineScope,
@@ -23,85 +22,63 @@ class InputControl(
     val keyboardOptions: KeyboardOptions = KeyboardOptions(),
     val textTransformation: TextTransformation? = null,
     val visualTransformation: VisualTransformation = VisualTransformation.None,
-) : ValidatableControl<String> {
+) : BaseControl<String>(initialText, coroutineScope) {
 
-    private val _text = MutableStateFlow(correctText(initialText))
+    private val _value = MutableStateFlow(correctText(initialText))
+
+    override val value: StateFlow<String> = _value
+
+    private val _moveCursorEvent = MutableSharedFlow<Int>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
     /**
-     * Current text.
+     * Emits an event when the cursor needs to be moved to a specific position.
      */
-    val text: StateFlow<String>
-        get() = _text
+    val moveCursorEvent: Flow<Int> = _moveCursorEvent
 
     /**
-     * Is control visible.
-     */
-    val visible: MutableStateFlow<Boolean> = MutableStateFlow(true)
-
-    /**
-     * Is control enabled.
-     */
-    val enabled: MutableStateFlow<Boolean> = MutableStateFlow(true)
-
-    /**
-     * Is control has focus.
+     * Indicates whether the input field currently has focus.
      */
     val hasFocus: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
-    /**
-     * Displayed error.
-     */
-    override val error: MutableStateFlow<StringDesc?> = MutableStateFlow(null)
-
-    override val value: StateFlow<String> = _text
-
-    override val skipInValidation =
-        computed(coroutineScope, visible, enabled) { visible, enabled -> !visible || !enabled }
-
-    private val mutableScrollToItEventFlow = MutableSharedFlow<Unit>(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-
-    val scrollToItEvent get() = mutableScrollToItEventFlow as Flow<Unit>
-
-    private val mutableMoveCursorEvent = MutableSharedFlow<Int>(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-
-    val moveCursorEvent get() = mutableMoveCursorEvent as Flow<Int>
-
     override fun requestFocus() {
-        this.hasFocus.value = true
-        mutableScrollToItEventFlow.tryEmit(Unit)
+        hasFocus.value = true
+        super.requestFocus()
     }
 
-    fun setText(text: String) {
-        _text.value = correctText(text)
+    override fun onValueChange(value: String) {
+        _value.value = correctText(value)
     }
 
     /**
-     * Should be called when text is changed on a view side.
+     * Updates the focus state of the input field.
+     *
+     * @param hasFocus `true` if the field is focused, `false` otherwise.
      */
-    fun onTextChanged(text: String) {
-        _text.value = correctText(text)
-    }
-
-    fun onFocusChanged(hasFocus: Boolean) {
+    fun onFocusChange(hasFocus: Boolean) {
         this.hasFocus.value = hasFocus
     }
 
+    /**
+     * Moves the cursor to a specified position within the input text.
+     *
+     * @param position The index where the cursor should be placed.
+     */
     fun moveCursor(position: Int) {
-        mutableMoveCursorEvent.tryEmit(position)
+        _moveCursorEvent.tryEmit(position)
+    }
+
+    /**
+     * Moves the cursor to the end of the text.
+     */
+    fun moveCursorToEnd() {
+        moveCursor(value.value.length)
     }
 
     private fun correctText(text: String): String {
         val transformedText = textTransformation?.transform(text) ?: text
         return transformedText.take(maxLength)
     }
-}
-
-fun InputControl.moveCursorToEnd() {
-    moveCursor(text.value.length)
 }

@@ -15,11 +15,13 @@ import ru.mobileup.kmm_form_validation.options.PasswordVisualTransformation
 import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl
+import ru.mobileup.kmm_form_validation.sharedsample.utils.PickerControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.componentScope
 import ru.mobileup.kmm_form_validation.sharedsample.utils.computed
 import ru.mobileup.kmm_form_validation.sharedsample.utils.formValidator
 import ru.mobileup.kmm_form_validation.validation.control.equalsTo
 import ru.mobileup.kmm_form_validation.validation.control.isNotBlank
+import ru.mobileup.kmm_form_validation.validation.control.isPicked
 import ru.mobileup.kmm_form_validation.validation.control.regex
 import ru.mobileup.kmm_form_validation.validation.control.validation
 import ru.mobileup.kmm_form_validation.validation.form.RevalidateOnValueChanged
@@ -96,6 +98,8 @@ class RealFormComponent(
 
     override val newsletterCheckBox = CheckControl()
 
+    override val genderPicker = PickerControl<Gender> { it?.displayValueDesc }
+
     override val showConfetti = MutableStateFlow(false)
 
     private val formValidator = formValidator {
@@ -108,6 +112,10 @@ class RealFormComponent(
 
         input(nameInput) {
             isNotBlank(MR.strings.field_is_blank_error_message)
+        }
+
+        picker(genderPicker) {
+            isPicked(MR.strings.field_is_blank_error_message)
         }
 
         input(emailInput, required = false) {
@@ -161,14 +169,15 @@ class RealFormComponent(
         containsDigit && containsLowercase && containsUppercase && containsSpecChar && notContainsInvalidChar && validLength
     }
 
-    private val validationState = formValidator.validationState
-
-    override val submitButtonState = computed(validationState) { result ->
-        if (result.isValid) SubmitButtonState.Valid else SubmitButtonState.Invalid
+    override val submitButtonState = computed(
+        formValidator.isFilledState,
+        formValidator.hasErrorState
+    ) { isFilled, hasError ->
+        if (isFilled && !hasError) SubmitButtonState.Valid else SubmitButtonState.Invalid
     }
 
     init {
-        validationState
+        formValidator.validationState
             .onEach {
                 if (it.isInvalid) {
                     showConfetti.value = false

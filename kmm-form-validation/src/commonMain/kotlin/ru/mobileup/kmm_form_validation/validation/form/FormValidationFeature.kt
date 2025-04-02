@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import ru.mobileup.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.kmm_form_validation.control.UIControl
 import ru.mobileup.kmm_form_validation.validation.control.ControlValidator
 import ru.mobileup.kmm_form_validation.validation.control.InputValidator
 import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
@@ -86,7 +86,7 @@ object HideErrorOnValueChanged : FormValidationFeature {
 
     private fun hideErrorOnValueChanged(
         coroutineScope: CoroutineScope,
-        control: ValidatableControl<*>
+        control: UIControl<*>
     ) {
         control.value
             .drop(1)

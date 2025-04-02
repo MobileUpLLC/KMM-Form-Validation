@@ -41,7 +41,7 @@ fun PasswordTextField(
 
         val hasFocus by inputControl.hasFocus.collectAsState()
         val error by inputControl.error.collectAsState()
-        val text by inputControl.text.collectAsState()
+        val text by inputControl.value.collectAsState()
 
         if (hasFocus) {
             SideEffect {
@@ -63,7 +63,7 @@ fun PasswordTextField(
                 Text(text = label)
             },
             isError = error != null,
-            onValueChange = inputControl::onTextChanged,
+            onValueChange = inputControl::onValueChange,
             visualTransformation = if (passwordVisibility) {
                 VisualTransformation.None
             } else {
@@ -84,7 +84,7 @@ fun PasswordTextField(
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
                 .onFocusChanged {
-                    inputControl.onFocusChanged(it.isFocused)
+                    inputControl.onFocusChange(it.isFocused)
                 }
         )
 
