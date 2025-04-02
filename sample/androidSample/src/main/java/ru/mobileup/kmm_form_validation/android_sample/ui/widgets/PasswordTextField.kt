@@ -41,7 +41,7 @@ fun PasswordTextField(
 
         val hasFocus by inputControl.hasFocus.collectAsState()
         val error by inputControl.error.collectAsState()
-        val text by inputControl.valueState.collectAsState()
+        val text by inputControl.value.collectAsState()
 
         if (hasFocus) {
             SideEffect {

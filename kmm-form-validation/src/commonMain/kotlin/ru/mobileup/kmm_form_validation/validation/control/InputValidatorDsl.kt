@@ -105,7 +105,7 @@ fun InputValidatorBuilder.minLength(length: Int, errorMessageRes: StringResource
 fun InputValidatorBuilder.equalsTo(
     inputControl: InputControl,
     errorMessage: StringDesc,
-) = validation(errorMessage) { it == inputControl.valueState.value }
+) = validation(errorMessage) { it == inputControl.value.value }
 
 /**
  * Adds a validation that checks that an input equals to an input of another input control.

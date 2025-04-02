@@ -21,5 +21,5 @@ class PickerControl<T>(
      * A computed state representing the displayable text of the selected value.
      * It applies the provided [displayMapper] function to transform the selected value into a user-friendly string.
      */
-    val displayValue: StateFlow<StringDesc?> = computed(coroutineScope, valueState, displayMapper)
+    val displayValue: StateFlow<StringDesc?> = computed(coroutineScope, value, displayMapper)
 }

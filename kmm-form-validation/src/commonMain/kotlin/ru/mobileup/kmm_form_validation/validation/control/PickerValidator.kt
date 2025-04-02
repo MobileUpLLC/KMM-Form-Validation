@@ -19,10 +19,10 @@ class PickerValidator<T>(
 ) : BaseValidator<T?, PickerControl<T>>(control) {
 
     override fun performValidation(): ValidationResult {
-        if (control.valueState.value == null && !required) return ValidationResult.Valid
+        if (control.value.value == null && !required) return ValidationResult.Valid
 
         validations.forEach { validation ->
-            val result = validation(control.valueState.value)
+            val result = validation(control.value.value)
             if (result is ValidationResult.Invalid) return result
         }
 
@@ -34,5 +34,5 @@ class PickerValidator<T>(
      * A value is considered selected if it's non-null and required.
      */
     override val isFilled: Boolean
-        get() = if (required) control.valueState.value != null else true
+        get() = if (required) control.value.value != null else true
 }

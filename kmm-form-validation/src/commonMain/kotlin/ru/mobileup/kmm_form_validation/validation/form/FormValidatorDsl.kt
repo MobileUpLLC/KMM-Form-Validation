@@ -7,7 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.control.PickerControl
-import ru.mobileup.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.kmm_form_validation.control.UIControl
 import ru.mobileup.kmm_form_validation.validation.control.CheckValidator
 import ru.mobileup.kmm_form_validation.validation.control.ControlValidator
 import ru.mobileup.kmm_form_validation.validation.control.InputValidatorBuilder
@@ -16,7 +16,7 @@ import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
 
 class FormValidatorBuilder {
 
-    private val validators = mutableMapOf<ValidatableControl<*>, ControlValidator<*>>()
+    private val validators = mutableMapOf<UIControl<*>, ControlValidator<*>>()
 
     /**
      * Allows to add additional features to form validation.

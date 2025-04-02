@@ -23,7 +23,7 @@ class InputControl(
     val visualTransformation: VisualTransformation = VisualTransformation.None,
 ) : BaseControl<String>(initialText, coroutineScope) {
 
-    override val valueState: MutableStateFlow<String> = MutableStateFlow(correctText(initialText))
+    override val value: MutableStateFlow<String> = MutableStateFlow(correctText(initialText))
 
     private val _moveCursorEvent = MutableSharedFlow<Int>(
         extraBufferCapacity = 1,
@@ -46,7 +46,7 @@ class InputControl(
     }
 
     override fun onValueChanged(value: String) {
-        valueState.value = correctText(value)
+        this.value.value = correctText(value)
     }
 
     /**
@@ -71,7 +71,7 @@ class InputControl(
      * Moves the cursor to the end of the text.
      */
     fun moveCursorToEnd() {
-        moveCursor(valueState.value.length)
+        moveCursor(value.value.length)
     }
 
     private fun correctText(text: String): String {

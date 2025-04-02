@@ -17,10 +17,10 @@ class InputValidator(
 ) : BaseValidator<String, InputControl>(control) {
 
     override fun performValidation(): ValidationResult {
-        if (control.valueState.value.isBlank() && !required) return ValidationResult.Valid
+        if (control.value.value.isBlank() && !required) return ValidationResult.Valid
 
         validations.forEach { validation ->
-            val result = validation(control.valueState.value)
+            val result = validation(control.value.value)
             if (result is ValidationResult.Invalid) return result
         }
 
@@ -32,5 +32,5 @@ class InputValidator(
      * If the field is required, it must not be blank.
      */
     override val isFilled: Boolean
-        get() = if (required) control.valueState.value.isNotBlank() else true
+        get() = if (required) control.value.value.isNotBlank() else true
 }

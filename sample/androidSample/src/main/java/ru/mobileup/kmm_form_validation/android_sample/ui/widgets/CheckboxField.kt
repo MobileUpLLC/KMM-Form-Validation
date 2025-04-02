@@ -31,7 +31,7 @@ fun CheckboxField(
     label: String,
     modifier: Modifier = Modifier,
 ) {
-    val checked by checkControl.valueState.collectAsState()
+    val checked by checkControl.value.collectAsState()
     val enabled by checkControl.enabled.collectAsState()
     val error by checkControl.error.collectAsState()
 

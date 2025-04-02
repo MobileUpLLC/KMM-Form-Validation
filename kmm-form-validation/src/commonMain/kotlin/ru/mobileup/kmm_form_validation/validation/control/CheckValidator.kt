@@ -19,7 +19,7 @@ class CheckValidator(
     private val showError: ((StringDesc) -> Unit)? = null,
 ) : BaseValidator<Boolean, CheckControl>(control) {
 
-    override fun performValidation(): ValidationResult = validation(control.valueState.value)
+    override fun performValidation(): ValidationResult = validation(control.value.value)
 
     override fun displayValidationResult(result: ValidationResult) {
         super.displayValidationResult(result)
@@ -30,5 +30,5 @@ class CheckValidator(
      * Indicates whether the checkable control is in a "checked" state.
      */
     override val isFilled: Boolean
-        get() = control.valueState.value
+        get() = control.value.value
 }

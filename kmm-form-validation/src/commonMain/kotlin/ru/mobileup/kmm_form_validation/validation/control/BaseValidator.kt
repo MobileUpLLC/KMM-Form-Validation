@@ -1,6 +1,6 @@
 package ru.mobileup.kmm_form_validation.validation.control
 
-import ru.mobileup.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.kmm_form_validation.control.UIControl
 
 /**
  * Abstract base class for control validators that handle validation logic and error display.
@@ -10,7 +10,7 @@ import ru.mobileup.kmm_form_validation.control.ValidatableControl
  * @param C The type of control being validated.
  * @param control The control instance associated with this validator.
  */
-abstract class BaseValidator<T, C : ValidatableControl<T>>(
+abstract class BaseValidator<T, C : UIControl<T>>(
     override val control: C,
 ) : ControlValidator<C> {
 

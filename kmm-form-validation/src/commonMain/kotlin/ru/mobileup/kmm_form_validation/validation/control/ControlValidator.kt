@@ -1,13 +1,13 @@
 package ru.mobileup.kmm_form_validation.validation.control
 
-import ru.mobileup.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.kmm_form_validation.control.UIControl
 
 /**
  * Interface for validating a single control.
  *
  * @param T The type of control to be validated.
  */
-interface ControlValidator<T : ValidatableControl<*>> {
+interface ControlValidator<T : UIControl<*>> {
 
     /**
      * The control associated with this validator.

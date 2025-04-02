@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import ru.mobileup.kmm_form_validation.control.UIControl
-import ru.mobileup.kmm_form_validation.control.ValidatableControl
 import ru.mobileup.kmm_form_validation.validation.control.ControlValidator
 import ru.mobileup.kmm_form_validation.validation.control.InputValidator
 import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
@@ -63,7 +62,7 @@ object RevalidateOnValueChanged : FormValidationFeature {
         validator: ControlValidator<*>
     ) {
         val control = validator.control
-        control.valueState
+        control.value
             .drop(1)
             .onEach {
                 if (control.error.value != null) {
@@ -87,9 +86,9 @@ object HideErrorOnValueChanged : FormValidationFeature {
 
     private fun hideErrorOnValueChanged(
         coroutineScope: CoroutineScope,
-        control: ValidatableControl<*>
+        control: UIControl<*>
     ) {
-        control.valueState
+        control.value
             .drop(1)
             .onEach {
                 control.error.value = null
@@ -117,6 +116,6 @@ object SetFocusOnFirstInvalidControlAfterValidation : FormValidationFeature {
         val firstInvalidControl = validationResult.controlResults.entries
             .firstOrNull { it.value is ValidationResult.Invalid }?.key
 
-        (firstInvalidControl as? UIControl)?.requestFocus()
+        firstInvalidControl?.requestFocus()
     }
 }

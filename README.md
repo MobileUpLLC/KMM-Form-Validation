@@ -19,7 +19,7 @@ dependencies {
 
 ### Controls
 
-[Controls](https://github.com/MobileUpLLC/KMM-Form-Validation/blob/feature/UPUP-1012/form-validation-improvements/kmm-form-validation/src/commonMain/kotlin/ru/mobileup/kmm_form_validation/control/ValidatableControl.kt)
+[Controls](https://github.com/MobileUpLLC/KMM-Form-Validation/blob/feature/UPUP-1012/form-validation-improvements/kmm-form-validation/src/commonMain/kotlin/ru/mobileup/kmm_form_validation/control/UIControl.kt)
 are the building blocks for creating validatable forms. The library provides the [InputControl](https://github.com/MobileUpLLC/KMM-Form-Validation/blob/feature/UPUP-1012/form-validation-improvements/kmm-form-validation/src/commonMain/kotlin/ru/mobileup/kmm_form_validation/control/InputControl.kt)
 for managing text input values and the [CheckControl](https://github.com/MobileUpLLC/KMM-Form-Validation/blob/feature/UPUP-1012/form-validation-improvements/kmm-form-validation/src/commonMain/kotlin/ru/mobileup/kmm_form_validation/control/CheckControl.kt)
 for handling boolean input values. These controls represent the logical structure of UI elements, allowing for state management and validation logic to be separated from the UI layer.

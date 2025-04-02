@@ -1,15 +1,35 @@
 package ru.mobileup.kmm_form_validation.control
 
+import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Represents a UI control that can be validated and interacted with.
  * Provides properties to control visibility, enable/disable state, and scrolling behavior.
  *
  * @param T The type of value managed by the control.
+ * @see: [InputControl]
+ * @see: [CheckControl]
+ * @see: [PickerControl]
  */
-interface UIControl<T> : ValidatableControl<T> {
+interface UIControl<T> {
+
+    /**
+     * The current value of the control.
+     */
+    val value: StateFlow<T>
+
+    /**
+     * Displayed error.
+     */
+    val error: MutableStateFlow<StringDesc?>
+
+    /**
+     * Indicates whether the control should be skipped during validation.
+     */
+    val skipInValidation: StateFlow<Boolean>
 
     /**
      * Controls the visibility of the UI element.
@@ -28,6 +48,15 @@ interface UIControl<T> : ValidatableControl<T> {
      * Used to ensure visibility when needed, such as during form navigation.
      */
     val scrollToItEvent: Flow<Unit>
+
+    /**
+     * Updates the control's value.
+     * This method should be called whenever the value changes on the UI
+     * to ensure that the control state remains in sync.
+     *
+     * @param value The new value to be set.
+     */
+    fun onValueChanged(value: T)
 
     /**
      * Moves focus to the control, ensuring it is ready for user interaction.

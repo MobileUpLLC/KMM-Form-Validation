@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import ru.mobileup.kmm_form_validation.control.ValidatableControl
+import ru.mobileup.kmm_form_validation.control.UIControl
 import ru.mobileup.kmm_form_validation.util.computed
 import ru.mobileup.kmm_form_validation.validation.control.ControlValidator
 import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
@@ -20,7 +20,7 @@ import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
  * Use [formValidator] to create it with a handy DSL.
  */
 class FormValidator(
-    val validators: Map<ValidatableControl<*>, ControlValidator<*>>,
+    val validators: Map<UIControl<*>, ControlValidator<*>>,
     val coroutineScope: CoroutineScope,
 ) {
     private val mutableValidatedEventFlow = MutableSharedFlow<FormValidatedEvent>(
@@ -38,7 +38,7 @@ class FormValidator(
      * @param displayResult specifies if a result will be displayed on UI.
      */
     fun validate(displayResult: Boolean = true): FormValidationResult {
-        val results = mutableMapOf<ValidatableControl<*>, ValidationResult>()
+        val results = mutableMapOf<UIControl<*>, ValidationResult>()
         validators.forEach { (control, validator) ->
             results[control] = validator.validate(displayResult)
         }
@@ -57,7 +57,7 @@ class FormValidator(
             validators.keys.forEach { control ->
                 onControlStateChanged(
                     coroutineScope,
-                    control.valueState,
+                    control.value,
                     control.skipInValidation
                 ) {
                     value = validate(displayResult = false)
@@ -84,7 +84,7 @@ class FormValidator(
             validators.keys.forEach { control ->
                 onControlStateChanged(
                     coroutineScope,
-                    control.valueState,
+                    control.value,
                     control.skipInValidation
                 ) {
                     value = isFilled

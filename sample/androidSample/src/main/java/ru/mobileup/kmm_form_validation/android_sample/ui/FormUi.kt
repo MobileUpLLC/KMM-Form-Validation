@@ -75,7 +75,7 @@ fun FormUi(
             )
 
             var isExpanded by remember { mutableStateOf(false) }
-            val gender by component.genderPicker.valueState.collectAsState()
+            val gender by component.genderPicker.value.collectAsState()
 
             PickerField(
                 pickerControl = component.genderPicker,
@@ -114,7 +114,7 @@ fun FormUi(
                 label = stringResource(id = MR.strings.email_hint.resourceId),
             )
 
-            val phone by component.phoneInput.valueState.collectAsState()
+            val phone by component.phoneInput.value.collectAsState()
             val phoneHasFocus by component.phoneInput.hasFocus.collectAsState()
 
             TextField(
