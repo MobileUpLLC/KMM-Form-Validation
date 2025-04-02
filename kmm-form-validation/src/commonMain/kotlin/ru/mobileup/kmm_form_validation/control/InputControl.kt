@@ -5,6 +5,7 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.TextTransformation
 import ru.mobileup.kmm_form_validation.options.VisualTransformation
@@ -23,7 +24,9 @@ class InputControl(
     val visualTransformation: VisualTransformation = VisualTransformation.None,
 ) : BaseControl<String>(initialText, coroutineScope) {
 
-    override val value: MutableStateFlow<String> = MutableStateFlow(correctText(initialText))
+    private val _value = MutableStateFlow(correctText(initialText))
+
+    override val value: StateFlow<String> = _value
 
     private val _moveCursorEvent = MutableSharedFlow<Int>(
         extraBufferCapacity = 1,
@@ -46,7 +49,7 @@ class InputControl(
     }
 
     override fun onValueChanged(value: String) {
-        this.value.value = correctText(value)
+        _value.value = correctText(value)
     }
 
     /**

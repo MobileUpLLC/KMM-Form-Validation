@@ -22,7 +22,9 @@ abstract class BaseControl<T>(
     coroutineScope: CoroutineScope,
 ) : UIControl<T> {
 
-    override val value: MutableStateFlow<T> = MutableStateFlow(initialValue)
+    private val _value = MutableStateFlow(initialValue)
+
+    override val value: StateFlow<T> = _value
 
     override val visible: MutableStateFlow<Boolean> = MutableStateFlow(true)
 
@@ -45,6 +47,6 @@ abstract class BaseControl<T>(
     }
 
     override fun onValueChanged(value: T) {
-        this.value.value = value
+        _value.value = value
     }
 }
