@@ -5,40 +5,23 @@ import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
 import ru.mobileup.kmm_form_validation.control.PickerControl
 
-class PickerValidatorBuilder<T>(
-    private val control: PickerControl<T>,
-    val required: Boolean = true,
-) {
-
-    private val validations = mutableListOf<(T?) -> ValidationResult>()
-
-    /**
-     * Adds an arbitrary validation. Validations are processed sequentially until first error.
-     */
-    fun validation(validation: (T?) -> ValidationResult) {
-        validations.add(validation)
-    }
-
-    fun build(): PickerValidator<T> {
-        return PickerValidator(control, required, validations)
-    }
-}
-
 /**
- * Adds a validation rule with a custom error message.
+ * A builder for creating a [PickerValidator] with various validation rules.
  *
- * @param errorMessage The error message to be displayed if validation fails.
- * @param isValid A function that checks whether the given value is valid.
+ * To add a custom validation rule, use extension functions on [PickerValidatorBuilder].
+ *
+ * @param control The picker control to be validated.
+ * @param required Whether the selection is required.
+ *
+ * @see isPicked
  */
-fun <T> PickerValidatorBuilder<T>.validation(
-    errorMessage: StringDesc,
-    isValid: (T?) -> Boolean,
-) = validation {
-    if (isValid(it)) {
-        ValidationResult.Valid
-    } else {
-        ValidationResult.Invalid(errorMessage)
-    }
+class PickerValidatorBuilder<T>(
+    control: PickerControl<T>,
+    required: Boolean,
+) : BaseValidatorBuilder<T?, PickerControl<T>, PickerValidator<T>>(control, required) {
+
+    override fun build(): PickerValidator<T> =
+        PickerValidator(control, dependsOn, required, validations)
 }
 
 /**

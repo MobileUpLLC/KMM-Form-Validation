@@ -5,62 +5,25 @@ import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
 import ru.mobileup.kmm_form_validation.control.InputControl
 
+/**
+ * A builder for creating an [InputValidator] with various validation rules.
+ *
+ * To add a custom validation rule, use extension functions on [InputValidatorBuilder].
+ *
+ * @param inputControl The input control to be validated.
+ * @param required Whether the input is required.
+ *
+ * @see isNotBlank
+ * @see regex
+ * @see minLength
+ * @see equalsTo
+ */
 class InputValidatorBuilder(
-    private val inputControl: InputControl,
-    private val required: Boolean,
-) {
+    inputControl: InputControl,
+    required: Boolean,
+) : BaseValidatorBuilder<String, InputControl, InputValidator>(inputControl, required) {
 
-    private val validations = mutableListOf<(String) -> ValidationResult>()
-
-    /**
-     * Adds an arbitrary validation. Validations are processed sequentially until first error.
-     */
-    fun validation(validation: (String) -> ValidationResult) {
-        validations.add(validation)
-    }
-
-    fun build(): InputValidator {
-        return InputValidator(inputControl, required, validations)
-    }
-}
-
-/**
- * Adds an arbitrary validation. Validations are processed sequentially until first error.
- */
-fun InputValidatorBuilder.validation(errorMessage: StringDesc, isValid: (String) -> Boolean) {
-    validation {
-        if (isValid(it)) {
-            ValidationResult.Valid
-        } else {
-            ValidationResult.Invalid(errorMessage)
-        }
-    }
-}
-
-/**
- * Adds an arbitrary validation. Validations are processed sequentially until first error.
- */
-fun InputValidatorBuilder.validation(
-    errorMessageRes: StringResource,
-    isValid: (String) -> Boolean,
-) {
-    validation(StringDesc.Resource(errorMessageRes), isValid)
-}
-
-/**
- * Adds an arbitrary validation. Validations are processed sequentially until first error.
- */
-fun InputValidatorBuilder.validation(
-    errorMessage: () -> StringDesc,
-    isValid: (String) -> Boolean,
-) {
-    validation {
-        if (isValid(it)) {
-            ValidationResult.Valid
-        } else {
-            ValidationResult.Invalid(errorMessage.invoke())
-        }
-    }
+    override fun build(): InputValidator = InputValidator(control, dependsOn, required, validations)
 }
 
 /**
@@ -105,7 +68,10 @@ fun InputValidatorBuilder.minLength(length: Int, errorMessageRes: StringResource
 fun InputValidatorBuilder.equalsTo(
     inputControl: InputControl,
     errorMessage: StringDesc,
-) = validation(errorMessage) { it == inputControl.value.value }
+) {
+    dependsOn(inputControl)
+    validation(errorMessage) { it == inputControl.value.value }
+}
 
 /**
  * Adds a validation that checks that an input equals to an input of another input control.

@@ -83,7 +83,7 @@ class FormValidatorBuilder {
         coroutineScope: CoroutineScope,
     ): FormValidator = FormValidator(validators, coroutineScope).apply {
         features.forEach { feature ->
-            feature.install(coroutineScope, this)
+            feature.install(this)
         }
     }
 }

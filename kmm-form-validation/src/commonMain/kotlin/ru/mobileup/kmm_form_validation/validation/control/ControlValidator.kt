@@ -24,6 +24,12 @@ interface ControlValidator<T : UIControl<*>> {
     val isFilled: Boolean
 
     /**
+     * A set of controls that this validator depends on.
+     * If any of these controls value change, revalidation may be triggered.
+     */
+    val dependsOn: Set<UIControl<*>>
+
+    /**
      * Validates the control.
      *
      * @param displayResult If `true`, the validation result will be displayed on the UI.

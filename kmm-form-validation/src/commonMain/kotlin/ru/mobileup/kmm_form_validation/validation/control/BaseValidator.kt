@@ -9,10 +9,16 @@ import ru.mobileup.kmm_form_validation.control.UIControl
  * @param T The type of value managed by the validated control.
  * @param C The type of control being validated.
  * @param control The control instance associated with this validator.
+ *
+ * @see InputValidator
+ * @see CheckValidator
+ * @see PickerValidator
  */
 abstract class BaseValidator<T, C : UIControl<T>>(
     override val control: C,
 ) : ControlValidator<C> {
+
+    override val dependsOn: Set<UIControl<*>> = emptySet()
 
     override fun validate(
         displayResult: Boolean,
