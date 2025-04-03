@@ -18,6 +18,8 @@ class FormValidatorBuilder {
 
     private val validators = mutableMapOf<UIControl<*>, ControlValidator<*>>()
 
+    private val dependencies = mutableMapOf<ControlValidator<*>, Set<UIControl<*>>>()
+
     /**
      * Allows to add additional features to form validation.
      * @see [FormValidationFeature].
@@ -33,6 +35,13 @@ class FormValidatorBuilder {
             throw IllegalArgumentException("Validator for $control is already added.")
         }
         validators[control] = validator
+    }
+
+    fun dependency(validator: ControlValidator<*>, dependsOn: Set<UIControl<*>>) {
+        if (dependencies.containsKey(validator)) {
+            throw IllegalArgumentException("Dependency for $validator is already added.")
+        }
+        dependencies[validator] = dependsOn
     }
 
     /**
@@ -56,11 +65,13 @@ class FormValidatorBuilder {
     fun input(
         inputControl: InputControl,
         required: Boolean = true,
+        dependsOn: Set<UIControl<*>> = emptySet(),
         buildBlock: InputValidatorBuilder.() -> Unit,
     ) {
         InputValidatorBuilder(inputControl, required)
             .apply(buildBlock)
             .build()
+            .also { dependency(it, dependsOn) }
             .run(::validator)
     }
 
@@ -81,7 +92,7 @@ class FormValidatorBuilder {
 
     fun build(
         coroutineScope: CoroutineScope,
-    ): FormValidator = FormValidator(validators, coroutineScope).apply {
+    ): FormValidator = FormValidator(validators, dependencies, coroutineScope).apply {
         features.forEach { feature ->
             feature.install(coroutineScope, this)
         }

@@ -21,8 +21,24 @@ import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
  */
 class FormValidator(
     val validators: Map<UIControl<*>, ControlValidator<*>>,
+    val validatorDependencies: Map<ControlValidator<*>, Set<UIControl<*>>>,
     val coroutineScope: CoroutineScope,
 ) {
+
+    init {
+        setupDependencyListeners()
+    }
+
+    private fun setupDependencyListeners() {
+        validatorDependencies.forEach { (validator, dependsOn) ->
+            dependsOn.forEach { control ->
+                control.value.onEach {
+                    if (validator.isFilled) validator.validate(true)
+                }.launchIn(coroutineScope)
+            }
+        }
+    }
+
     private val mutableValidatedEventFlow = MutableSharedFlow<FormValidatedEvent>(
         extraBufferCapacity = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
@@ -55,11 +71,7 @@ class FormValidator(
     val validationState: StateFlow<FormValidationResult> by lazy {
         MutableStateFlow(validate(displayResult = false)).apply {
             validators.keys.forEach { control ->
-                onControlStateChanged(
-                    coroutineScope,
-                    control.value,
-                    control.skipInValidation
-                ) {
+                onControlStateChanged(control.value, control.skipInValidation) {
                     value = validate(displayResult = false)
                 }
             }
@@ -82,11 +94,7 @@ class FormValidator(
     val isFilledState: StateFlow<Boolean> by lazy {
         MutableStateFlow(isFilled).apply {
             validators.keys.forEach { control ->
-                onControlStateChanged(
-                    coroutineScope,
-                    control.value,
-                    control.skipInValidation
-                ) {
+                onControlStateChanged(control.value, control.skipInValidation) {
                     value = isFilled
                 }
             }
@@ -107,7 +115,7 @@ class FormValidator(
     val hasErrorState: StateFlow<Boolean> by lazy {
         MutableStateFlow(hasError).apply {
             validators.keys.forEach { control ->
-                onControlStateChanged(coroutineScope, control.error, control.skipInValidation) {
+                onControlStateChanged(control.error, control.skipInValidation) {
                     value = hasError
                 }
             }
@@ -115,7 +123,6 @@ class FormValidator(
     }
 
     private fun <T> onControlStateChanged(
-        coroutineScope: CoroutineScope,
         state: StateFlow<T>,
         skipInValidation: StateFlow<Boolean>,
         action: (Pair<T, Boolean>) -> Unit,
