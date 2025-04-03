@@ -15,7 +15,7 @@ import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
  */
 interface FormValidationFeature {
 
-    fun install(coroutineScope: CoroutineScope, formValidator: FormValidator)
+    fun install(formValidator: FormValidator)
 }
 
 /**
@@ -23,17 +23,15 @@ interface FormValidationFeature {
  */
 object ValidateOnFocusLost : FormValidationFeature {
 
-    override fun install(coroutineScope: CoroutineScope, formValidator: FormValidator) {
-        formValidator.validators.forEach { (_, validator) ->
-            if (validator is InputValidator) {
-                validateOnFocusLost(coroutineScope, validator)
-            }
+    override fun install(formValidator: FormValidator) = formValidator.run {
+        validators.values.forEach { validator ->
+            if (validator is InputValidator) validateOnFocusLost(coroutineScope, validator)
         }
     }
 
     private fun validateOnFocusLost(
         coroutineScope: CoroutineScope,
-        inputValidator: InputValidator
+        inputValidator: InputValidator,
     ) {
         val inputControl = inputValidator.control
 
@@ -49,28 +47,37 @@ object ValidateOnFocusLost : FormValidationFeature {
 
 /**
  * Validates control again whenever its value is changed and it already displays an error.
+ * Additionally, revalidates a control if any of its dependent controls [ControlValidator.dependsOn] value change.
  */
 object RevalidateOnValueChanged : FormValidationFeature {
 
-    override fun install(coroutineScope: CoroutineScope, formValidator: FormValidator) {
-        formValidator.validators.forEach { (_, validator) ->
+    override fun install(formValidator: FormValidator) = formValidator.run {
+        validators.values.forEach { validator ->
             revalidateOnValueChanged(coroutineScope, validator)
         }
     }
 
     private fun revalidateOnValueChanged(
         coroutineScope: CoroutineScope,
-        validator: ControlValidator<*>
+        validator: ControlValidator<*>,
     ) {
         val control = validator.control
+
         control.value
             .drop(1)
             .onEach {
-                if (control.error.value != null) {
-                    validator.validate()
-                }
+                if (control.error.value != null) validator.validate()
             }
             .launchIn(coroutineScope)
+
+        validator.dependsOn.forEach { relatedControl ->
+            relatedControl.value
+                .drop(1)
+                .onEach {
+                    if (control.error.value != null) validator.validate()
+                }
+                .launchIn(coroutineScope)
+        }
     }
 }
 
@@ -79,15 +86,15 @@ object RevalidateOnValueChanged : FormValidationFeature {
  */
 object HideErrorOnValueChanged : FormValidationFeature {
 
-    override fun install(coroutineScope: CoroutineScope, formValidator: FormValidator) {
-        formValidator.validators.forEach { (control, _) ->
+    override fun install(formValidator: FormValidator) = formValidator.run {
+        validators.keys.forEach { control ->
             hideErrorOnValueChanged(coroutineScope, control)
         }
     }
 
     private fun hideErrorOnValueChanged(
         coroutineScope: CoroutineScope,
-        control: UIControl<*>
+        control: UIControl<*>,
     ) {
         control.value
             .drop(1)
@@ -103,20 +110,18 @@ object HideErrorOnValueChanged : FormValidationFeature {
  */
 object SetFocusOnFirstInvalidControlAfterValidation : FormValidationFeature {
 
-    override fun install(coroutineScope: CoroutineScope, formValidator: FormValidator) {
-        formValidator.validatedEventFlow
+    override fun install(formValidator: FormValidator): Unit = formValidator.run {
+        validatedEventFlow
             .onEach {
-                if (it.displayResult) {
-                    focusOnFirstInvalidControl(it.result)
-                }
+                if (it.displayResult) focusOnFirstInvalidControl(it.result)
             }
             .launchIn(coroutineScope)
     }
 
     private fun focusOnFirstInvalidControl(validationResult: FormValidationResult) {
-        val firstInvalidControl = validationResult.controlResults.entries
-            .firstOrNull { it.value is ValidationResult.Invalid }?.key
-
-        firstInvalidControl?.requestFocus()
+        validationResult.controlResults.entries
+            .firstOrNull { (_, result) -> result is ValidationResult.Invalid }
+            ?.key
+            ?.requestFocus()
     }
 }

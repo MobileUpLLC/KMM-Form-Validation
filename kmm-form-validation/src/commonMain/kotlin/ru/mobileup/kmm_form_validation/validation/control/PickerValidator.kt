@@ -1,6 +1,7 @@
 package ru.mobileup.kmm_form_validation.validation.control
 
 import ru.mobileup.kmm_form_validation.control.PickerControl
+import ru.mobileup.kmm_form_validation.control.UIControl
 import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
 
 /**
@@ -14,7 +15,8 @@ import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
  */
 class PickerValidator<T>(
     override val control: PickerControl<T>,
-    val required: Boolean = true,
+    override val dependsOn: Set<UIControl<*>>,
+    private val required: Boolean = true,
     private val validations: List<(T?) -> ValidationResult>,
 ) : BaseValidator<T?, PickerControl<T>>(control) {
 

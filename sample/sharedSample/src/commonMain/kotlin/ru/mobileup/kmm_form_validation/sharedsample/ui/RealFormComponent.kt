@@ -147,10 +147,7 @@ class RealFormComponent(
             )
         }
 
-        input(
-            inputControl = confirmPasswordInput,
-            dependsOn = setOf(passwordInput)
-        ) {
+        input(confirmPasswordInput) {
             isNotBlank(MR.strings.field_is_blank_error_message)
             equalsTo(
                 inputControl = passwordInput,

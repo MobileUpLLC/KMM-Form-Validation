@@ -1,6 +1,7 @@
 package ru.mobileup.kmm_form_validation.validation.control
 
 import ru.mobileup.kmm_form_validation.control.InputControl
+import ru.mobileup.kmm_form_validation.control.UIControl
 import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
 
 /**
@@ -12,7 +13,8 @@ import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
  */
 class InputValidator(
     override val control: InputControl,
-    val required: Boolean = true,
+    override val dependsOn: Set<UIControl<*>>,
+    private val required: Boolean = true,
     private val validations: List<(String) -> ValidationResult>,
 ) : BaseValidator<String, InputControl>(control) {
 

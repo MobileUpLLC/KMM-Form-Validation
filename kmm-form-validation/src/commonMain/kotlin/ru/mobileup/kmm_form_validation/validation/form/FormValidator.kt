@@ -21,23 +21,8 @@ import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
  */
 class FormValidator(
     val validators: Map<UIControl<*>, ControlValidator<*>>,
-    val validatorDependencies: Map<ControlValidator<*>, Set<UIControl<*>>>,
     val coroutineScope: CoroutineScope,
 ) {
-
-    init {
-        setupDependencyListeners()
-    }
-
-    private fun setupDependencyListeners() {
-        validatorDependencies.forEach { (validator, dependsOn) ->
-            dependsOn.forEach { control ->
-                control.value.onEach {
-                    if (validator.isFilled) validator.validate(true)
-                }.launchIn(coroutineScope)
-            }
-        }
-    }
 
     private val mutableValidatedEventFlow = MutableSharedFlow<FormValidatedEvent>(
         extraBufferCapacity = 1,
