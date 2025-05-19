@@ -19,7 +19,7 @@ import ru.mobileup.kmm_form_validation.util.computed
  */
 abstract class BaseControl<T>(
     initialValue: T,
-    coroutineScope: CoroutineScope,
+    override val coroutineScope: CoroutineScope,
 ) : UIControl<T> {
 
     private val _value = MutableStateFlow(initialValue)

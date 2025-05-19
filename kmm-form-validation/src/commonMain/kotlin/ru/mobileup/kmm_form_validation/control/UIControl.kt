@@ -1,6 +1,7 @@
 package ru.mobileup.kmm_form_validation.control
 
 import dev.icerock.moko.resources.desc.StringDesc
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +16,11 @@ import kotlinx.coroutines.flow.StateFlow
  * @see: [PickerControl]
  */
 interface UIControl<T> {
+
+    /**
+     * A [CoroutineScope] associated with the control.
+     */
+    val coroutineScope: CoroutineScope
 
     /**
      * The current value of the control.
