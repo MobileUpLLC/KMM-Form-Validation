@@ -30,7 +30,7 @@ To ensure proper state management and lifecycle handling, these controls should 
 
 ### Creating an InputControl
 
-`InputControl` is designed to manage text input with additional features such as text transformation, visual transformation, length restrictions, and keyboard options.
+`InputControl` is designed to manage text input with additional features such as text transformation, length restrictions, and keyboard options.
 
 ```kotlin
 class MyViewModel : ViewModel() {
@@ -61,7 +61,7 @@ fun NameField(inputControl: InputControl) {
         value = text,
         onValueChange = inputControl::onValueChange,
         enabled = enabled,
-        visualTransformation = inputControl.visualTransformation.toCompose(),
+        keyboardOptions = inputControl.keyboardOptions.toCompose(),
     )
 }
 ```

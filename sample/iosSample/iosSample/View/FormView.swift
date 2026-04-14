@@ -58,7 +58,8 @@ struct FormView: View {
                 
                 TextFieldWithControl(
                     inputControl: formComponent.phoneInput,
-                    hint: L10n.phoneHint
+                    hint: L10n.phoneHint,
+                    formatter: PhoneNumberFormatter()
                 )
                 
                 SecureTextFieldWithControl(

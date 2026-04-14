@@ -9,7 +9,6 @@ import ru.mobileup.kmm_form_validation.options.KeyboardCapitalization
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.KeyboardType
 import ru.mobileup.kmm_form_validation.options.OnlyDigitsTextTransformation
-import ru.mobileup.kmm_form_validation.options.PasswordVisualTransformation
 import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.PickerControl
@@ -69,8 +68,7 @@ class RealFormComponent(
             keyboardType = KeyboardType.Phone,
             imeAction = ImeAction.Next
         ),
-        textTransformation = OnlyDigitsTextTransformation(),
-        visualTransformation = RussianPhoneNumberVisualTransformation
+        textTransformation = OnlyDigitsTextTransformation()
     )
 
     override val passwordInput = InputControl(
@@ -78,8 +76,7 @@ class RealFormComponent(
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Next,
             autoCorrect = false
-        ),
-        visualTransformation = PasswordVisualTransformation()
+        )
     )
 
     override val confirmPasswordInput = InputControl(
@@ -87,8 +84,7 @@ class RealFormComponent(
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Done,
             autoCorrect = false
-        ),
-        visualTransformation = PasswordVisualTransformation()
+        )
     )
 
     override val termsCheckBox = CheckControl()

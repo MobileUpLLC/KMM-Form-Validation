@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import ru.mobileup.kmm_form_validation.android_sample.R
 import ru.mobileup.kmm_form_validation.android_sample.ui.theme.AppTheme
@@ -34,8 +35,8 @@ import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.KonfettiWidget
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.MenuButton
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.PasswordTextField
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.PickerField
+import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.RussianPhoneNumberVisualTransformation
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.TextField
-import ru.mobileup.kmm_form_validation.options.VisualTransformation
 import ru.mobileup.kmm_form_validation.sharedsample.ui.FakeFormComponent
 import ru.mobileup.kmm_form_validation.sharedsample.ui.FormComponent
 import ru.mobileup.kmm_form_validation.sharedsample.ui.Gender
@@ -119,7 +120,11 @@ fun FormUi(
             TextField(
                 inputControl = component.phoneInput,
                 label = stringResource(id = R.string.phone_hint),
-                visualTransformation = VisualTransformation.None.takeIf { phone.isEmpty() && !phoneHasFocus }
+                visualTransformation = if (phone.isEmpty() && !phoneHasFocus) {
+                    VisualTransformation.None
+                } else {
+                    RussianPhoneNumberVisualTransformation
+                }
             )
 
             PasswordTextField(

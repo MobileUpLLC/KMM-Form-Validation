@@ -6,7 +6,6 @@ import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.control.PickerControl
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.TextTransformation
-import ru.mobileup.kmm_form_validation.options.VisualTransformation
 import ru.mobileup.kmm_form_validation.validation.form.FormValidator
 import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
 import ru.mobileup.kmm_form_validation.validation.form.formValidator
@@ -17,15 +16,13 @@ fun ComponentContext.InputControl(
     maxLength: Int = Int.MAX_VALUE,
     keyboardOptions: KeyboardOptions = KeyboardOptions(),
     textTransformation: TextTransformation? = null,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
 ): InputControl = InputControl(
     componentScope,
     initialText,
     singleLine,
     maxLength,
     keyboardOptions,
-    textTransformation,
-    visualTransformation
+    textTransformation
 )
 
 fun ComponentContext.CheckControl(

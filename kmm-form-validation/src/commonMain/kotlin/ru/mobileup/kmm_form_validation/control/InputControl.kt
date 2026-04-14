@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.TextTransformation
-import ru.mobileup.kmm_form_validation.options.VisualTransformation
 
 /**
  * Logical representation of an input field.
@@ -21,7 +20,6 @@ class InputControl(
     val maxLength: Int = Int.MAX_VALUE,
     val keyboardOptions: KeyboardOptions = KeyboardOptions(),
     val textTransformation: TextTransformation? = null,
-    val visualTransformation: VisualTransformation = VisualTransformation.None,
 ) : BaseControl<String>(initialText, coroutineScope) {
 
     private val _value = MutableStateFlow(correctText(initialText))

@@ -15,6 +15,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.kmm_form_validation.android_sample.R
@@ -67,7 +68,7 @@ fun PasswordTextField(
             visualTransformation = if (passwordVisibility) {
                 VisualTransformation.None
             } else {
-                inputControl.visualTransformation.toCompose()
+                PasswordVisualTransformation()
             },
             trailingIcon = {
                 val image = if (passwordVisibility) {
