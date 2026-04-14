@@ -14,6 +14,7 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "sharedSample"
+            binaryOption("bundleId", "ru.mobileup.kmm.form.sharedsample")
             export(project(":kmm-form-validation"))
             export(libs.moko.resources)
             export(libs.decompose)
