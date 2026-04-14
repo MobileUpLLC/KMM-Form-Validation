@@ -1,7 +1,6 @@
 package ru.mobileup.kmm_form_validation.sharedsample.utils
 
 import com.arkivanov.decompose.ComponentContext
-import dev.icerock.moko.resources.desc.StringDesc
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.control.PickerControl
@@ -35,8 +34,7 @@ fun ComponentContext.CheckControl(
 
 fun <T> ComponentContext.PickerControl(
     initialValue: T? = null,
-    displayMapper: (T?) -> StringDesc?
-): PickerControl<T> = PickerControl(componentScope, initialValue, displayMapper)
+): PickerControl<T> = PickerControl(componentScope, initialValue)
 
 fun ComponentContext.formValidator(
     buildBlock: FormValidatorBuilder.() -> Unit,

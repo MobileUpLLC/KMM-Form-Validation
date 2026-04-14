@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.moko.resources)
 }
 
 kotlin {
@@ -16,7 +15,6 @@ kotlin {
             baseName = "sharedSample"
             binaryOption("bundleId", "ru.mobileup.kmm.form.sharedsample")
             export(project(":kmm-form-validation"))
-            export(libs.moko.resources)
             export(libs.decompose)
             export(libs.essenty.lifecycle)
         }
@@ -26,15 +24,10 @@ kotlin {
         commonMain.dependencies {
             api(project(":kmm-form-validation"))
             implementation(libs.coroutines.core)
-            api(libs.moko.resources)
             api(libs.decompose)
             api(libs.essenty.lifecycle)
         }
     }
-}
-
-multiplatformResources {
-    resourcesPackage.set("ru.mobileup.kmm_form_validation.sharedsample")
 }
 
 android {

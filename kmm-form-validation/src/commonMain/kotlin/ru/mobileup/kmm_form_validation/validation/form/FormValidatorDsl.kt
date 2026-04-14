@@ -1,8 +1,5 @@
 package ru.mobileup.kmm_form_validation.validation.form
 
-import dev.icerock.moko.resources.StringResource
-import dev.icerock.moko.resources.desc.Resource
-import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.control.InputControl
@@ -12,6 +9,7 @@ import ru.mobileup.kmm_form_validation.validation.control.CheckValidator
 import ru.mobileup.kmm_form_validation.validation.control.ControlValidator
 import ru.mobileup.kmm_form_validation.validation.control.InputValidatorBuilder
 import ru.mobileup.kmm_form_validation.validation.control.PickerValidatorBuilder
+import ru.mobileup.kmm_form_validation.validation.control.ValidationError
 import ru.mobileup.kmm_form_validation.validation.control.ValidationResult
 
 class FormValidatorBuilder {
@@ -42,7 +40,7 @@ class FormValidatorBuilder {
      */
     fun check(
         checkControl: CheckControl,
-        showError: ((StringDesc) -> Unit)? = null,
+        showError: ((ValidationError) -> Unit)? = null,
         validation: (Boolean) -> ValidationResult,
     ) {
         CheckValidator(checkControl, validation, showError)
@@ -100,17 +98,8 @@ fun CoroutineScope.formValidator(
  */
 fun FormValidatorBuilder.checked(
     checkControl: CheckControl,
-    errorMessage: StringDesc,
-    showError: ((StringDesc) -> Unit)? = null,
+    errorMessage: ValidationError,
+    showError: ((ValidationError) -> Unit)? = null,
 ) = check(checkControl, showError) {
     if (it) ValidationResult.Valid else ValidationResult.Invalid(errorMessage)
 }
-
-/**
- * Adds a validator that checks that [checkControl] is checked.
- */
-fun FormValidatorBuilder.checked(
-    checkControl: CheckControl,
-    errorMessageRes: StringResource,
-    showError: ((StringDesc) -> Unit)? = null,
-) = checked(checkControl, StringDesc.Resource(errorMessageRes), showError)

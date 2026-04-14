@@ -23,8 +23,8 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
-import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
+import ru.mobileup.kmm_form_validation.android_sample.ui.asString
 import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.options.VisualTransformation
 import ru.mobileup.kmm_form_validation.toCompose
@@ -104,7 +104,7 @@ fun TextField(
                 ?: inputControl.visualTransformation).toCompose()
         )
 
-        ErrorText(error?.localized() ?: "")
+        ErrorText(error?.asString() ?: "")
     }
 }
 

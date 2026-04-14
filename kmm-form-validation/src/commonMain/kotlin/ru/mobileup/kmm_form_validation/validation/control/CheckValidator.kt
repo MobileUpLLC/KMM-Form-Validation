@@ -1,6 +1,5 @@
 package ru.mobileup.kmm_form_validation.validation.control
 
-import dev.icerock.moko.resources.desc.StringDesc
 import ru.mobileup.kmm_form_validation.control.CheckControl
 import ru.mobileup.kmm_form_validation.validation.form.FormValidatorBuilder
 import ru.mobileup.kmm_form_validation.validation.form.checked
@@ -16,14 +15,14 @@ import ru.mobileup.kmm_form_validation.validation.form.checked
 class CheckValidator(
     override val control: CheckControl,
     private val validation: (Boolean) -> ValidationResult,
-    private val showError: ((StringDesc) -> Unit)? = null,
+    private val showError: ((ValidationError) -> Unit)? = null,
 ) : BaseValidator<Boolean, CheckControl>(control) {
 
     override fun performValidation(): ValidationResult = validation(control.value.value)
 
     override fun displayValidationResult(result: ValidationResult) {
         super.displayValidationResult(result)
-        if (result is ValidationResult.Invalid) showError?.invoke(result.errorMessage)
+        if (result is ValidationResult.Invalid) showError?.invoke(result.error)
     }
 
     /**

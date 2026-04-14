@@ -21,7 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.resources.compose.localized
+import ru.mobileup.kmm_form_validation.android_sample.ui.asString
 import ru.mobileup.kmm_form_validation.control.CheckControl
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
@@ -65,7 +65,7 @@ fun CheckboxField(
         }
 
         ErrorText(
-            error?.localized() ?: "",
+            error?.asString() ?: "",
             paddingValues = PaddingValues(horizontal = 16.dp)
         )
     }

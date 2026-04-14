@@ -3,7 +3,6 @@ package ru.mobileup.kmm_form_validation.sharedsample.ui
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
-import dev.icerock.moko.resources.desc.desc
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -48,7 +47,7 @@ class FakeFormComponent : FormComponent, ComponentContext by DefaultComponentCon
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
     )
 
-    override val genderPicker = PickerControl<Gender>(fakeScope) { "".desc() }
+    override val genderPicker = PickerControl<Gender>(fakeScope)
 
     override val termsCheckBox = CheckControl(fakeScope)
 

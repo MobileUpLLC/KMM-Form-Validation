@@ -1,10 +1,10 @@
 package ru.mobileup.kmm_form_validation.control
 
-import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import ru.mobileup.kmm_form_validation.validation.control.ValidationError
 
 /**
  * Represents a UI control that can be validated and interacted with.
@@ -30,7 +30,7 @@ interface UIControl<T> {
     /**
      * Displayed error.
      */
-    val error: MutableStateFlow<StringDesc?>
+    val error: MutableStateFlow<ValidationError?>
 
     /**
      * Indicates whether the control should be skipped during validation.

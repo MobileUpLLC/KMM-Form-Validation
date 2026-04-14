@@ -7,7 +7,7 @@ struct ToggleView: View {
     let label: String
     
     @ObservedObject var checked: UnsafeObservableState<KotlinBoolean>
-    @ObservedObject private var error: UnsafeObservableState<StringDesc>
+    @ObservedObject private var error: UnsafeObservableState<SampleValidationError>
     
     init(checkControl: CheckControl, label: String) {
         self.label = label
@@ -29,7 +29,7 @@ struct ToggleView: View {
             )
             
             if let error = error.value {
-                Text(error.localized())
+                Text(error.localizedText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.caption)
                     .foregroundColor(.red)

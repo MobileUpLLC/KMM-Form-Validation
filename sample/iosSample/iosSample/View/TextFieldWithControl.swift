@@ -8,7 +8,7 @@ struct TextFieldWithControl: View {
     private let inputControl: InputControl
     
     @ObservedObject private var text: UnsafeObservableState<NSString>
-    @ObservedObject private var error: UnsafeObservableState<StringDesc>
+    @ObservedObject private var error: UnsafeObservableState<SampleValidationError>
     @ObservedObject private var hasFocus: UnsafeObservableState<KotlinBoolean>
     @ObservedObject private var enabled: UnsafeObservableState<KotlinBoolean>
     
@@ -52,7 +52,7 @@ struct TextFieldWithControl: View {
             .autocorrectionDisabled(!keyboardOptions.autoCorrect)
             
             if let error = error.value {
-                Text(error.localized())
+                Text(error.localizedText)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.caption)
                     .foregroundColor(.red)

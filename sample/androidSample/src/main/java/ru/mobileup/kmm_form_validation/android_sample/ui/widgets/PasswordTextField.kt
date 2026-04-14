@@ -16,9 +16,9 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.VisualTransformation
-import dev.icerock.moko.resources.compose.localized
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.kmm_form_validation.android_sample.R
+import ru.mobileup.kmm_form_validation.android_sample.ui.asString
 import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.kmm_form_validation.toCompose
 
@@ -88,6 +88,6 @@ fun PasswordTextField(
                 }
         )
 
-        ErrorText(error?.localized() ?: "")
+        ErrorText(error?.asString() ?: "")
     }
 }

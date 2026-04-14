@@ -1,8 +1,5 @@
 package ru.mobileup.kmm_form_validation.validation.control
 
-import dev.icerock.moko.resources.StringResource
-import dev.icerock.moko.resources.desc.Resource
-import dev.icerock.moko.resources.desc.StringDesc
 import ru.mobileup.kmm_form_validation.control.UIControl
 
 /**
@@ -56,7 +53,7 @@ abstract class BaseValidatorBuilder<T, C : UIControl<T>, V : ControlValidator<*>
  * @param isValid A function that checks whether the given value is valid.
  */
 fun <T, C : UIControl<T>, V : ControlValidator<*>> BaseValidatorBuilder<T, C, V>.validation(
-    errorMessage: StringDesc,
+    errorMessage: ValidationError,
     isValid: (T) -> Boolean,
 ) = validation {
     if (isValid(it)) {
@@ -69,22 +66,11 @@ fun <T, C : UIControl<T>, V : ControlValidator<*>> BaseValidatorBuilder<T, C, V>
 /**
  * Adds a validation rule with a custom error message.
  *
- * @param errorMessageRes The error message resource to be displayed if validation fails.
- * @param isValid A function that checks whether the given value is valid.
- */
-fun <T, C : UIControl<T>, V : ControlValidator<*>> BaseValidatorBuilder<T, C, V>.validation(
-    errorMessageRes: StringResource,
-    isValid: (T) -> Boolean,
-) = validation(StringDesc.Resource(errorMessageRes), isValid)
-
-/**
- * Adds a validation rule with a custom error message.
- *
  * @param errorMessage The error message to be displayed if validation fails.
  * @param isValid A function that checks whether the given value is valid.
  */
 fun <T, C : UIControl<T>, V : ControlValidator<*>> BaseValidatorBuilder<T, C, V>.validation(
-    errorMessage: () -> StringDesc,
+    errorMessage: () -> ValidationError,
     isValid: (T) -> Boolean,
 ) = validation {
     if (isValid(it)) {

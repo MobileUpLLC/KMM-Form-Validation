@@ -27,7 +27,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.resources.compose.localized
 import ru.mobileup.kmm_form_validation.android_sample.R
 import ru.mobileup.kmm_form_validation.android_sample.ui.theme.AppTheme
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.CheckboxField
@@ -37,7 +36,6 @@ import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.PasswordTextFie
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.PickerField
 import ru.mobileup.kmm_form_validation.android_sample.ui.widgets.TextField
 import ru.mobileup.kmm_form_validation.options.VisualTransformation
-import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.ui.FakeFormComponent
 import ru.mobileup.kmm_form_validation.sharedsample.ui.FormComponent
 import ru.mobileup.kmm_form_validation.sharedsample.ui.Gender
@@ -71,7 +69,7 @@ fun FormUi(
         ) {
             TextField(
                 inputControl = component.nameInput,
-                label = stringResource(id = MR.strings.name_hint.resourceId),
+                label = stringResource(id = R.string.name_hint),
             )
 
             var isExpanded by remember { mutableStateOf(false) }
@@ -79,9 +77,10 @@ fun FormUi(
 
             PickerField(
                 pickerControl = component.genderPicker,
+                selectedValueText = gender?.displayName(),
                 onClick = { isExpanded = !isExpanded },
                 isExpanded = isExpanded,
-                label = stringResource(id = MR.strings.gender_hint.resourceId),
+                label = stringResource(id = R.string.gender_hint),
             ) {
                 Column {
                     Gender.entries.forEach {
@@ -95,7 +94,7 @@ fun FormUi(
                                 modifier = Modifier
                                     .weight(1f)
                                     .align(Alignment.CenterVertically),
-                                text = it.displayValueDesc.localized()
+                                text = it.displayName()
                             )
                             if (it == gender) {
                                 Text(
@@ -111,7 +110,7 @@ fun FormUi(
 
             TextField(
                 inputControl = component.emailInput,
-                label = stringResource(id = MR.strings.email_hint.resourceId),
+                label = stringResource(id = R.string.email_hint),
             )
 
             val phone by component.phoneInput.value.collectAsState()
@@ -119,28 +118,28 @@ fun FormUi(
 
             TextField(
                 inputControl = component.phoneInput,
-                label = stringResource(id = MR.strings.phone_hint.resourceId),
+                label = stringResource(id = R.string.phone_hint),
                 visualTransformation = VisualTransformation.None.takeIf { phone.isEmpty() && !phoneHasFocus }
             )
 
             PasswordTextField(
                 inputControl = component.passwordInput,
-                label = stringResource(id = MR.strings.password_hint.resourceId),
+                label = stringResource(id = R.string.password_hint),
             )
 
             PasswordTextField(
                 inputControl = component.confirmPasswordInput,
-                label = stringResource(id = MR.strings.confirm_password_hint.resourceId),
+                label = stringResource(id = R.string.confirm_password_hint),
             )
 
             CheckboxField(
                 checkControl = component.termsCheckBox,
-                label = stringResource(id = MR.strings.terms_hint.resourceId)
+                label = stringResource(id = R.string.terms_hint)
             )
 
             CheckboxField(
                 checkControl = component.newsletterCheckBox,
-                label = stringResource(id = MR.strings.newsletter_hint.resourceId)
+                label = stringResource(id = R.string.newsletter_hint)
             )
 
             val backgroundColor by animateColorAsState(
@@ -151,7 +150,7 @@ fun FormUi(
             )
 
             MenuButton(
-                text = stringResource(MR.strings.submit_button.resourceId),
+                text = stringResource(R.string.submit_button),
                 onClick = component::onSubmitClicked,
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = backgroundColor,

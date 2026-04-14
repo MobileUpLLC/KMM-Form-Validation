@@ -51,7 +51,6 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.tooling)
     implementation(libs.compose.material)
-    implementation(libs.moko.resourcesCompose)
     implementation(libs.decompose)
     implementation(libs.decompose.compose)
     implementation(libs.konfetti)

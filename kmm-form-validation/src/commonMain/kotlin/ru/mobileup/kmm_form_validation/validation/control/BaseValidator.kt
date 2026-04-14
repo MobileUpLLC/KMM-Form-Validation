@@ -45,7 +45,7 @@ abstract class BaseValidator<T, C : UIControl<T>>(
      */
     protected open fun displayValidationResult(result: ValidationResult) {
         control.error.value = when (result) {
-            is ValidationResult.Invalid -> result.errorMessage
+            is ValidationResult.Invalid -> result.error
             else -> null
         }
     }

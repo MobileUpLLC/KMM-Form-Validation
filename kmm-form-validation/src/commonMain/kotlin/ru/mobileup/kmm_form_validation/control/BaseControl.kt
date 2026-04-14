@@ -1,6 +1,5 @@
 package ru.mobileup.kmm_form_validation.control
 
-import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
@@ -8,6 +7,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.kmm_form_validation.util.computed
+import ru.mobileup.kmm_form_validation.validation.control.ValidationError
 
 /**
  * Abstract base class for UI controls that handle state management, validation, and focus behavior.
@@ -30,7 +30,7 @@ abstract class BaseControl<T>(
 
     override val enabled: MutableStateFlow<Boolean> = MutableStateFlow(true)
 
-    override val error: MutableStateFlow<StringDesc?> = MutableStateFlow(null)
+    override val error: MutableStateFlow<ValidationError?> = MutableStateFlow(null)
 
     override val skipInValidation: StateFlow<Boolean> =
         computed(coroutineScope, visible, enabled) { visible, enabled -> !visible || !enabled }

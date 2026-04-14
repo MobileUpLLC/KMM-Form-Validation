@@ -102,15 +102,12 @@ If the initial value is set to `null`, it means that no value has been selected 
 
 ```kotlin
 enum class Gender {
-    Male, Female, Other;
-
-    val displayStringDesc: StringDesc
-        get() = StringDesc.Raw(name)
+    Male, Female, Other
 }
 
 class MyViewModel : ViewModel() {
 
-    val genderPicker = PickerControl<Gender>(viewModelScope) { it?.displayStringDesc }
+    val genderPicker = PickerControl<Gender>(viewModelScope)
 }
 ```
 
@@ -121,12 +118,12 @@ You can integrate `PickerControl<T>` with Jetpack Compose as follows:
 ```kotlin
 @Composable
 fun GenderPicker(pickerControl: PickerControl<Gender>) {
-    val displayValue by pickerControl.displayValue.collectAsState()
+    val selectedGender by pickerControl.value.collectAsState()
     var expanded by remember { mutableStateOf(false) }
 
     Column {
         TextButton(onClick = { expanded = true }) {
-            Text(displayValue?.localized() ?: "Select gender")
+            Text(selectedGender?.name ?: "Select gender")
         }
 
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
@@ -160,6 +157,13 @@ It ensures that user inputs meet specific validation criteria and provides dynam
 To create a `FormValidator`, use the `formValidator` DSL inside a `CoroutineScope`.
 
 ```kotlin
+enum class ProfileValidationError : ValidationError {
+    BlankField,
+    GenderNotSelected,
+    InvalidEmail,
+    TermsNotAccepted,
+}
+
 val formValidator = viewModelScope.formValidator {
     features = listOf(
         ValidateOnFocusLost,
@@ -168,22 +172,22 @@ val formValidator = viewModelScope.formValidator {
     )
 
     input(nameInput, required = false) {
-        isNotBlank(StringDesc.Raw("Please fill this field"))
+        isNotBlank(ProfileValidationError.BlankField)
     }
     
     picker(genderPicker) {
-        isPicked(StringDesc.Raw("Please select your gender"))
+        isPicked(ProfileValidationError.GenderNotSelected)
     }
 
     input(emailInput) {
-        isNotBlank(StringDesc.Raw("Please fill this field"))
+        isNotBlank(ProfileValidationError.BlankField)
         regex(
             regex = EMAIL_REGEX_PATTERN.toRegex(),
-            errorMessageRes = StringDesc.Raw("Invalid e-mail address")
+            errorMessage = ProfileValidationError.InvalidEmail
         )
     }
 
-    checked(termsCheckBox, StringDesc.Raw("Please accept the terms of use"))
+    checked(termsCheckBox, ProfileValidationError.TermsNotAccepted)
 }
 ```
 

@@ -24,12 +24,13 @@ struct FormView: View {
             VStack(spacing: 16) {
                 TextFieldWithControl(
                     inputControl: formComponent.nameInput,
-                    hint: MR.strings().name_hint.desc().localized()
+                    hint: L10n.nameHint
                 )
                 
                 PickerView(
                     pickerControl: formComponent.genderPicker,
-                    hint: MR.strings().gender_hint.desc().localized()
+                    hint: L10n.genderHint,
+                    displayText: { $0.localizedText }
                 ) { closePicker in
                     ForEach(Gender.entries, id: \.self) { gender in
                         Button(action: {
@@ -37,7 +38,7 @@ struct FormView: View {
                             closePicker()
                         }) {
                             HStack {
-                                Text(gender.displayValueDesc.localized())
+                                Text(gender.localizedText)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
                                 if gender == selectedGender.value {
@@ -52,37 +53,37 @@ struct FormView: View {
                 
                 TextFieldWithControl(
                     inputControl: formComponent.emailInput,
-                    hint: MR.strings().email_hint.desc().localized()
+                    hint: L10n.emailHint
                 )
                 
                 TextFieldWithControl(
                     inputControl: formComponent.phoneInput,
-                    hint: MR.strings().phone_hint.desc().localized()
+                    hint: L10n.phoneHint
                 )
                 
                 SecureTextFieldWithControl(
                     inputControl: formComponent.passwordInput,
-                    hint: MR.strings().password_hint.desc().localized()
+                    hint: L10n.passwordHint
                 )
                 
                 SecureTextFieldWithControl(
                     inputControl: formComponent.confirmPasswordInput,
-                    hint: MR.strings().confirm_password_hint.desc().localized()
+                    hint: L10n.confirmPasswordHint
                 )
                 
                 ToggleView(
                     checkControl: formComponent.termsCheckBox,
-                    label: MR.strings().terms_hint.desc().localized()
+                    label: L10n.termsHint
                 )
                 
                 ToggleView(
                     checkControl: formComponent.newsletterCheckBox,
-                    label: MR.strings().newsletter_hint.desc().localized()
+                    label: L10n.newsletterHint
                 )
                 
                 SubmitButtonView(
                     buttonState: submitButtonState.value!,
-                    label: MR.strings().submit_button.desc().localized()
+                    label: L10n.submitButton
                 ) {
                     formComponent.onSubmitClicked()
                     if showConfetti.value == true {

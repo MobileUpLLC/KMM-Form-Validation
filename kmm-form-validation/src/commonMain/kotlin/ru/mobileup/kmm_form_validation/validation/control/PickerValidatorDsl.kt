@@ -1,8 +1,5 @@
 package ru.mobileup.kmm_form_validation.validation.control
 
-import dev.icerock.moko.resources.StringResource
-import dev.icerock.moko.resources.desc.Resource
-import dev.icerock.moko.resources.desc.StringDesc
 import ru.mobileup.kmm_form_validation.control.PickerControl
 
 /**
@@ -29,13 +26,5 @@ class PickerValidatorBuilder<T>(
  *
  * @param errorMessage The error message to be displayed if no value is selected.
  */
-fun <T> PickerValidatorBuilder<T>.isPicked(errorMessage: StringDesc) =
+fun <T> PickerValidatorBuilder<T>.isPicked(errorMessage: ValidationError) =
     validation(errorMessage) { it != null }
-
-/**
- * Adds a validation rule that ensures a value is selected.
- *
- * @param errorMessageRes The resource ID of the error message.
- */
-fun <T> PickerValidatorBuilder<T>.isPicked(errorMessageRes: StringResource) =
-    isPicked(StringDesc.Resource(errorMessageRes))

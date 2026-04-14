@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6C1ADA502D92EF5100EB6B6D /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1ADA4F2D92EF5100EB6B6D /* ConfettiSwiftUI */; };
 		6C833F9D2D9C201900C7BFFB /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C833F9C2D9C201600C7BFFB /* PickerView.swift */; };
+		A1B2C3D42F10000100AAA001 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D32F10000100AAA001 /* Localization.swift */; };
+		A1B2C3D62F10000100AAA001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D52F10000100AAA001 /* Localizable.strings */; };
 		EC7C1FEA2987B251001DCE8B /* iosSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */; };
 		EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */; };
 		EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1FED2987B252001DCE8B /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		6C833F9C2D9C201600C7BFFB /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		A1B2C3D32F10000100AAA001 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		A1B2C3D52F10000100AAA001 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		EC7C1FE62987B251001DCE8B /* iosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosSampleApp.swift; sourceTree = "<group>"; };
 		EC7C1FEB2987B251001DCE8B /* TextFieldWithControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithControl.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				EC7C2021298A70E7001DCE8B /* View */,
 				EC7C201C298A6AB4001DCE8B /* Input */,
 				EC7C20152987F458001DCE8B /* State */,
+				A1B2C3D32F10000100AAA001 /* Localization.swift */,
+				A1B2C3D52F10000100AAA001 /* Localizable.strings */,
 				EC7C1FE92987B251001DCE8B /* iosSampleApp.swift */,
 				EC7C1FED2987B252001DCE8B /* Assets.xcassets */,
 				EC7C1FEF2987B252001DCE8B /* Preview Content */,
@@ -179,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B2C3D62F10000100AAA001 /* Localizable.strings in Resources */,
 				EC7C1FF12987B252001DCE8B /* Preview Assets.xcassets in Resources */,
 				EC7C1FEE2987B252001DCE8B /* Assets.xcassets in Resources */,
 			);
@@ -211,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B2C3D42F10000100AAA001 /* Localization.swift in Sources */,
 				EC7C2023298A710B001DCE8B /* ToggleView.swift in Sources */,
 				EC7C201B298A6A67001DCE8B /* VisualFormatter.swift in Sources */,
 				EC7C1FEC2987B251001DCE8B /* TextFieldWithControl.swift in Sources */,

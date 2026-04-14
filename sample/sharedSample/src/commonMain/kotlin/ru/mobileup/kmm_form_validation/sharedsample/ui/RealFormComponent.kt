@@ -1,8 +1,6 @@
 package ru.mobileup.kmm_form_validation.sharedsample.ui
 
 import com.arkivanov.decompose.ComponentContext
-import dev.icerock.moko.resources.desc.ResourceFormatted
-import dev.icerock.moko.resources.desc.StringDesc
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -12,7 +10,6 @@ import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.KeyboardType
 import ru.mobileup.kmm_form_validation.options.OnlyDigitsTextTransformation
 import ru.mobileup.kmm_form_validation.options.PasswordVisualTransformation
-import ru.mobileup.kmm_form_validation.sharedsample.MR
 import ru.mobileup.kmm_form_validation.sharedsample.utils.CheckControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.InputControl
 import ru.mobileup.kmm_form_validation.sharedsample.utils.PickerControl
@@ -98,7 +95,7 @@ class RealFormComponent(
 
     override val newsletterCheckBox = CheckControl()
 
-    override val genderPicker = PickerControl<Gender> { it?.displayValueDesc }
+    override val genderPicker = PickerControl<Gender>()
 
     override val showConfetti = MutableStateFlow(false)
 
@@ -111,51 +108,46 @@ class RealFormComponent(
         )
 
         input(nameInput) {
-            isNotBlank(MR.strings.field_is_blank_error_message)
+            isNotBlank(SampleValidationError.BlankField)
         }
 
         picker(genderPicker) {
-            isPicked(MR.strings.field_is_blank_error_message)
+            isPicked(SampleValidationError.BlankField)
         }
 
         input(emailInput, required = false) {
-            isNotBlank(MR.strings.field_is_blank_error_message)
+            isNotBlank(SampleValidationError.BlankField)
             regex(
                 regex = EMAIL_REGEX_PATTERN.toRegex(),
-                errorMessageRes = MR.strings.invalid_email_error_message
+                errorMessage = SampleValidationError.InvalidEmail
             )
         }
 
         input(phoneInput) {
-            isNotBlank(MR.strings.field_is_blank_error_message)
+            isNotBlank(SampleValidationError.BlankField)
             validation(
                 isValid = { it.length == RUS_PHONE_DIGIT_COUNT },
-                errorMessageRes = MR.strings.invalid_phone_error_message
+                errorMessage = SampleValidationError.InvalidPhone
             )
         }
 
         input(passwordInput) {
-            isNotBlank(MR.strings.field_is_blank_error_message)
+            isNotBlank(SampleValidationError.BlankField)
             validation(
                 isValid = ::isPasswordValid,
-                errorMessage = StringDesc.ResourceFormatted(
-                    MR.strings.invalid_password_error_message,
-                    PASSWORD_MIN_LENGTH,
-                    PASSWORD_MAX_LENGTH,
-                    PASSWORD_SPEC_CHARS
-                )
+                errorMessage = SampleValidationError.InvalidPassword
             )
         }
 
         input(confirmPasswordInput) {
-            isNotBlank(MR.strings.field_is_blank_error_message)
+            isNotBlank(SampleValidationError.BlankField)
             equalsTo(
                 inputControl = passwordInput,
-                errorMessageRes = MR.strings.passwords_do_not_match_error_message
+                errorMessage = SampleValidationError.PasswordsDoNotMatch
             )
         }
 
-        checked(termsCheckBox, MR.strings.terms_are_accepted_error_message)
+        checked(termsCheckBox, SampleValidationError.TermsNotAccepted)
     }
 
     private fun isPasswordValid(password: String): Boolean = password.run {

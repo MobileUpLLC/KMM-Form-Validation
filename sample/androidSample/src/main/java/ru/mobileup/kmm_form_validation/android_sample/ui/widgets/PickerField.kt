@@ -28,21 +28,21 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.resources.compose.localized
 import ru.mobileup.kmm_form_validation.android_sample.R
+import ru.mobileup.kmm_form_validation.android_sample.ui.asString
 import ru.mobileup.kmm_form_validation.control.PickerControl
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PickerField(
     pickerControl: PickerControl<*>,
+    selectedValueText: String?,
     onClick: () -> Unit,
     label: String,
     isExpanded: Boolean,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    val displayValue by pickerControl.displayValue.collectAsState()
     val error by pickerControl.error.collectAsState()
     val enabled by pickerControl.enabled.collectAsState()
 
@@ -83,10 +83,10 @@ fun PickerField(
         ) {
             Crossfade(
                 modifier = Modifier.weight(1f),
-                targetState = displayValue
+                targetState = selectedValueText
             ) { value ->
                 Text(
-                    text = value?.localized() ?: label,
+                    text = value ?: label,
                     style = MaterialTheme.typography.subtitle1.copy(
                         color = MaterialTheme.colors.onSurface.copy(alpha = if (value == null) 0.6f else 1f)
                     )
@@ -103,7 +103,7 @@ fun PickerField(
                 }
             )
         }
-        ErrorText(error?.localized() ?: "")
+        ErrorText(error?.asString() ?: "")
         AnimatedVisibility(isExpanded) {
             content()
         }

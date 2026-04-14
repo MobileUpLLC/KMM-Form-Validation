@@ -25,7 +25,6 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.coroutines.core)
-            implementation(libs.moko.resources)
         }
 
         androidMain.dependencies {
