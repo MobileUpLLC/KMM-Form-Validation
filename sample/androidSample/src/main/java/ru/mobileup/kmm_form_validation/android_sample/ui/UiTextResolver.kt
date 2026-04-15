@@ -17,14 +17,16 @@ fun Gender.displayName(): String = stringResource(
 )
 
 @Composable
-fun ValidationError.asString(): String = stringResource(
-    when (this) {
-        SampleValidationError.BlankField -> R.string.field_is_blank_error_message
-        SampleValidationError.InvalidEmail -> R.string.invalid_email_error_message
-        SampleValidationError.InvalidPhone -> R.string.invalid_phone_error_message
-        SampleValidationError.InvalidPassword -> R.string.invalid_password_error_message
-        SampleValidationError.PasswordsDoNotMatch -> R.string.passwords_do_not_match_error_message
-        SampleValidationError.TermsNotAccepted -> R.string.terms_are_accepted_error_message
-        else -> error("Unsupported validation error: $this")
-    }
-)
+fun ValidationError.asString(): String {
+    val error = this as? SampleValidationError ?: error("Unsupported validation error: $this")
+    return stringResource(
+        when (error) {
+            SampleValidationError.BlankField -> R.string.field_is_blank_error_message
+            SampleValidationError.InvalidEmail -> R.string.invalid_email_error_message
+            SampleValidationError.InvalidPhone -> R.string.invalid_phone_error_message
+            SampleValidationError.InvalidPassword -> R.string.invalid_password_error_message
+            SampleValidationError.PasswordsDoNotMatch -> R.string.passwords_do_not_match_error_message
+            SampleValidationError.TermsNotAccepted -> R.string.terms_are_accepted_error_message
+        }
+    )
+}
