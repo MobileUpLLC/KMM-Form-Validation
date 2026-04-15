@@ -49,7 +49,48 @@ class MyViewModel : ViewModel() {
 
 ### Using InputControl in UI
 
-You can integrate `InputControl` with Jetpack Compose `TextField` as follows:
+You can integrate `InputControl` with Jetpack Compose `TextField` by defining a small mapper in your UI layer:
+
+```kotlin
+import androidx.compose.foundation.text.KeyboardOptions as ComposeKeyboardOptions
+import androidx.compose.ui.text.input.ImeAction as ComposeImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization as ComposeKeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType as ComposeKeyboardType
+
+fun KeyboardOptions.toCompose(): ComposeKeyboardOptions {
+    return ComposeKeyboardOptions(
+        capitalization = when (capitalization) {
+            KeyboardCapitalization.None -> ComposeKeyboardCapitalization.None
+            KeyboardCapitalization.Characters -> ComposeKeyboardCapitalization.Characters
+            KeyboardCapitalization.Words -> ComposeKeyboardCapitalization.Words
+            KeyboardCapitalization.Sentences -> ComposeKeyboardCapitalization.Sentences
+        },
+        autoCorrectEnabled = autoCorrect,
+        keyboardType = when (keyboardType) {
+            KeyboardType.Text -> ComposeKeyboardType.Text
+            KeyboardType.Ascii -> ComposeKeyboardType.Ascii
+            KeyboardType.Email -> ComposeKeyboardType.Email
+            KeyboardType.Uri -> ComposeKeyboardType.Uri
+            KeyboardType.Number -> ComposeKeyboardType.Number
+            KeyboardType.NumberPassword -> ComposeKeyboardType.NumberPassword
+            KeyboardType.Password -> ComposeKeyboardType.Password
+            KeyboardType.Phone -> ComposeKeyboardType.Phone
+        },
+        imeAction = when (imeAction) {
+            ImeAction.Default -> ComposeImeAction.Default
+            ImeAction.None -> ComposeImeAction.None
+            ImeAction.Search -> ComposeImeAction.Search
+            ImeAction.Go -> ComposeImeAction.Go
+            ImeAction.Done -> ComposeImeAction.Done
+            ImeAction.Next -> ComposeImeAction.Next
+            ImeAction.Send -> ComposeImeAction.Send
+            ImeAction.Previous -> ComposeImeAction.Previous
+        }
+    )
+}
+```
+
+Then use it in your Compose field:
 
 ```kotlin
 @Composable

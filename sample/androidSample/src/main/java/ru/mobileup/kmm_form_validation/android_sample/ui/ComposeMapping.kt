@@ -1,13 +1,13 @@
-package ru.mobileup.kmm_form_validation
+package ru.mobileup.kmm_form_validation.android_sample.ui
 
+import androidx.compose.foundation.text.KeyboardOptions as ComposeKeyboardOptions
+import androidx.compose.ui.text.input.ImeAction as ComposeImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization as ComposeKeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType as ComposeKeyboardType
 import ru.mobileup.kmm_form_validation.options.ImeAction
 import ru.mobileup.kmm_form_validation.options.KeyboardCapitalization
 import ru.mobileup.kmm_form_validation.options.KeyboardOptions
 import ru.mobileup.kmm_form_validation.options.KeyboardType
-import androidx.compose.foundation.text.KeyboardOptions as ComposeKeyboardOptions
-import androidx.compose.ui.text.input.ImeAction as ComposeImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization as ComposeKeyboardCapitalization
-import androidx.compose.ui.text.input.KeyboardType as ComposeKeyBoardType
 
 fun KeyboardOptions.toCompose(): ComposeKeyboardOptions {
     return ComposeKeyboardOptions(
@@ -18,7 +18,7 @@ fun KeyboardOptions.toCompose(): ComposeKeyboardOptions {
     )
 }
 
-fun KeyboardCapitalization.toCompose(): ComposeKeyboardCapitalization {
+private fun KeyboardCapitalization.toCompose(): ComposeKeyboardCapitalization {
     return when (this) {
         KeyboardCapitalization.None -> ComposeKeyboardCapitalization.None
         KeyboardCapitalization.Characters -> ComposeKeyboardCapitalization.Characters
@@ -27,20 +27,20 @@ fun KeyboardCapitalization.toCompose(): ComposeKeyboardCapitalization {
     }
 }
 
-fun KeyboardType.toCompose(): ComposeKeyBoardType {
+private fun KeyboardType.toCompose(): ComposeKeyboardType {
     return when (this) {
-        KeyboardType.Text -> ComposeKeyBoardType.Text
-        KeyboardType.Ascii -> ComposeKeyBoardType.Ascii
-        KeyboardType.Email -> ComposeKeyBoardType.Email
-        KeyboardType.Uri -> ComposeKeyBoardType.Uri
-        KeyboardType.Number -> ComposeKeyBoardType.Number
-        KeyboardType.NumberPassword -> ComposeKeyBoardType.NumberPassword
-        KeyboardType.Password -> ComposeKeyBoardType.Password
-        KeyboardType.Phone -> ComposeKeyBoardType.Phone
+        KeyboardType.Text -> ComposeKeyboardType.Text
+        KeyboardType.Ascii -> ComposeKeyboardType.Ascii
+        KeyboardType.Email -> ComposeKeyboardType.Email
+        KeyboardType.Uri -> ComposeKeyboardType.Uri
+        KeyboardType.Number -> ComposeKeyboardType.Number
+        KeyboardType.NumberPassword -> ComposeKeyboardType.NumberPassword
+        KeyboardType.Password -> ComposeKeyboardType.Password
+        KeyboardType.Phone -> ComposeKeyboardType.Phone
     }
 }
 
-fun ImeAction.toCompose(): ComposeImeAction {
+private fun ImeAction.toCompose(): ComposeImeAction {
     return when (this) {
         ImeAction.Default -> ComposeImeAction.Default
         ImeAction.None -> ComposeImeAction.None

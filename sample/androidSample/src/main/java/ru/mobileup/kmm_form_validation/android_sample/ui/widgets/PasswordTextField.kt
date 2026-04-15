@@ -20,8 +20,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import kotlinx.coroutines.flow.collectLatest
 import ru.mobileup.kmm_form_validation.android_sample.R
 import ru.mobileup.kmm_form_validation.android_sample.ui.asString
+import ru.mobileup.kmm_form_validation.android_sample.ui.toCompose
 import ru.mobileup.kmm_form_validation.control.InputControl
-import ru.mobileup.kmm_form_validation.toCompose
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

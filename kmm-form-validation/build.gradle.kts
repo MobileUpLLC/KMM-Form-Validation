@@ -26,11 +26,6 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.coroutines.core)
         }
-
-        androidMain.dependencies {
-            implementation(libs.compose.foundation)
-            implementation(libs.compose.ui)
-        }
     }
 }
 
