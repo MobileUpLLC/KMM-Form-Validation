@@ -1,0 +1,10 @@
+## Copy these publication settings into your local `local.properties`.
+## Keep your existing `sdk.dir=...` line if it is already present there.
+
+## Maven Central credentials (Token) for the MobileUp account
+centralUsername=
+centralPassword=
+
+## Absolute path to the ASCII-armored private key file used for signing
+signingKeyFile=/absolute/path/to/signing-key.asc
+signingPassword=

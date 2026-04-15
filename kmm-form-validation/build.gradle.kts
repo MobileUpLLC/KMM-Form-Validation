@@ -5,9 +5,10 @@ plugins {
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
 }
 
-apply {
-    from("$rootDir/publish.gradle")
-}
+group = "ru.mobileup"
+version = "2.0.0"
+
+apply(from = rootProject.file("gradle/publication.gradle.kts"))
 
 kotlin {
     android {
