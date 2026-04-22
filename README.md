@@ -2,7 +2,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/ru.mobileup/kmm-form-validation)](https://repo1.maven.org/maven2/ru/mobileup/kmm-form-validation)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Kotlin Multiplatform library to control and validate forms. This library is based on [sesame-form](https://github.com/aartikov/Sesame/tree/master/sesame-form).
+Kotlin Multiplatform library to control and validate forms for Android, iOS, and JVM.
 
 ## Installation
 ```kotlin

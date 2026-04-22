@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "ru.mobileup"
-version = "2.1.0"
+version = "2.2.0"
 
 apply(from = rootProject.file("gradle/publication.gradle.kts"))
 
@@ -16,6 +16,12 @@ kotlin {
         compileSdk = libs.versions.compileSdk.get().toInt()
         minSdk = libs.versions.minSdk.get().toInt()
 
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
+
+    jvm {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_17)
         }
